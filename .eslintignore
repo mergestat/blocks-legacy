@@ -1,0 +1,7 @@
+dist/
+node_modules/
+stories/
+.snapshots/
+*.min.js
+*.mdx
+tsconfig.json

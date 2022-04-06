@@ -1,0 +1,58 @@
+/* ==========================================================================
+   t-badge
+   ========================================================================== */
+
+.t-badge {
+    @apply px-3
+           py-1
+           font-medium
+           rounded-full
+           leading-4
+           inline-flex
+           items-center
+           text-sm;
+
+    .t-icon {
+        @apply w-4
+               h-4;
+    }
+}
+
+.t-badge:not(.t-badge-icon) .t-icon:first-child {
+    @apply mr-1;
+}
+
+.t-badge:not(.t-badge-icon) .t-icon:last-child {
+    @apply ml-1;
+}
+
+.t-badge-icon {
+    @apply px-1;
+}
+
+/* Badge skins */
+.t-badge-default {
+    @apply bg-gray-100
+           mix-blend-multiply
+           text-gray-500;
+}
+
+.t-badge-primary {
+    @apply bg-blue-600
+           text-white;
+}
+
+.t-badge-danger {
+    @apply bg-red-600
+           text-white;
+}
+
+.t-badge-warning {
+    @apply bg-yellow-500
+           text-white;
+}
+
+.t-badge-success {
+    @apply bg-green-600
+           text-white;
+}

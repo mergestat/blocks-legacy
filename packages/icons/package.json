@@ -1,0 +1,56 @@
+{
+  "name": "@mergestat/icons",
+  "version": "1.0.0",
+  "description": "Set of Icon for MergeStat project",
+  "repository": {
+    "type": "git",
+    "url": "ssh://git@github.com/mergestat/blocks.git",
+    "directory": "packages/icons"
+  },
+  "homepage": "https://github.com/mergestat/blocks/packages/icons#readme",
+  "license": "MIT",
+  "main": "dist/index.cjs.js",
+  "bin": "dist/index.cjs.js",
+  "module": "dist/index.esm.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "styles"
+  ],
+  "scripts": {
+    "build": "NODE_ENV=production BABEL_ENV=production rm -rf ./dist && tsc -d --emitDeclarationOnly --declarationDir dist && rollup --config ",
+    "build:watch": "NODE_ENV=production BABEL_ENV=production rm -rf ./dist && tsc -d --emitDeclarationOnly --declarationDir dist && rollup -c -w ",
+    "format:check": "prettier --check --loglevel error 'src/**/*.{js,jsx,ts,tsx}'",
+    "format:write": "prettier --write 'src/**/*.{js,jsx,ts,tsx}'",
+    "lint": "eslint 'src/**/*.{js,jsx,ts,tsx}'",
+    "release": "npm run build && npm publish --access public",
+    "start": "npm run storybook",
+    "storybook": "start-storybook -p 6006",
+    "storybook:build": "build-storybook",
+    "test": "jest"
+  },
+  "jest": {
+    "setupFilesAfterEnv": [
+      "<rootDir>/src/setupTests.js"
+    ]
+  },
+  "dependencies": {
+    "classnames": "^2.3.1"
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^5.11.6",
+    "@testing-library/react": "^11.2.5",
+    "@types/react-dom": "^17.0.5",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1"
+  },
+  "peerDependencies": {
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
+  },
+  "publishConfig": {
+    "access": "public",
+    "name": "@mergestat/icons",
+    "registry": "https://registry.npmjs.org"
+  }
+}

@@ -1,0 +1,128 @@
+/* ==========================================================================
+  t-table
+  ---
+  Apply a .t-table-default modifier to tables to avoid adding individual classes
+  to every th/td element
+   ========================================================================== */
+
+.t-table-default {
+    @apply w-full;
+}
+
+/* Table with sticky header */
+.t-table-sticky-header{
+  border-spacing: 0;
+  @apply border-separate;
+
+  thead th {
+    @apply sticky
+           z-10
+           top-0
+           bg-white;
+  }
+}
+
+/* When a table heading occurs in the tbody part */
+.t-table-heading-in-body {
+  @apply px-6
+         py-4
+         whitespace-nowrap
+         font-medium
+         text-gray-900;
+}
+
+/* custom class rc table */
+.t-table-thead-in-body {
+  @apply px-6
+         py-4
+         whitespace-nowrap
+         font-medium
+         text-gray-900;
+}
+
+/* A regular cell */
+.t-table-cell,
+.t-table-default td {
+  @apply px-6
+         py-3
+         border-b
+         border-gray-200
+         text-gray-700;
+}
+
+/* A regular heading */
+.t-table-heading,
+.t-table-default th {
+  @apply px-6
+         py-3
+         text-left
+         border-b-2
+         font-medium
+         text-gray-900;
+}
+
+/* custom class rc table */
+.t-table-thead,
+.t-table-default th {
+  @apply px-6
+         py-3
+         text-left
+         border-b-2
+         font-medium
+         text-gray-900;
+}
+
+/* Alignment for button toolbars */
+.t-table-default .t-button-toolbar,
+.t-table-cell .t-button-toolbar {
+        @apply justify-end;
+}
+
+/* Last rows should not show a border */
+.t-table tr:last-child .t-table-cell,
+.t-table-default tr:last-child td {
+  @apply border-0;
+}
+
+/* custom class rc table */
+.t-table-content table {
+  @apply w-full
+}
+
+/* Code in props tables */
+.t-table-props code {
+  @apply bg-gray-100
+         text-sm
+         text-red-500
+         p-1;
+}
+
+/* When table cell content should not wrap */
+.t-table-nowrap {
+    th,
+    td {
+      white-space: nowrap;
+    }
+  }
+
+/* Table with hover actions */
+.t-table-hover {
+    .t-button-toolbar {
+        @apply hidden;
+    }
+}
+.t-table-hover tbody tr {
+    @apply relative;
+
+    &:hover {
+        @apply bg-gray-50;
+        .t-button-toolbar {
+            @apply block
+                   top-1/2
+                   transform
+                   -translate-y-1/2
+                   absolute
+                   right-6;
+        }
+    }
+}

@@ -1,0 +1,100 @@
+/* ==========================================================================
+    t-alert
+   ========================================================================== */
+
+.t-alert {
+    @apply rounded-md
+           flex
+           items-start
+           p-4
+           border;
+
+  .t-icon {
+    @apply my-0.5;
+  }
+}
+
+.t-alert-title {
+    @apply font-medium;
+}
+
+.t-alert-title + .t-alert-message {
+  @apply mt-1;
+}
+
+.t-alert-body {
+    @apply flex-1;
+}
+
+.t-alert .t-icon svg * {
+  @apply fill-current;
+}
+
+/* Skins */
+.t-alert-info {
+    @apply bg-blue-50
+           border-blue-300
+           text-blue-700;
+    .t-alert-title {
+        @apply text-blue-800;
+    }
+    .t-icon:first-child {
+        @apply text-blue-500;
+    }
+}
+
+.t-alert-warning {
+    @apply bg-yellow-50
+           border-yellow-300
+           text-yellow-700;
+    .t-alert-title {
+        @apply text-yellow-800;
+    }
+    .t-icon:first-child {
+        @apply text-yellow-500;
+    }
+}
+
+.t-alert-error {
+    @apply bg-red-50
+           border-red-300
+           text-red-700;
+    .t-alert-title {
+        @apply text-red-800;
+    }
+    .t-icon:first-child {
+        @apply text-red-500;
+    }
+}
+
+.t-alert-success {
+    @apply bg-green-50
+           border-green-300
+           text-green-700;
+    .t-alert-title {
+        @apply text-green-800;
+    }
+    .t-icon:first-child {
+        @apply text-green-500;
+    }
+}
+
+.t-alert-dark {
+    @apply bg-gray-800
+           border-gray-800
+           text-gray-400;
+    .t-alert-title {
+        @apply text-white;
+    }
+}
+
+
+.t-inline-alert {
+  @apply flex
+         items-center;
+}
+
+.t-inline-alert-message {
+  @apply text-sm
+         text-gray-500;
+}

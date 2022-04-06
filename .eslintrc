@@ -1,0 +1,52 @@
+{
+  "parser": "babel-eslint",
+  "extends": [
+    "standard",
+    "standard-react",
+    "plugin:prettier/recommended",
+    "prettier/standard",
+    "prettier/react",
+    "plugin:react-hooks/recommended",
+    "plugin:json/recommended"
+  ],
+  "env": {
+    "node": true,
+    "jest": true,
+    "browser": true,
+    "es6": true
+  },
+  "parserOptions": {
+    "ecmaVersion": 2020,
+    "ecmaFeatures": {
+      "legacyDecorators": true,
+      "jsx": true
+    }
+  },
+  "rules": {
+    "import/no-extraneous-dependencies": [
+      "error",
+      {
+        "devDependencies": [
+          "src/setupTests.[jt]s?(x)",
+          "src/testHelpers.[jt]s?(x)",
+          "**/*.test.[jt]s?(x)",
+          "rollup.config.js",
+          "src/mocks/**"
+        ]
+      }
+    ]
+  },
+  "overrides": [
+    {
+      "files": [
+        "jest.setup.js"
+      ],
+      "env": {
+        "jest": true
+      },
+      "rules": {
+        "import/no-extraneous-dependencies": 0
+      }
+    }
+  ]
+}
