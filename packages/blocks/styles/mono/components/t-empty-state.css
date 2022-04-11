@@ -1,0 +1,19 @@
+.t-center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.t-circle-icon {
+  @apply p-1;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color:rgba(229, 231, 235);
+}
