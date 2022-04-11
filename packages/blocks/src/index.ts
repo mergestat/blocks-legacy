@@ -5,6 +5,7 @@ export * from './components/Badge';
 export * from './components/Button';
 export * from './components/ColoredBox';
 export * from './components/Dropdown';
+export * from './components/Filter';
 export * from './components/Form';
 export * from './components/HelpText';
 export * from './components/Icon';
