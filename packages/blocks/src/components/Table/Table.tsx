@@ -35,7 +35,10 @@ export const Table: React.FC<TableProps> = ({
 }) => {
   if (loading) {
     return (
-      <div className="overflow-hidden bg-white" style={{ maxHeight: scrollY || 'unset' }}>
+      <div
+        className="overflow-hidden bg-white"
+        style={{ maxHeight: scrollY || 'unset' }}
+      >
         <SkeletonLoaderTable
           colLen={columns.length}
           rowLen={dataSource.length}
@@ -54,9 +57,9 @@ export const Table: React.FC<TableProps> = ({
   ) : (
     <div
       className={cx('overflow-hidden bg-white relative', {
-        ['overflow-x-auto']: responsive,
-        ['overflow-y-auto']: !!scrollY,
-        ['border border-gray-200 rounded']: !borderless,
+        'overflow-x-auto': responsive,
+        'overflow-y-auto': !!scrollY,
+        'border border-gray-200 rounded': !borderless,
       })}
       style={{ maxHeight: scrollY || 'unset' }}
     >
@@ -64,13 +67,17 @@ export const Table: React.FC<TableProps> = ({
         className={cx(`t-table-default`, {
           [`t-table-hover`]: hovered,
           [`t-table-sticky-header`]: !!scrollY,
-          [className]: !!className
+          [className]: !!className,
         })}
       >
         <thead>
           <tr>
             {columns.map(({ title, key }) => (
-              <th scope="col" key={key} className={cx({['whitespace-nowrap']: noWrapHeaders})}>
+              <th
+                scope="col"
+                key={key}
+                className={cx({ 'whitespace-nowrap': noWrapHeaders })}
+              >
                 {title}
               </th>
             ))}
@@ -85,15 +92,15 @@ export const Table: React.FC<TableProps> = ({
                 {columns.map(({ dataIndex, className, render, key }) => (
                   <td
                     className={cx(``, {
-                      [className] : !!className
+                      [className]: !!className,
                     })}
-                    key={rowKey+ key}
+                    key={rowKey + key}
                   >
-                    { render ? render(data[dataIndex], data) : data[dataIndex] }
+                    {render ? render(data[dataIndex], data) : data[dataIndex]}
                   </td>
                 ))}
               </tr>
-            )
+            );
           })}
         </tbody>
       </table>
@@ -104,7 +111,7 @@ export const Table: React.FC<TableProps> = ({
 export const SkeletonLoaderTable = ({
   rowLen = 10,
   colLen = 3,
-  borderless = false
+  borderless = false,
 }: {
   rowLen?: number;
   colLen?: number;
@@ -116,9 +123,14 @@ export const SkeletonLoaderTable = ({
   return (
     <div className="py-3 px-2 w-full mx-auto">
       <div className="animate-pulse flex flex-col">
-        <div className={cx("flex space-x-5 items-center py-2 border-b border-gray-200",{
-          "border-t": !borderless
-        })}>
+        <div
+          className={cx(
+            'flex space-x-5 items-center py-2 border-b border-gray-200',
+            {
+              'border-t': !borderless,
+            }
+          )}
+        >
           {colArray.map((_, col) => (
             <div
               key={col}
@@ -133,7 +145,7 @@ export const SkeletonLoaderTable = ({
           ))}
         </div>
 
-        {rowArray.map((_,row) => (
+        {rowArray.map((_, row) => (
           <div
             key={row}
             className="flex space-x-5 items-center border-b border-gray-200 py-2"

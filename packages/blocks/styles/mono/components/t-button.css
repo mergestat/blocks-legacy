@@ -100,18 +100,6 @@
          text-white;
 }
 
-.t-button-borderless-primary {
-  @apply border-blue-200 
-         bg-gradient-to-b
-         from-blue-100
-         to-blue-200
-         hover_from-blue-200 
-         hover_to-blue-300 
-         active_from-blue-200 
-         active_shadow-inner 
-         text-blue-600;
-}
-
 .t-button-borderless,
 .t-button-borderless-i,
 .t-button-borderless-muted {

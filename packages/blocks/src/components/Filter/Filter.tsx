@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
-import { XIcon, CaretDownIcon } from '@mergestat/icons';
-import { Button } from '../Button';
+import { CaretDownIcon } from '@mergestat/icons';
 
-type AlertProps = {
+import { Tag } from "./Tag"
+
+type FilterProps = {
   closable?: boolean;
   onClose?: () => void;
   children?: React.ReactNode;
 }
 
-export const Filter: React.FC<AlertProps> = ({
+export const Filter: React.FC<FilterProps> = ({
   closable = false,
   onClose,
   children
@@ -20,17 +21,14 @@ export const Filter: React.FC<AlertProps> = ({
   return (
     <div>
       {closable ? (
-        <div className='t-flex-div'>
-          <Button skin="borderless">
-            {children ? children : "Filter label"}
-          </Button>
-          <div className='t-divider' />
-          <XIcon className="t-icon " />
-        </div>
+        <Tag skin='blue'>{children ? children : "Filter label"}</Tag>
       ) : (
-        <Button skin="secondary" endIcon={<CaretDownIcon className="t-icon" />}>
-          {children ? children : "Filter label"}
-        </Button>
+        <button className='t-button bg-gray-50'>
+          <span>
+            {children ? children : "Filter label"}
+          </span>
+          <CaretDownIcon className="t-icon" />
+        </button>
       )}
     </div>
   );

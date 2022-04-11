@@ -1,0 +1,49 @@
+.t-flex-div {
+    width: fit-content;
+    display: flex;
+    align-items: center;
+    border:1px solid rgba(186, 230, 253);
+    @apply  rounded 
+            px-3 
+            leading-5 
+            focus_outline-none 
+            focus_ring-offset-2 
+            focus_ring-blue-500 
+            font-medium;
+}
+
+.t-tag-gray .t-divider {
+    height: 36px;
+    border-left: 2px solid rgba(229, 231, 235);
+    @apply ml-3 mr-2;
+}
+
+.t-tag-blue .t-divider {
+    height: 36px;
+    border-left:2px solid rgba(186, 230, 253);
+    @apply ml-3 mr-2;
+}
+
+.t-tag-gray {
+    font-weight: 600;
+    @apply  bg-gradient-to-b 
+            border-gray-300 
+            text-gray-700 
+            from-white 
+            to-gray-100 
+            hover_to-gray-150 
+            active_from-gray-200 
+            active_shadow-inner;
+}
+
+.t-tag-blue {
+    @apply  border-blue-200
+            bg-gradient-to-b 
+            from-blue-100  
+            to-blue-100 
+            hover_from-blue-100 
+            hover_to-blue-200 
+            active_from-blue-200 
+            active_shadow-inner 
+            text-blue-600
+}

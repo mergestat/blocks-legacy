@@ -14,6 +14,7 @@ export * from './components/List';
 export * from './components/Loader';
 export * from './components/Menu';
 export * from './components/Modal';
+export * from './components/MultiSelect';
 export * from './components/Navbar';
 export * from './components/Page';
 export * from './components/Panel';
