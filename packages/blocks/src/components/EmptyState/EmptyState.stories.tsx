@@ -13,5 +13,5 @@ const Template: ComponentStory<typeof EmptyState> = (args) => <EmptyState {...ar
 export const Default = Template.bind({});
 
 Default.args = {
-
+  onClick:() => { console.log("HI") },
 }
