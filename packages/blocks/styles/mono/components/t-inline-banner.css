@@ -1,0 +1,11 @@
+.t-inline-banner {
+  @apply p-3 bg-gray-100 text-center;
+
+  font-size: 14px;
+  color: #727C8D;
+}
+.t-inline-banner a {
+  color: #0EA5E9 ;
+  text-decoration: underline;
+  cursor: pointer;
+}
