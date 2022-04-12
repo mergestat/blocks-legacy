@@ -20,6 +20,7 @@
 @import "./components/t-icon.css";
 @import "./components/t-input.css";
 @import "./components/t-label.css";
+@import "./components/t-list-item.css";
 @import "./components/t-list.css";
 @import "./components/t-menu.css";
 @import "./components/t-modal.css";
@@ -38,6 +39,7 @@
 @import "./components/t-tabs.css";
 @import "./components/t-tag.css";
 @import "./components/t-textarea.css";
+@import "./components/t-toggle.css";
 @import "./components/t-toolbar.css";
 
 @import "tailwindcss/utilities";
