@@ -1,63 +1,79 @@
-import { PlusIcon, SearchIcon } from "@mergestat/icons";
-import React, { useState } from "react";
-import { Tag } from "../Filter/Tag";
+import { PlusIcon, SearchIcon } from '@mergestat/icons';
+import React, { useState } from 'react';
+import { Tag } from '../Filter/Tag';
 
 type MultiSelectProps = {
-  set_state: [object],
-  get_state?:(state)=>void
-}
+  setStateToProps: {
+    title: string;
+    checked: boolean;
+  }[];
+  getState?: ([]) => void;
+};
 
-export const MultiSelect: React.FC<MultiSelectProps> = ({ set_state, get_state}) => {
-  const [state, setState] = useState( [...set_state]);
-  const [value, setValue] = useState("")
-  const [isActive, setIsActive] = useState(false)
+export const MultiSelect: React.FC<
+  MultiSelectProps &
+    React.DetailedHTMLProps<
+      React.DetailsHTMLAttributes<HTMLElement>,
+      HTMLElement
+    >
+> = ({ setStateToProps, getState }) => {
+  const [state, setState] = useState(setStateToProps);
+  const [value, setValue] = useState('');
+  const [isActive, setIsActive] = useState(false);
 
-  window.addEventListener("click", (e) => {
-    console.log(e.target)
-    if (e.target.localName !== "input") {
-      setIsActive(false)
+  window.addEventListener('click', (e) => {
+    const target = e.target as Element
+    if (target.localName !== 'input' && target.localName !== 'label') {
+      setIsActive(false);
     }
   });
 
-  window.addEventListener("keypress", (e) => {
-    if (e.key == "Enter" && value.length > 0) {
-      setState([...state, { title: value, checked: true }])
-      get_state ? get_state(state) : "";
-      setValue("")
-    }  
+  window.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter' && value.length > 0) {
+      setState([...state, { title: value, checked: true }]);
+
+      if (getState) {
+        getState([...state]);
+      }
+      setValue('');
+    }
   });
 
   return (
-    <div className="t-container" >
-      <div  className="t-tags-container" >
+    <div className="t-container">
+      <div className="t-tags-container">
         {state.map((item, index) => {
-          if(item.checked) {
+          if (item.checked) {
             return (
               <Tag
                 skin="gray"
                 key={`key_${index}`}
                 onClick={() => {
                   state[index].checked = !state[index].checked;
-                  setState([...state])
-                  get_state ? get_state(state) : "";
+                  setState([...state]);
+                  if (getState) {
+                    getState([...state]);
+                  }
                 }}
               >
                 {item.title}
               </Tag>
-            )
+            );
           }
         })}
       </div>
-      <div className={`t-search-container ${isActive&&"t-shadow"}`}>
+      <div className={`t-search-container ${isActive && 't-shadow'}`}>
         <label
-          className={`t-inptut-container  ${isActive&&"active"}`}
-          onClick={()=>setIsActive(true)}
+          className={`t-inptut-container  ${isActive && 'active'}`}
+          onClick={() => setIsActive(true)}
         >
           <SearchIcon className="t-icon" />
           <input
             type="text"
             value={value}
-            onChange={(e) => { setValue(e.target.value) }}
+            onChange={(e) => {
+              setValue(e.target.value);
+            }}
           />
         </label>
         {isActive && (
@@ -68,28 +84,38 @@ export const MultiSelect: React.FC<MultiSelectProps> = ({ set_state, get_state})
                   return (
                     <div key={`key2_${index}`}>
                       <label>
+                        {' '}
                         <input
                           type="checkbox"
                           checked={item.checked}
                           onChange={(e) => {
                             state[index].checked = !state[index].checked;
-                            setState([...state])
-                            get_state ? get_state(state) : "";
+                            setState([...state]);
+                            if (getState) {
+                              getState([...state]);
+                            }
                           }}
                         />
                         {item.title}
                       </label>
                     </div>
-                  )
+                  );
                 }
               })}
             </div>
             <div className="t-add-container">
               <button
                 onClick={() => {
-                  value.length > 0 ? setState([...state, { title: value, checked: true }]) : "";
-                  get_state ? get_state([...state, { title: value, checked: true }]) : "";
-                  setValue("");
+                  if (value.length > 0) {
+                    {
+                      setState([...state, { title: value, checked: true }]);
+                    }
+                    if (getState) {
+                      getState([...state, { title: value, checked: true }]);
+                    }
+
+                    setValue('');
+                  }
                 }}
               >
                 <PlusIcon className="t-icon" />
@@ -101,4 +127,4 @@ export const MultiSelect: React.FC<MultiSelectProps> = ({ set_state, get_state})
       </div>
     </div>
   );
-}
+};

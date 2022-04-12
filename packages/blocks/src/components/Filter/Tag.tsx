@@ -3,7 +3,6 @@ import cx from 'classnames';
 import { XIcon } from '@mergestat/icons';
 
 type TagProps = {
-  closable?: boolean;
   onClose?: () => void;
   onClick?: () => void;
   children?: React.ReactNode;
@@ -13,7 +12,6 @@ type TagProps = {
 export const Tag: React.FC<TagProps> = ({
   onClose,
   onClick,
-  closable = false,
   children,
   skin,
 }) => {

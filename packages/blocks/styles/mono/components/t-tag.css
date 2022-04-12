@@ -9,7 +9,7 @@
     @apply  rounded 
             pl-2
             pr-1 
-            leading-5
+            leading-7
             focus_outline-none 
             focus_ring-offset-2 
             focus_ring-blue-500 
@@ -17,17 +17,17 @@
 }
 
 .t-tag-gray .t-divider {
-    height: 20px;
+    height: 28px;
     border-left: 1px solid rgba(209, 213, 219);
     @apply ml-3 mr-2;
 }
 .text-base .t-divider{
-    height: 26px;
+    height: 32px;
 }
 .t-tag-blue .t-divider {
-    height: 20px;
+    height: 28px;
     border-left:1px solid rgba(125, 211, 252);
-    @apply ml-1 mr-1;
+    @apply ml-3 mr-2;
 }
 
 .t-tag-gray {
@@ -43,6 +43,7 @@
 }
 
 .t-tag-blue {
+    font-weight: 600;
     @apply  border-blue-300
             bg-gradient-to-b 
             from-blue-100  
