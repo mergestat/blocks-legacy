@@ -1,11 +1,15 @@
 .t-flex-div {
+    height: fit-content;
     width: fit-content;
     display: flex;
+    font-size: 14px;
     align-items: center;
+    cursor: pointer;
     border:1px solid rgba(186, 230, 253);
     @apply  rounded 
-            px-3 
-            leading-5 
+            pl-2
+            pr-1 
+            leading-5
             focus_outline-none 
             focus_ring-offset-2 
             focus_ring-blue-500 
@@ -13,15 +17,17 @@
 }
 
 .t-tag-gray .t-divider {
-    height: 36px;
-    border-left: 2px solid rgba(229, 231, 235);
+    height: 20px;
+    border-left: 1px solid rgba(209, 213, 219);
     @apply ml-3 mr-2;
 }
-
+.text-base .t-divider{
+    height: 26px;
+}
 .t-tag-blue .t-divider {
-    height: 36px;
-    border-left:2px solid rgba(186, 230, 253);
-    @apply ml-3 mr-2;
+    height: 20px;
+    border-left:1px solid rgba(125, 211, 252);
+    @apply ml-1 mr-1;
 }
 
 .t-tag-gray {
@@ -29,21 +35,20 @@
     @apply  bg-gradient-to-b 
             border-gray-300 
             text-gray-700 
-            from-white 
+            from-gray-100
             to-gray-100 
-            hover_to-gray-150 
-            active_from-gray-200 
+            hover_from-gray-150
+            hover_to-gray-150              
             active_shadow-inner;
 }
 
 .t-tag-blue {
-    @apply  border-blue-200
+    @apply  border-blue-300
             bg-gradient-to-b 
             from-blue-100  
             to-blue-100 
-            hover_from-blue-100 
+            hover_from-blue-200 
             hover_to-blue-200 
-            active_from-blue-200 
             active_shadow-inner 
             text-blue-600
 }

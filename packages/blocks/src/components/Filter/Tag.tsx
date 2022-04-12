@@ -8,21 +8,21 @@ type TagProps = {
   onClick?: () => void;
   children?: React.ReactNode;
   skin?: 'gray' | 'blue';
-}
+};
 
 export const Tag: React.FC<TagProps> = ({
   onClose,
   onClick,
   closable = false,
   children,
-  skin
+  skin,
 }) => {
   const [visible, setVisible] = useState<boolean>(true);
 
   const handleOnClose = () => {
     setVisible(false);
     onClose && onClose();
-  }
+  };
 
   const getButtonSkin = (skin: string) => {
     switch (skin) {
@@ -35,23 +35,21 @@ export const Tag: React.FC<TagProps> = ({
       default:
         return 't-tag-gray';
     }
-  }
+  };
 
   if (!visible) return null;
 
   return (
     <div
-      className={cx("t-flex-div", getButtonSkin(skin ?? 'primary'))}
+      className={cx('t-flex-div', getButtonSkin(skin ?? 'primary'))}
       onClick={() => {
         handleOnClose();
-        onClick()
+        onClick();
       }}
     >
-      <button >
-        { children ? children : "Filter label"}
-      </button>
-      <div className="t-divider"></div>
+      <button>{children || 'Filter label'}</button>
+      <div className="t-divider" />
       <XIcon className="t-icon " />
     </div>
   );
-}
+};

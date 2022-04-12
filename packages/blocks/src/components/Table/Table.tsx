@@ -19,7 +19,7 @@ type TableProps = {
   scrollY?: string | number;
   noWrapHeaders?: boolean;
   borderless?: boolean;
-}
+};
 
 export const Table: React.FC<TableProps> = ({
   className,
@@ -31,7 +31,7 @@ export const Table: React.FC<TableProps> = ({
   loading = false,
   borderless = false,
   noWrapHeaders = false,
-  scrollY
+  scrollY,
 }) => {
   if (loading) {
     return (
@@ -49,9 +49,11 @@ export const Table: React.FC<TableProps> = ({
   }
 
   return dataSource.length < 1 ? (
-    <div className={cx("flex justify-center items-center bg-white py-5", {
-      "rounded-md border-gray-200 border": !borderless
-    })}>
+    <div
+      className={cx('flex justify-center items-center bg-white py-5', {
+        'rounded-md border-gray-200 border': !borderless,
+      })}
+    >
       {emptyText ?? 'No data available!'}
     </div>
   ) : (
@@ -106,7 +108,7 @@ export const Table: React.FC<TableProps> = ({
       </table>
     </div>
   );
-}
+};
 
 export const SkeletonLoaderTable = ({
   rowLen = 10,
@@ -164,4 +166,4 @@ export const SkeletonLoaderTable = ({
       </div>
     </div>
   );
-}
+};
