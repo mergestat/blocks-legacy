@@ -45,7 +45,7 @@ export const Tag: React.FC<TagProps> = ({
         onClick();
       }}
     >
-      <button>{children || 'Filter label'}</button>
+      <div>{children || 'Filter label'}</div>
       <div className="t-divider" />
       <XIcon className="t-icon " />
     </div>

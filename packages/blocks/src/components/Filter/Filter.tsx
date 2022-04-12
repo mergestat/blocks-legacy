@@ -5,21 +5,21 @@ import { Tag } from './Tag';
 
 type FilterProps = {
   closable?: boolean;
-  onClose?: () => void;
+  onOpen?: () => void;
   children?: React.ReactNode;
 };
 
 export const Filter: React.FC<FilterProps> = ({
   closable = false,
-  onClose,
   children,
+  onOpen,
 }) => {
   return (
     <div>
       {closable ? (
         <Tag skin="blue">{children || 'Filter label'}</Tag>
       ) : (
-        <button className="t-flex-div t-tag-gray">
+        <button className="t-flex-div t-tag-gray" onClick={onOpen}>
           <span>{children || 'Filter label'}</span>
           <CaretDownIcon className="t-icon" />
         </button>
