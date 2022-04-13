@@ -1,22 +1,24 @@
 .t-radio-card {
-    display: flex;
-    align-items: center;
-    min-width: 273px;
-    width: fit-content;
-    padding:  20px;
-    font-size: 16px;
-    gap: 16px;
-    border: 1px solid #E5E7EB;;
-    border-radius: 6px;
-    font-weight: 600;
-    @apply  bg-white 
-            rounded 
-            text-gray-600;
+  display: flex;
+  align-items: center;
+  min-width: 273px;
+  width: fit-content;
+  padding: 20px;
+  font-size: 16px;
+  gap: 16px;
+  border: 1px solid #E5E7EB;;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  @apply bg-white 
+         rounded 
+         text-gray-600;
 }
 
 .t-radio-card .t-tag-blue {
-    border-color:  rgba (2, 132, 199);
-    @apply  bg-blue-100
-            rounded     
-            text-blue-600;
+  border-color: rgba (2, 132, 199);
+  @apply bg-blue-100
+         rounded   
+         text-blue-600;
 }
+
