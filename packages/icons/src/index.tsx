@@ -15,6 +15,7 @@ export { default as ArrowLeftIcon } from './ArrowLeft';
 export { default as ArrowRightIcon } from './ArrowRight';
 export { default as ArrowSExpandIcon } from './ArrowSExpand';
 export { default as ArrowUpIcon } from './ArrowUp';
+export { default as AutoImportIcon } from './AutoImport';
 export { default as BellIcon } from './Bell';
 export { default as BookIcon } from './Book';
 export { default as BranchIcon } from './Branch';
