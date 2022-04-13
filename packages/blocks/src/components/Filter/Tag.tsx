@@ -38,16 +38,12 @@ export const Tag: React.FC<TagProps> = ({
   if (!visible) return null;
 
   return (
-    <div
-      className={cx('t-flex-div', getButtonSkin(skin ?? 'primary'))}
-      onClick={() => {
-        handleOnClose();
-        onClick();
-      }}
-    >
-      <div>{children || 'Filter label'}</div>
+    <div className={cx('t-flex-div', getButtonSkin(skin ?? 'primary'))}>
+      <div onClick={onClick}>
+        {children || 'Filter label'}
+      </div>
       <div className="t-divider" />
-      <XIcon className="t-icon " />
+      <XIcon className="t-icon" onClick={handleOnClose} />
     </div>
   );
 };
