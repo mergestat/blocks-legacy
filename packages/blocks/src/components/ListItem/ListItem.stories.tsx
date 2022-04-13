@@ -1,4 +1,5 @@
 import React from 'react';
+import { RepositoryIcon } from '@mergestat/icons';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { ListItem } from './ListItem';
 
@@ -12,6 +13,7 @@ const Template: ComponentStory<typeof ListItem> = (args) => <ListItem {...args} 
 
 export const Default = Template.bind({});
 Default.args = {
-  repositoryName: "Repository Name",
-  subline: "Subline",    
+  title: "Repository Name",
+  subline: "Subline",
+  startIcon: <RepositoryIcon className="t-icon"/>,
 }

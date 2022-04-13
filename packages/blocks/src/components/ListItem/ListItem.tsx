@@ -1,26 +1,30 @@
-import { RepositoryIcon, TrashIcon } from '@mergestat/icons';
 import React from 'react';
+import { TrashIcon } from '@mergestat/icons';
 
 type ListItemProps = {
-  repositoryName: string;
+  title: string;
   subline?: string;
+  startIcon?: React.ReactNode;
   onClick?: () => void;
 };
 
 export const ListItem: React.FC<ListItemProps> = ({
-  repositoryName,
+  title,
   subline,
+  startIcon,
   onClick,
 }) => {
   return (
     <div className="w-full">
       <div className="w-full t-list-item-container">
         <div className="t-left-side">
-          <button className="t-list-button">
-            <RepositoryIcon className="t-icon" />
-          </button>
+          {startIcon && (
+            <button className="t-list-button">
+              {startIcon}
+            </button>
+          )}
           <div>
-            <h3>{repositoryName}</h3>
+            <h3>{title}</h3>
             {subline && <p>{subline}</p>}
           </div>
         </div>

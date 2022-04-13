@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import cx from 'classnames';
 import { PlusIcon, SearchIcon } from '@mergestat/icons';
 import { Tag } from '../Filter/Tag';
 import { Checkbox } from '../Form';
@@ -23,8 +24,8 @@ export const MultiSelect: React.FC<
   const [isActive, setIsActive] = useState(false);
 
   window.addEventListener('click', (e) => {
-    const target = e.target as Element
-    if (target.localName !== 'input' && target.localName !== 'label') {
+    const target = e.target as Element;
+    if (!['input', 'span'].includes(target.localName)) {
       setIsActive(false);
     }
   });
@@ -63,9 +64,9 @@ export const MultiSelect: React.FC<
           }
         })}
       </div>
-      <div className={`t-search-container ${isActive && 't-shadow'}`}>
+      <div className={cx('t-search-container', {'t-shadow': isActive})}>
         <label
-          className={`t-input-container ${isActive && 'active'}`}
+          className={cx('t-input-container', {'active': isActive})}
           onClick={() => setIsActive(true)}
         >
           <SearchIcon className="t-icon" />
@@ -81,21 +82,21 @@ export const MultiSelect: React.FC<
           <div>
             <div className="p-3">
               {state.map((item, index) => {
-                return (item.title.includes(value)) ? (
-                  <div key={`key2_${index}`}>
-                    <Checkbox
-                      label={item.title}
-                      checked={item.checked}
-                      onChange={(e) => {
-                        state[index].checked = !state[index].checked;
-                        setState([...state]);
-                        if (getState) {
-                          getState([...state]);
-                        }
-                      }}
-                    />
-                  </div>
-                ) : null
+                return item.title.includes(value) ? (
+                  <Checkbox
+                    key={`key2_${index}`}
+                    label={item.title}
+                    checked={item.checked}
+                    onChange={(e) => {
+                      state[index].checked = !state[index].checked;
+                      setState([...state]);
+
+                      if (getState) {
+                        getState([...state]);
+                      }
+                    }}
+                  />
+                ) : null;
               })}
             </div>
             <div className="t-add-container">
@@ -113,7 +114,7 @@ export const MultiSelect: React.FC<
                 }}
               >
                 <PlusIcon className="t-icon" />
-                <span className="ml-3">Create {value}</span>
+                <p className="ml-3">Create {value}</p>
               </button>
             </div>
           </div>
