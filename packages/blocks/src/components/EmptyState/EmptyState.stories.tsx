@@ -1,5 +1,7 @@
 import React from 'react';
+import { PlusIcon, RepositoryIcon } from '@mergestat/icons';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { Button } from '../Button';
 import { EmptyState } from './EmptyState';
 
 export default {
@@ -13,5 +15,18 @@ const Template: ComponentStory<typeof EmptyState> = (args) => <EmptyState {...ar
 export const Default = Template.bind({});
 
 Default.args = {
-  onClick:() => { console.log("HI") },
+  action: (
+    <Button
+      skin="secondary"
+      startIcon={<PlusIcon className="t-icon" />}
+    >
+      Add Repository
+    </Button>
+  ),
+  text: "No repositories added yet",
+  topIcon: (
+    <div className="t-circle-icon">
+      <RepositoryIcon className="t-icon" />
+    </div>
+  )
 }

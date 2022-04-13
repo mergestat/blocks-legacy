@@ -1,10 +1,9 @@
 import React from 'react';
-import { PlusIcon, RepositoryIcon } from '@mergestat/icons';
-
-import { Button } from '../Button';
 
 type EmptyStateProps = {
-  onClick: () => void;
+  action?: React.ReactNode;
+  text: String;
+  topIcon?: React.ReactNode;
 };
 
 export const EmptyState: React.FC<
@@ -13,20 +12,13 @@ export const EmptyState: React.FC<
       React.DetailsHTMLAttributes<HTMLElement>,
       HTMLElement
     >
-> = ({ onClick }) => {
+> = ({ action, text, topIcon }) => {
   return (
     <div className="t-center">
-      <div className="t-circle-icon">
-        <RepositoryIcon className="t-icon" />
-      </div>
-      <p>No repositories added yet</p>
-      <Button
-        skin="secondary"
-        onClick={onClick}
-        startIcon={<PlusIcon className="t-icon" />}
-      >
-        Add Repository
-      </Button>
+      {topIcon && topIcon}
+      <p>{text}</p>
+      {action && action}
     </div>
   );
 };
+
