@@ -12,7 +12,11 @@ const Template: ComponentStory<typeof InlineBanner> = (args) => <InlineBanner {.
 
 export const Default = Template.bind({});
 Default.args = {
-  onClick: () => {
-    console.log("HI");
-  },
+  children: (
+    <>
+      Want to automatically add repos from this organization?{' '}
+      <a>Auto import</a>{' '}
+      repos from organization instead
+    </>
+  )
 }

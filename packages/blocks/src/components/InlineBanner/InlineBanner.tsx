@@ -1,25 +1,12 @@
 import React from 'react';
 
-type InlineBannerProps = {
-  onClick?: () => void;
-};
+type InlineBannerProps = {};
 
-export const InlineBanner: React.FC<InlineBannerProps> = ({ onClick }) => {
+export const InlineBanner: React.FC<InlineBannerProps> = ({ children }) => {
   return (
-    <div className="t-inline-banner">
-      <p>
-        Want to automatically add repos from this organization?{' '}
-        <a
-          onClick={() => {
-            if (onClick) {
-              onClick();
-            }
-          }}
-        >
-          {' '}
-          Auto import
-        </a>{' '}
-        repos from organization instead
+    <div className="p-3 bg-gray-100 text-center">
+      <p className="t-inline-banner">
+        {children && children}
       </p>
     </div>
   );
