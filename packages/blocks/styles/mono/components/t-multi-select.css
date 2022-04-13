@@ -22,7 +22,7 @@
     border: 1px solid rgba(229, 231, 235);
 }
 
-.t-inptut-container {
+.t-input-container {
     width:calc(100% - 1.5rem);
     box-sizing: border-box;
     display: flex;
@@ -49,15 +49,15 @@ label {
     align-items: center;
 }
 
-.t-inptut-container.active {
+.t-input-container.active {
     border:1px solid rgba(186, 230, 253);
 }
 
-.t-inptut-container input {
+.t-input-container input {
     width: 100%;
 }
 
-.t-inptut-container input:focus {
+.t-input-container input:focus {
     outline: none;
 }
 

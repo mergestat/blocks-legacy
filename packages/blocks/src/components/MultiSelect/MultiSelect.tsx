@@ -1,6 +1,7 @@
-import { PlusIcon, SearchIcon } from '@mergestat/icons';
 import React, { useState } from 'react';
+import { PlusIcon, SearchIcon } from '@mergestat/icons';
 import { Tag } from '../Filter/Tag';
+import { Checkbox } from '../Form';
 
 type MultiSelectProps = {
   setStateToProps: {
@@ -64,7 +65,7 @@ export const MultiSelect: React.FC<
       </div>
       <div className={`t-search-container ${isActive && 't-shadow'}`}>
         <label
-          className={`t-inptut-container  ${isActive && 'active'}`}
+          className={`t-input-container ${isActive && 'active'}`}
           onClick={() => setIsActive(true)}
         >
           <SearchIcon className="t-icon" />
@@ -80,36 +81,29 @@ export const MultiSelect: React.FC<
           <div>
             <div className="p-3">
               {state.map((item, index) => {
-                if (item.title.includes(value)) {
-                  return (
-                    <div key={`key2_${index}`}>
-                      <label>
-                        {' '}
-                        <input
-                          type="checkbox"
-                          checked={item.checked}
-                          onChange={(e) => {
-                            state[index].checked = !state[index].checked;
-                            setState([...state]);
-                            if (getState) {
-                              getState([...state]);
-                            }
-                          }}
-                        />
-                        {item.title}
-                      </label>
-                    </div>
-                  );
-                }
+                return (item.title.includes(value)) ? (
+                  <div key={`key2_${index}`}>
+                    <Checkbox
+                      label={item.title}
+                      checked={item.checked}
+                      onChange={(e) => {
+                        state[index].checked = !state[index].checked;
+                        setState([...state]);
+                        if (getState) {
+                          getState([...state]);
+                        }
+                      }}
+                    />
+                  </div>
+                ) : null
               })}
             </div>
             <div className="t-add-container">
               <button
                 onClick={() => {
                   if (value.length > 0) {
-                    {
-                      setState([...state, { title: value, checked: true }]);
-                    }
+                    setState([...state, { title: value, checked: true }]);
+
                     if (getState) {
                       getState([...state, { title: value, checked: true }]);
                     }
