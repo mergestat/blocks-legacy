@@ -12,13 +12,18 @@
   cursor: pointer;
   @apply bg-white 
          rounded 
+         hover_bg-gray-100 
+         active_shadow-none 
          text-gray-600;
 }
 
-.t-radio-card .t-tag-blue {
+.t-radio-card.t-tag-blue {
   border-color: rgba (2, 132, 199);
+  cursor:default;
   @apply bg-blue-100
          rounded   
-         text-blue-600;
+         text-blue-600
+         hover_from-blue-100 
+         hover_to-blue-100 
+         active_shadow-none;
 }
-
