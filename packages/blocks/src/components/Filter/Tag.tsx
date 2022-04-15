@@ -3,10 +3,10 @@ import cx from 'classnames';
 import { XIcon } from '@mergestat/icons';
 
 type TagProps = {
+  skin?: 'gray' | 'blue';
   onClose?: () => void;
   onClick?: () => void;
   children?: React.ReactNode;
-  skin?: 'gray' | 'blue';
 };
 
 export const Tag: React.FC<TagProps> = ({
@@ -16,11 +16,6 @@ export const Tag: React.FC<TagProps> = ({
   skin,
 }) => {
   const [visible, setVisible] = useState<boolean>(true);
-
-  const handleOnClose = () => {
-    setVisible(false);
-    onClose && onClose();
-  };
 
   const getButtonSkin = (skin: string) => {
     switch (skin) {
@@ -43,7 +38,13 @@ export const Tag: React.FC<TagProps> = ({
         {children || 'Filter label'}
       </div>
       <div className="t-divider" />
-      <XIcon className="t-icon" onClick={handleOnClose} />
+      <XIcon
+        className="t-icon"
+        onClick={() => {
+          setVisible(false);
+          if (onClose) onClose();
+        }}
+      />
     </div>
   );
 };
