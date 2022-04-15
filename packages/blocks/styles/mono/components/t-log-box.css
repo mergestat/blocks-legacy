@@ -1,0 +1,7 @@
+.t-log-box {
+  font-family: monospace;
+  @apply bg-gray-800
+         text-white
+         p-10 
+         rounded 
+}
