@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import cx from 'classnames';
 import { PlusIcon, SearchIcon } from '@mergestat/icons';
 import { Tag } from '../Filter/Tag';
@@ -23,14 +23,14 @@ export const MultiSelect: React.FC<
   const [value, setValue] = useState('');
   const [isActive, setIsActive] = useState(false);
 
-  window.addEventListener('click', (e) => {
+  const handleClick = (e: MouseEvent) => {
     const target = e.target as Element;
     if (!['input', 'span'].includes(target.localName)) {
       setIsActive(false);
     }
-  });
+  }
 
-  window.addEventListener('keypress', (e) => {
+  const handleKeyPress = (e: KeyboardEvent) => {
     if (e.key === 'Enter' && value.length > 0) {
       setState([...state, { title: value, checked: true }]);
 
@@ -39,29 +39,38 @@ export const MultiSelect: React.FC<
       }
       setValue('');
     }
-  });
+  }
+
+  useEffect(() => {
+    window.addEventListener('click', handleClick, false);
+    window.addEventListener('keypress', handleKeyPress, false);
+
+    return () => {
+      window.removeEventListener('click', handleClick);
+      window.removeEventListener('keypress', handleKeyPress);
+    }
+  }, []);
 
   return (
     <div className="t-container">
       <div className="t-tags-container">
         {state.map((item, index) => {
-          if (item.checked) {
-            return (
-              <Tag
-                skin="gray"
-                key={`key_${index}`}
-                onClick={() => {
-                  state[index].checked = !state[index].checked;
-                  setState([...state]);
-                  if (getState) {
-                    getState([...state]);
-                  }
-                }}
-              >
-                {item.title}
-              </Tag>
-            );
-          }
+          return (item.checked) ? (
+            <Tag
+              skin="gray"
+              key={`key_${index}`}
+              onClose={() => {
+                item.checked = !item.checked;
+                setState([...state]);
+
+                if (getState) {
+                  getState([...state]);
+                }
+              }}
+            >
+              {item.title}
+            </Tag>
+          ) : null;
         })}
       </div>
       <div className={cx('t-search-container', {'t-shadow': isActive})}>
