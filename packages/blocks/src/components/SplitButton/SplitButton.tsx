@@ -1,5 +1,5 @@
 import React from 'react';
-import { AutoImportIcon, XIcon } from '@mergestat/icons';
+import { AutoImportIcon, CaretDownIcon } from '@mergestat/icons';
 
 type SplitButtonProps = {
   children?: React.ReactNode;
@@ -19,7 +19,7 @@ export const SplitButton: React.FC<SplitButtonProps> = ({
         <button>{children || 'Create Auto Import'}</button>
       </label>
       <div className="t-divider" />
-      <XIcon className="t-icon" onClick={onClickClose} />
+      <CaretDownIcon className="t-icon" onClick={onClickClose} />
     </div>
   );
 };
