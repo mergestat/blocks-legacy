@@ -25,5 +25,5 @@
          text-blue-600
          hover_from-blue-100 
          hover_to-blue-100 
-         active_shadow-none;
+         shadow-inner;
 }

@@ -4,11 +4,10 @@
   display: flex;
   font-size: 14px;
   align-items: center;
+  overflow: hidden;
   border:1px solid rgba(186, 230, 253);
   @apply rounded
-         pl-2
-         pr-1
-         leading-5
+       border-gray-300
          focus_outline-none
          focus_ring-offset-2
          focus_ring-blue-500
@@ -21,10 +20,17 @@
 }
 
 .t-split-gray {
+  display: flex;
+  height: 34px !important;
+  align-items: center;
+  justify-content: center;
   font-weight: 600;
-  @apply bg-gradient-to-b 
-      border-gray-300 
-      text-gray-700 
+  @apply bg-gradient-to-b
+      border-gray-300
+      text-gray-700
+      pl-2 
+      pr-2
+      leading-5
       from-white 
       to-gray-100 
       hover_from-gray-50 
@@ -32,8 +38,8 @@
       active_shadow-inner;
 }
 
-.t-split-gray .t-divider {
-  height: 20px;
+.t-flex-split .t-divider {
+  height: 34px !important;
   border-left: 1px solid rgba(209, 213, 219);
-  @apply ml-3 mr-1;
+  /* @apply ml-3 mr-2; */
 }
