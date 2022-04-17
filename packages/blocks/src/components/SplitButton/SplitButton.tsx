@@ -19,7 +19,7 @@ export const SplitButton: React.FC<SplitButtonProps> = ({
         <button>{children || 'Create Auto Import'}</button>
       </label>
       <div className="t-divider" />
-      <div className="t-split-gray h-full">
+      <div className="t-split-gray h-full cursor-pointer">
       	<CaretDownIcon className="t-icon" onClick={onClickClose} />
       </div>
     </div>
