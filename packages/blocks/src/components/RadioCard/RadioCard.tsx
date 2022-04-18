@@ -13,9 +13,11 @@ export const RadioCard: React.FC<RadioCardProps> = ({
   label,
 }) => {
   return (
-    <div className={cx('t-radio-card', {'t-tag-blue': isSelected})}>
-      {startIcon && startIcon}
-      {label && label}
+    <div className='flex'>
+      <div className={cx('t-radio-card', {'t-tag-blue': isSelected})}>
+        {startIcon && startIcon}
+        {label && label}
+      </div>
     </div>
   );
 };

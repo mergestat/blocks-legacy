@@ -5,6 +5,10 @@
   cursor: pointer;
 }
 
+.t-step-title-icon {
+  cursor: default;
+}
+
 .t-last-step {
   color: #111827;
 }

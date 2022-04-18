@@ -10,10 +10,11 @@
   border-radius: 6px;
   font-weight: 600;
   cursor: pointer;
-  @apply bg-white 
-         rounded 
-         hover_bg-gray-100 
-         active_shadow-none 
+  @apply bg-white
+         rounded
+         hover_bg-gray-50
+         active_bg-gray-150
+         active_shadow-inner
          text-gray-600;
 }
 
@@ -21,9 +22,9 @@
   border-color: rgba (2, 132, 199);
   cursor:default;
   @apply bg-blue-100
-         rounded   
+         rounded
          text-blue-600
-         hover_from-blue-100 
-         hover_to-blue-100 
+         hover_from-blue-100
+         hover_to-blue-100
          shadow-inner;
 }

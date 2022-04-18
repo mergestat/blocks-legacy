@@ -24,10 +24,8 @@ export const MultiSelect: React.FC<
   const [isActive, setIsActive] = useState(false);
 
   const handleClick = (e: MouseEvent) => {
-    const target = e.target as Element;
-    if (!['input', 'span'].includes(target.localName)) {
-      setIsActive(false);
-    }
+    const className = (e.target as Element).className;
+    setIsActive(className !== 'sb-main-padded sb-show-main' && className !== 't-container');
   }
 
   const handleKeyPress = (e: KeyboardEvent) => {

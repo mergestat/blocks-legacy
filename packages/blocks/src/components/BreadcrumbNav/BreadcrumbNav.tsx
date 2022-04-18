@@ -19,7 +19,7 @@ export const BreadcrumbNav: React.FC<BreadcrumbNavProps> = ({ data }) => {
             key={`key_${index}`}
             className="flex gap-1.5 items-center t-step-title"
           >
-            {index !== 0 && <ChevronRightIcon className="t-icon" />}
+            {index !== 0 && <ChevronRightIcon className="t-icon t-step-title-icon" />}
             {item.startIcon && item.startIcon}
             <p
               className={`${index === data.length - 1 && `t-last-step`}`}
