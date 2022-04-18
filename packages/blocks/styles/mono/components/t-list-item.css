@@ -1,0 +1,40 @@
+.t-list-button{
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    @apply  bg-gradient-to-b 
+            border-gray-300 
+            text-gray-700 
+            from-gray-100
+            to-gray-100 
+            hover_from-gray-100
+            hover_to-gray-100 
+            active_from-gray-100 
+}
+.t-list-button .t-icon{
+    @apply w-6 h-6;
+}
+
+.t-list-item-container{
+    padding: 0.75rem;
+    border-bottom:1px solid #E5E7EB;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.t-left-side{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.t-left-side h3 {
+    font-size: 16px;
+    font-weight: 500;
+}
+.t-left-side p {
+    font-size: 14px;
+    color: #727C8D;
+}

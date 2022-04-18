@@ -1,0 +1,81 @@
+.t-container {
+    width: 100%;
+}
+
+.t-tags-container {
+    @apply  rounded 
+            p-3 
+            mx-auto;
+    gap: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    width: 95%;
+    border: 1px solid rgba(229, 231, 235);
+}
+
+.t-search-container {
+    @apply  rounded  
+            mx-auto 
+            mt-3;
+    gap: 10px;
+    width: 95%;
+    border: 1px solid rgba(229, 231, 235);
+}
+
+.t-input-container {
+    width:calc(100% - 1.5rem);
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    border:1px solid rgba(229, 231, 235);
+    @apply  rounded 
+            p-3 
+            my-3 
+            mx-auto 
+            leading-5 
+            focus_outline-none 
+            focus_ring-offset-2 
+            focus_ring-blue-500 
+            font-medium;
+}
+
+.t-shadow{
+    box-shadow: 5px 5px 10px 0px rgba(34, 60, 80, 0.1);
+}
+
+label {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+}
+
+.t-input-container.active {
+    border:1px solid rgba(186, 230, 253);
+}
+
+.t-input-container input {
+    width: 100%;
+}
+
+.t-input-container input:focus {
+    outline: none;
+}
+
+.t-add-container {
+    border-top:1px solid rgba(229, 231, 235) ;
+    @apply p-3 ;
+}
+
+.t-add-container button {
+    padding-top: 0.4375rem;
+    padding-bottom: 0.4375rem;
+    @apply  flex 
+            items-center 
+            px-3 
+            leading-5 
+            focus_outline-none
+            focus_ring-offset-2 
+            focus_ring-blue-500 
+            font-medium 
+            rounded;
+}
