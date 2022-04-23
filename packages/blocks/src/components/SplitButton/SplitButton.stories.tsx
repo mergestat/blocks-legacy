@@ -1,4 +1,5 @@
 import React from 'react';
+import { AutoImportIcon, CogIcon } from '@mergestat/icons';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { SplitButton } from './SplitButton';
 
@@ -11,4 +12,15 @@ export default {
 const Template: ComponentStory<typeof SplitButton> = (args) => <SplitButton {...args} />;
 
 export const Default = Template.bind({});
-Default.args = {}
+Default.args = {
+  text: "Create Auto Import",
+  startIcon: <AutoImportIcon className="t-icon" />,
+  items: [
+    {
+      text: "Manage auto imports",
+      icon: <CogIcon className="t-icon" />
+    }
+  ],
+  onButtonClick: () => console.log("button click"),
+  onItemClick: (index: number) => console.log("item click: " + index)
+}

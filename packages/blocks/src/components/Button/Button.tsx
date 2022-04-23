@@ -23,7 +23,7 @@ export const Button: React.FC<ButtonProps & ButtonBaseProps> = React.forwardRef(
     tooltipOffset,
     tooltipPlacement='auto',
     ...props
-  }, ref) => {
+  }, ref: any) => {
     const [source, target] = useSingleton({
       overrides: ['placement'],
     });
