@@ -4,13 +4,13 @@
 
 .t-accordion {
     @apply appearance-none;
-    summary {
-        @apply flex
-               items-center
-               justify-items-start
-               cursor-pointer;
-    }
+}
 
+.t-accordion summary {
+    @apply flex
+           items-center
+           justify-items-start
+           cursor-pointer;
 }
 
 .t-accordion summary .t-icon {

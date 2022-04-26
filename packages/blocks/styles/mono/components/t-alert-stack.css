@@ -6,9 +6,10 @@
     min-width: 26rem;
     @apply fixed
            right-4;
-    li + li {
-        @apply mt-4;
-    }
+}
+
+.t-alert-stack li + li {
+  @apply mt-4;
 }
 
 /* custom rc notification */

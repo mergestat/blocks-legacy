@@ -4,23 +4,26 @@
 
 .t-resizer {
     cursor: row-resize;
-    &:before {
-        content: '';
-        @apply border-b
-               block
-               border-gray-200;
-    }
-
-    &:active,
-    &:hover {
-        @apply bg-blue-100;
-
-        &:before {
-            @apply bg-blue-100
-                    border-blue-500;
-        }
-    }
     @apply py-2
            w-full;
 
+}
+
+.t-resizer:before {
+    content: '';
+    @apply border-b
+           block
+           border-gray-200;
+}
+
+.t-resizer:active,
+.t-resizer:hover {
+    @apply bg-blue-100;
+}
+
+
+.t-resizer:active:before,
+.t-resizer:hover:before {
+    @apply bg-blue-100
+            border-blue-500;
 }

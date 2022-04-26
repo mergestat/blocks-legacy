@@ -25,10 +25,6 @@
            text-center
            mx-0
            py-4;
-    .t-sidebar-item-icon-wrap {
-        @apply mr-0
-               mb-1;
-    }
 }
 
 .t-sidebar-item-icon-wrap {
@@ -36,12 +32,17 @@
          mr-3;
 }
 
+.t-sidebar-item-compact .t-sidebar-item-icon-wrap {
+    @apply mr-0
+           mb-1;
+}
+
 .t-sidebar-item.active {
     @apply text-blue-600
            bg-blue-100;
-    .t-sidebar-item-icon-wrap {
-        @apply text-blue-600;
-    }
+}
+.t-sidebar-item.active .t-sidebar-item-icon-wrap {
+    @apply text-blue-600;
 }
 
 .t-sidebar-item.disabled {

@@ -47,21 +47,21 @@
          text-sm
          leading-4
          py-1.5;
-  &.t-button-icon {
-    @apply px-1.5;
-  }
+}
 
-  .t-icon {
-    @apply w-4
-           h-4;
-  }
-  &:not(.t-button-icon) .t-icon:first-child {
-    @apply mr-1;
-  }
+.t-button-small.t-button-icon {
+  @apply px-1.5;
+}
+.t-button-small .t-icon {
+  @apply w-4
+         h-4;
+}
+.t-button-small:not(.t-button-icon) .t-icon:first-child {
+  @apply mr-1;
+}
 
-  &:not(.t-button-icon) .t-icon:last-child {
-    @apply ml-1;
-  }
+.t-button-small:not(.t-button-icon) .t-icon:last-child {
+  @apply ml-1;
 }
 
 .t-button-large {

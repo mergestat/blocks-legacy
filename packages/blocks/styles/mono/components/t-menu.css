@@ -61,10 +61,10 @@
            py-2
            hover_bg-gray-100
            focus_bg-gray-100;
-    .t-icon {
-        @apply mr-3
-               flex-none;
-    }
+}
+.t-menu-label .t-icon {
+    @apply mr-3
+           flex-none;
 }
 
 .t-menu-divider {

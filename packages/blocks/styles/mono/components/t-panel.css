@@ -21,10 +21,9 @@
          items-center
          rounded-tl
          rounded-tr;
-
-    .t-tabs {
-        @apply -m-px;
-    }
+}
+.t-panel-header .t-tabs {
+    @apply -m-px;
 }
 
 .t-panel-footer {

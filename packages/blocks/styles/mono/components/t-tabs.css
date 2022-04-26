@@ -4,11 +4,9 @@
    Top navigation (usually inside of a toolbar)
    ========================================================================== */
 
-.t-tabs {
-    ul {
-        @apply flex
-               space-x-4;
-    }
+.t-tabs ul {
+    @apply flex
+            space-x-4;
 }
 
 .t-tab {
