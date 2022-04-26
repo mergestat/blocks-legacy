@@ -28,14 +28,12 @@
            opacity-100;
 }
 
-.t-nav-marketing-i {
-    .t-nav-marketing-item {
-        @apply text-white;
-    }
+.t-nav-marketing-i .t-nav-marketing-item {
+    @apply text-white;
+}
 
-    .t-nav-marketing-item-active {
-        @apply border-white;
-    }
+.t-nav-marketing-i .t-nav-marketing-item-active {
+    @apply border-white;
 }
 
 .t-nav-marketing-active {
@@ -50,21 +48,21 @@
            w-full
            overflow-auto
            z-10;
+}
 
-    .t-nav-marketing-menu {
-        @apply space-x-0
-               space-y-8
-               pt-14
-               px-8
-               block
-               container
-               mx-auto;
-    }
+.t-nav-marketing-active .t-nav-marketing-menu {
+    @apply space-x-0
+           space-y-8
+           pt-14
+           px-8
+           block
+           container
+           mx-auto;
+}
 
-    .t-nav-marketing-item {
-        @apply text-2xl
-               border-b-0;
-    }
+.t-nav-marketing-active .t-nav-marketing-item {
+    @apply text-2xl
+           border-b-0;
 }
 
 .t-nav-marketing-toggle {
@@ -77,17 +75,18 @@
            border-none
            items-center
            justify-center;
+}
 
-    .t-icon {
-        z-index: 11;
-        @apply block
-               w-6
-               h-6
-               text-white;
-        * {
-            fill: currentColor;
-        }
-    }
+.t-nav-marketing-toggle .t-icon {
+    z-index: 11;
+    @apply block
+           w-6
+           h-6
+           text-white;
+}
+
+.t-nav-marketing-toggle .t-icon * {
+    fill: currentColor;
 }
 
 .t-nav-marketing-toggle:not(.t-nav-marketing-toggle-active) {

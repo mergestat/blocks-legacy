@@ -32,17 +32,18 @@
            bg-white
            border
            border-gray-300;
-    + span {
-        @apply ml-2;
-    }
 }
 
-.t-checkbox-group,
-.t-radio-group {
-    .t-checkbox,
-    .t-radio {
-        @apply py-1;
-    }
+.t-checkbox input[type="checkbox"] + span ,
+.t-radio input[type="radio"] + span {
+    @apply ml-2;
+}
+
+.t-checkbox-group .t-checkbox,
+.t-checkbox-group .t-radio,
+.t-radio-group .t-checkbox
+.t-radio-group .t-radio {
+    @apply py-1;
 }
 
 .t-checkbox-group-inline,

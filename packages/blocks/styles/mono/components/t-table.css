@@ -10,16 +10,16 @@
 }
 
 /* Table with sticky header */
-.t-table-sticky-header{
+.t-table-sticky-header {
   border-spacing: 0;
   @apply border-separate;
+}
 
-  thead th {
-    @apply sticky
-           z-10
-           top-0
-           bg-white;
-  }
+.t-table-sticky-header thead th {
+  @apply sticky
+         z-10
+         top-0
+         bg-white;
 }
 
 /* When a table heading occurs in the tbody part */
@@ -75,7 +75,7 @@
 /* Alignment for button toolbars */
 .t-table-default .t-button-toolbar,
 .t-table-cell .t-button-toolbar {
-        @apply justify-end;
+  @apply justify-end;
 }
 
 /* Last rows should not show a border */
@@ -98,31 +98,28 @@
 }
 
 /* When table cell content should not wrap */
-.t-table-nowrap {
-    th,
-    td {
-      white-space: nowrap;
-    }
-  }
+.t-table-nowrap th,
+.t-table-nowrap td {
+  white-space: nowrap;
+}
 
 /* Table with hover actions */
-.t-table-hover {
-    .t-button-toolbar {
-        @apply hidden;
-    }
+.t-table-hover .t-button-toolbar {
+  @apply hidden;
 }
+
 .t-table-hover tbody tr {
     @apply relative;
+}
 
-    &:hover {
-        @apply bg-gray-50;
-        .t-button-toolbar {
-            @apply block
-                   top-1/2
-                   transform
-                   -translate-y-1/2
-                   absolute
-                   right-6;
-        }
-    }
+.t-table-hover tbody tr:hover {
+  @apply bg-gray-50;
+}
+.t-table-hover tbody tr:hover .t-button-toolbar {
+  @apply block
+         top-1/2
+         transform
+         -translate-y-1/2
+         absolute
+         right-6;
 }

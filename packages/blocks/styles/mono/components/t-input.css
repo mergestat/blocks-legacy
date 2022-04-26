@@ -25,15 +25,15 @@
     @apply block
            text-gray-400
            relative;
-    .t-icon {
-        @apply top-2
-               left-2
-               absolute;
+}
+.t-input-with-icon .t-icon {
+    @apply top-2
+           left-2
+           absolute;
 
-    }
-    .t-input {
-        @apply pl-8;
-    }
+}
+.t-input-with-icon .t-input {
+    @apply pl-8;
 }
 
 .t-input-error {

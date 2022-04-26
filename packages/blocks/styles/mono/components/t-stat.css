@@ -30,16 +30,15 @@
 .t-stat-label {
   @apply font-medium
          text-gray-500;
-
-  .t-icon {
-    @apply inline-flex
-           h-5
-           w-5
-           mb-1
-           items-baseline
-           relative
-           align-middle;
-  }
+}
+.t-stat-label .t-icon {
+  @apply inline-flex
+         h-5
+         w-5
+         mb-1
+         items-baseline
+         relative
+         align-middle;
 }
 
 .t-stat-number {
