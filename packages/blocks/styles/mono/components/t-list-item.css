@@ -18,11 +18,10 @@
 }
 
 .t-list-item-container{
-    padding: 0.75rem;
-    border-bottom:1px solid #E5E7EB;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    width: 100%;
 }
 
 .t-left-side{
