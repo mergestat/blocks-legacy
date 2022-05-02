@@ -1,1 +1,1 @@
-export { Checkbox } from './Checkbox';
+export { Checkbox, CHECKBOX_STATES } from './Checkbox';

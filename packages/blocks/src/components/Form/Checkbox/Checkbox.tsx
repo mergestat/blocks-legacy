@@ -1,8 +1,15 @@
 import React from 'react';
 import cx from 'classnames';
 
+export enum CHECKBOX_STATES {
+  Checked,
+  Indeterminate,
+  Unchecked,
+}
+
 type CheckboxProps = {
   label?: string;
+  value?: CHECKBOX_STATES
 }
 
 const CheckboxInput: React.FC<
@@ -11,10 +18,28 @@ const CheckboxInput: React.FC<
       React.InputHTMLAttributes<HTMLInputElement>,
       HTMLInputElement
     >
-> = ({ label, children, className, ...props }) => {
+> = ({ label, children, className, value, ...props }) => {
+  const checkboxRef = React.useRef<HTMLInputElement | null>(null);
+
+  React.useEffect(() => {
+    if (checkboxRef.current) {
+      if (value === CHECKBOX_STATES.Checked) {
+        checkboxRef.current.checked = true;
+        checkboxRef.current.indeterminate = false;
+      } else if (value === CHECKBOX_STATES.Unchecked) {
+        checkboxRef.current.checked = false;
+        checkboxRef.current.indeterminate = false;
+      } else if (value === CHECKBOX_STATES.Indeterminate) {
+        checkboxRef.current.checked = false;
+        checkboxRef.current.indeterminate = true;
+        console.log(checkboxRef.current.indeterminate)
+      }
+    }
+  }, [value, checkboxRef]);
+
   return (
     <label className={cx('t-checkbox', { [className]: !!className })}>
-      <input type="checkbox" {...props} className="cursor-pointer" />
+      <input type="checkbox" ref={checkboxRef} {...props} />
       <span className="cursor-pointer w-fit">{label ? label : children ?? ''}</span>
     </label>
   );

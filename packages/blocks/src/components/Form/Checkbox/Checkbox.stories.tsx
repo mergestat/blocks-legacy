@@ -1,7 +1,7 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
-import { Checkbox } from './Checkbox';
+import { Checkbox, CHECKBOX_STATES } from './Checkbox';
 
 export default {
   title: 'Atoms/Form/Checkbox',
@@ -16,6 +16,7 @@ const Template: ComponentStory<typeof Checkbox> = (args) => (
 export const Single = Template.bind({});
 Single.args = {
   label: 'Checkbox Label',
+  value: CHECKBOX_STATES.Indeterminate
 }
 
 export const CheckboxGroup = () => {

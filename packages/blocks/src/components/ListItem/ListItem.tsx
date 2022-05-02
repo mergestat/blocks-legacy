@@ -2,7 +2,6 @@ import React from 'react';
 import { TrashIcon } from '@mergestat/icons';
 import cx from 'classnames';
 
-import classNames from 'classnames';
 type ListItemProps = {
   title: string;
   subline?: string;
