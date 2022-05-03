@@ -18,7 +18,7 @@ const ModalDialog: React.FC<
       React.HTMLAttributes<HTMLBaseElement>,
       HTMLBaseElement
     >
-> = ({ children, onClose, open, initialFocus, unmount, as, size }) => {
+> = ({ children, onClose, open, initialFocus, unmount, as, size, className }) => {
   return (
     <Transition appear show={open} as={Fragment}>
       <Dialog
@@ -70,7 +70,7 @@ const ModalDialog: React.FC<
             leaveTo="opacity-0 scale-95"
           >
             {/* modal wrapper */}
-            <div className={cx('t-modal', size && `t-modal-${size}`)}>
+            <div className={cx('t-modal', size && `t-modal-${size}`, {[className] : !!className})}>
               {children}
             </div>
           </Transition.Child>
