@@ -14,6 +14,7 @@ const Template: ComponentStory<typeof SplitButton> = (args) => <SplitButton {...
 export const Default = Template.bind({});
 Default.args = {
   text: "Create Auto Import",
+  menuContainerClassName: 'z-20',
   startIcon: <AutoImportIcon className="t-icon" />,
   items: [
     {
