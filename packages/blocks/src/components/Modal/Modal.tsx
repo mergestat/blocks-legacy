@@ -9,6 +9,7 @@ type ModalDialogProps = {
   as?: React.ElementType<any> | 'div';
   unmount?: boolean;
   className?: string;
+  modalWrapperClassName?: string;
   size?: string;
 }
 
@@ -18,12 +19,14 @@ const ModalDialog: React.FC<
       React.HTMLAttributes<HTMLBaseElement>,
       HTMLBaseElement
     >
-> = ({ children, onClose, open, initialFocus, unmount, as, size, className }) => {
+> = ({ children, onClose, open, initialFocus, unmount, as, size, className, modalWrapperClassName }) => {
   return (
     <Transition appear show={open} as={Fragment}>
       <Dialog
         as={as ?? 'div'}
-        className="fixed inset-0 z-10 overflow-y-auto"
+        className={cx("fixed inset-0 z-10 overflow-y-auto", {
+          [modalWrapperClassName]: !!modalWrapperClassName
+        })}
         onClose={onClose}
         initialFocus={initialFocus}
         unmount={unmount}
