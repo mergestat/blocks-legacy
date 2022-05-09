@@ -11,6 +11,7 @@ type TableProps = {
     render?: React.ReactNode | any | undefined;
   }>;
   className?: string;
+  tableWrapperClassName?: string;
   responsive?: boolean;
   emptyText?: string | React.ReactNode;
   hovered?: boolean;
@@ -32,6 +33,7 @@ export const Table: React.FC<TableProps> = ({
   borderless = false,
   noWrapHeaders = false,
   scrollY,
+  tableWrapperClassName,
 }) => {
   if (loading) {
     return (
@@ -62,6 +64,7 @@ export const Table: React.FC<TableProps> = ({
         'overflow-x-auto': responsive,
         'overflow-y-auto': !!scrollY,
         'border border-gray-200 rounded': !borderless,
+        [tableWrapperClassName]: !!tableWrapperClassName,
       })}
       style={{ maxHeight: scrollY || 'unset' }}
     >
