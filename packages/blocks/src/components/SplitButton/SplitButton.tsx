@@ -17,6 +17,7 @@ export type SplitButtonProps = {
   items?: Array<SplitButtonItemProps>;
   disabled?: boolean;
   className?: string;
+  menuContainerClassName?: string;
   onButtonClick?: () => void;
   onItemClick?: (index: number) => void;
 };
@@ -30,6 +31,7 @@ export const SplitButton: React.FC<SplitButtonProps> = React.forwardRef(({
   className,
   onButtonClick,
   onItemClick,
+  menuContainerClassName,
 }, ref: any) => {
   return (
     <div className={cx("t-flex-split", {[className]: !!className})} ref={ref}>
@@ -54,7 +56,7 @@ export const SplitButton: React.FC<SplitButtonProps> = React.forwardRef(({
           </div>
         }
         overlay={(close: any) => (
-          <Menu className="absolute right-0 -top-1.5">
+          <Menu className={cx('absolute right-0 -top-1.5', { [menuContainerClassName]: !!menuContainerClassName})}>
             {items.map(({text, icon, className}, index) => (
               <Menu.Item
                 key={index}
