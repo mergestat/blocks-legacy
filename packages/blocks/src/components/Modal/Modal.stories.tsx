@@ -39,7 +39,7 @@ export const ExampleModal: React.FC = () => {
         <Button onClick={() => setOpen(true)}>Open Modal</Button>
       </div>
 
-      <Modal open={open} onClose={() => setOpen(false)} size="sm">
+      <Modal open={open} onClose={() => setOpen(false)} size="sm" modalWrapperClassName='z-20'>
         <Modal.Header>
           <Toolbar className="h-16 px-6">
             <Toolbar.Left>
