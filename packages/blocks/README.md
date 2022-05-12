@@ -13,7 +13,7 @@ npm i @mergestat/blocks
 import css assets into top level of component project.
 
 ```
-import '@mergestat/blocks/style.css'
+import '@mergestat/blocks/styles/main.css'
 ```
 
 ## How to use the Blocks
