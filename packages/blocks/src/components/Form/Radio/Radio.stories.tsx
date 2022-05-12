@@ -19,21 +19,21 @@ Single.args = {
 export const RadioGroup = () => {
   return (
     <Radio.Group>
-      <Radio label="Radio 1" />
-      <Radio label="Radio 1" />
-      <Radio label="Radio 1" />
-      <Radio label="Radio 1" />
+      <Radio label="Radio 1" name="radio" />
+      <Radio label="Radio 2" name="radio" />
+      <Radio label="Radio 3" name="radio" />
+      <Radio label="Radio 4" name="radio" />
     </Radio.Group>
   );
 }
 
 export const RadioGroupInline = () => {
   return (
-    <Radio.Group inline={true}>
-      <Radio label="Radio 1" />
-      <Radio label="Radio 1" />
-      <Radio label="Radio 1" />
-      <Radio label="Radio 1" />
+    <Radio.Group inline>
+      <Radio label="Radio 1" name="radio" />
+      <Radio label="Radio 2" name="radio" />
+      <Radio label="Radio 3" name="radio" />
+      <Radio label="Radio 4" name="radio" />
     </Radio.Group>
   );
 }
