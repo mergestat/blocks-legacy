@@ -1,7 +1,5 @@
-@import "tailwindcss/base";
 @import "./custom-base-styles.css";
 
-@import "tailwindcss/components";
 @import "./custom-component-styles.css";
 
 @import "./components/t-accordion.css";
@@ -47,7 +45,6 @@
 @import "./components/t-toggle.css";
 @import "./components/t-toolbar.css";
 
-@import "tailwindcss/utilities";
 @import "./custom-utility-styles.css";
 
 /* purgecss start ignore */
