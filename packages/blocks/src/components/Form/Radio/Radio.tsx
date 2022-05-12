@@ -16,7 +16,10 @@ const RadioButton: React.FC<
   return (
     <label className={cx('t-radio', { [className]: !!className })}>
       <input type="radio" {...props} />
-      <span>{label ? label : children ?? ''}</span>
+      {label
+        ? <span>{label}</span>
+        : children && <span>{children}</span>
+      }
     </label>
   );
 }

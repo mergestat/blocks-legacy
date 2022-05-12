@@ -35,7 +35,7 @@
            border-gray-300;
 }
 
-.t-checkbox input[type="checkbox"] + span ,
+.t-checkbox input[type="checkbox"] + span,
 .t-radio input[type="radio"] + span {
     @apply ml-2;
 }
