@@ -52,3 +52,7 @@
 @import "./vendor/v-prism-live.css";
 @import "./vendor/v-prism-line-numbers.css";
 /* purgecss end ignore */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
