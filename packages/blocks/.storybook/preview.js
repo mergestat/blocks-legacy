@@ -1,4 +1,4 @@
-import '../styles/askgit.css';
+import '../styles/mergestat.css';
 
 export const parameters = {
   actions: { argTypesRegex: '^on[A-Z].*' },

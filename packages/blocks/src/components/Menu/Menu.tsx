@@ -58,7 +58,7 @@ const MenuItem: React.FC<
         {...props}
         href={href}
         className={cx('t-menu-label cursor-pointer select-none', {
-          ['pl-11']: !icon && withIcon,
+          ['pl-12']: !icon && withIcon,
           ['bg-blue-100 pointer-events-none']: active,
           [color]: !!color,
           [className]: !!className,

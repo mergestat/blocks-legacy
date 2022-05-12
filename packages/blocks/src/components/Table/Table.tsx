@@ -85,7 +85,10 @@ export const Table: React.FC<TableProps> = ({
               <th
                 scope="col"
                 key={key}
-                className={cx({ 'whitespace-nowrap': noWrapHeaders, [thClassName]: !!thClassName, })}
+                className={cx({
+                  'whitespace-nowrap': noWrapHeaders,
+                  [thClassName]: !!thClassName,
+                })}
               >
                 {title}
               </th>
