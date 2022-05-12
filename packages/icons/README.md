@@ -10,6 +10,12 @@ Instal the package by run this command:
 npm i @mergestat/icons
 ```
 
+import css assets into top level of component project.
+
+```
+import '@mergestat/icons/styles/main.css'
+```
+
 import the icon like other common package. example.
 
 ```js
@@ -17,7 +23,7 @@ import { Github } form '@mergestat/icons'
 
 export const Example = () => (
   <div>
-    <Github/>
+    <Github />
   <div>
 )
 ```

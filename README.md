@@ -23,4 +23,14 @@ cd blocks
 npm install
 ```
 
-Then, refer to the readme of each project.
+Run blocks on storybook
+
+```
+npm run start:blocks
+```
+
+Run icons on storybook
+
+```
+npm run start:icons
+```
