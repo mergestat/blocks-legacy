@@ -40,7 +40,10 @@ const CheckboxInput: React.FC<
   return (
     <label className={cx('t-checkbox', { [className]: !!className })}>
       <input type="checkbox" ref={checkboxRef} {...props} />
-      <span className="cursor-pointer w-fit">{label ? label : children ?? ''}</span>
+      {label
+        ? <span className="cursor-pointer w-fit">{label}</span>
+        : children && <span className="cursor-pointer w-fit">{children}</span>
+      }
     </label>
   );
 }
