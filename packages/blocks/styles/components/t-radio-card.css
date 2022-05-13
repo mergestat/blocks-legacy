@@ -1,17 +1,18 @@
 .t-radio-card {
-  display: flex;
-  align-items: center;
-  min-width: 273px;
   width: fit-content;
-  padding: 20px;
-  font-size: 16px;
-  gap: 16px;
-  border: 1px solid #E5E7EB;;
-  border-radius: 6px;
-  font-weight: 600;
+  min-height: 64px;
+  min-width: 240px;
   cursor: pointer;
   @apply bg-white
-         rounded
+         rounded-md
+         font-medium
+         flex
+         items-center
+         p-5
+         gap-x-4
+         text-base
+         border
+         border-gray-200
          hover_bg-gray-50
          active_bg-gray-150
          active_shadow-inner
@@ -19,12 +20,13 @@
 }
 
 .t-radio-card.t-tag-blue {
-  border-color: rgba (2, 132, 199);
   cursor:default;
   @apply bg-blue-100
-         rounded
          text-blue-600
+         ring-1
+         ring-inset
+         ring-blue-500
+         border-blue-500
          hover_from-blue-100
-         hover_to-blue-100
-         shadow-inner;
+         hover_to-blue-100;
 }
