@@ -12,8 +12,6 @@ type TableProps = {
   }>;
   className?: string;
   tableWrapperClassName?: string;
-  trClassName?: string;
-  thClassName?: string;
   responsive?: boolean;
   emptyText?: string | React.ReactNode;
   hovered?: boolean;
@@ -36,8 +34,6 @@ export const Table: React.FC<TableProps> = ({
   noWrapHeaders = false,
   scrollY,
   tableWrapperClassName,
-  trClassName,
-  thClassName,
 }) => {
   if (loading) {
     return (
@@ -80,15 +76,12 @@ export const Table: React.FC<TableProps> = ({
         })}
       >
         <thead>
-          <tr className={cx({[trClassName]: !!trClassName})}>
+          <tr>
             {columns.map(({ title, key }) => (
               <th
                 scope="col"
                 key={key}
-                className={cx({
-                  'whitespace-nowrap': noWrapHeaders,
-                  [thClassName]: !!thClassName,
-                })}
+                className={cx({ 'whitespace-nowrap': noWrapHeaders })}
               >
                 {title}
               </th>
@@ -100,7 +93,7 @@ export const Table: React.FC<TableProps> = ({
             const rowKey = data.id || Math.random();
 
             return (
-              <tr key={rowKey} className={cx({[trClassName]: !!trClassName})}>
+              <tr key={rowKey}>
                 {columns.map(({ dataIndex, className, render, key }) => (
                   <td
                     className={cx(``, {
