@@ -1,13 +1,14 @@
 import React from 'react';
 import cx from 'classnames';
 import { CaretDownIcon } from '@mergestat/icons';
+import { Button } from '../Button';
 import { Dropdown } from '../Dropdown';
 import { Menu } from '../Menu';
 
 export type SplitButtonItemProps = {
   text?: string;
   icon?: React.ReactElement;
-  className?: string; 
+  className?: string;
 }
 
 export type SplitButtonProps = {
@@ -34,26 +35,18 @@ export const SplitButton: React.FC<SplitButtonProps> = React.forwardRef(({
   menuContainerClassName,
 }, ref: any) => {
   return (
-    <div className={cx("t-flex-split", {[className]: !!className})} ref={ref}>
-      <label
-        onClick={() => {
-          if (!disabled && onButtonClick) onButtonClick();
-        }}
-        className="t-split-gray h-full"
+    <div className={cx("t-split-button", {[className]: !!className})} ref={ref}>
+      <div
       >
-        {startIcon && startIcon}
-        <button disabled={disabled}>
-          {text || "Split Button"}
-        </button>
-        {endIcon && endIcon}
-      </label>
+        <Button skin="secondary" startIcon={startIcon} endIcon={endIcon} disabled={disabled} label={text || "Split button"} className="t-split-button-left" onClick={() => {
+          if (!disabled && onButtonClick) onButtonClick();
+        }} />
+      </div>
       <Dropdown
         alignEnd
         disabled={disabled}
         trigger={
-          <div className="relative t-split-gray h-full cursor-pointer border-l">
-            <CaretDownIcon className="t-icon" />
-          </div>
+          <Button skin="secondary" isIconOnly startIcon={<CaretDownIcon className="t-icon" />} className="t-split-button-right" />
         }
         overlay={(close: any) => (
           <Menu className={cx('absolute right-0 -top-1.5', { [menuContainerClassName]: !!menuContainerClassName})}>
