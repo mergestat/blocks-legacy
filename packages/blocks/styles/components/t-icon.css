@@ -37,6 +37,14 @@
     @apply text-blue-500;
 }
 
+.t-icon-default {
+    @apply text-gray-500;
+}
+
+.t-icon-primary {
+    @apply text-blue-600;
+}
+
 .t-icon-success {
     @apply text-green-500;
 }
