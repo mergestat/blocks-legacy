@@ -22,42 +22,26 @@
 .t-search-container {
   @apply rounded
          mx-auto
-         mt-3;
+         mt-3
+         p-3;
   gap: 10px;
   width: 95%;
   border: 1px solid rgba(229, 231, 235);
-}
-
-.t-input-container {
-  width:calc(100% - 1.5rem);
-  box-sizing: border-box;
-  display: flex;
-  align-items: center;
-  border:1px solid rgba(229, 231, 235);
-  @apply  rounded
-          p-3
-          my-3
-          mx-auto
-          leading-5
-          focus_outline-none
-          focus_ring-offset-2
-          focus_ring-blue-500
-          font-medium;
 }
 
 .t-search-container.t-shadow {
   box-shadow: 5px 5px 10px 0px rgba(34, 60, 80, 0.1);
 }
 
-.t-input-container.active {
+.t-search-container.active {
   border:1px solid rgba(186, 230, 253);
 }
 
-.t-input-container input {
+.t-search-container input {
   width: 100%;
 }
 
-.t-input-container input:focus {
+.t-search-container input:focus {
   outline: none;
 }
 
