@@ -53,7 +53,12 @@ export const SplitButton: React.FC<SplitButtonProps> = React.forwardRef(({
         alignEnd
         disabled={disabled}
         trigger={
-          <Button skin="secondary" isIconOnly startIcon={<CaretDownIcon className="t-icon" />} className="t-split-button-right" />
+          <Button
+            skin="secondary"
+            isIconOnly
+            startIcon={<CaretDownIcon className="t-icon" />}
+            className="t-split-button-right"
+          />
         }
         overlay={(close: any) => (
           <Menu className={cx('absolute right-0 -top-1.5', { [menuContainerClassName]: !!menuContainerClassName})}>
