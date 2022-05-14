@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import cx from 'classnames';
 import { PlusIcon, SearchIcon } from '@mergestat/icons';
 import { Tag } from '../Filter/Tag';
-import { Checkbox } from '../Form';
+import { Checkbox, Input } from '../Form';
 
 type MultiSelectProps = {
   setStateToProps: {
@@ -19,35 +19,21 @@ export const MultiSelect: React.FC<
       HTMLElement
     >
 > = ({ setStateToProps, getState }) => {
+  const containerRef = useRef<HTMLDivElement>(null)
   const [state, setState] = useState(setStateToProps);
   const [value, setValue] = useState('');
   const [isActive, setIsActive] = useState(false);
 
-  const handleClick = (e: MouseEvent) => {
-    const className = (e.target as Element).className;
-    setIsActive(className !== 'sb-main-padded sb-show-main' && className !== 't-container');
-  }
-
-  const handleKeyPress = (e: KeyboardEvent) => {
-    if (e.key === 'Enter' && value.length > 0) {
-      setState([...state, { title: value, checked: true }]);
-
-      if (getState) {
-        getState([...state]);
-      }
-      setValue('');
-    }
-  }
-
   useEffect(() => {
-    window.addEventListener('click', handleClick, false);
-    window.addEventListener('keypress', handleKeyPress, false);
-
-    return () => {
-      window.removeEventListener('click', handleClick);
-      window.removeEventListener('keypress', handleKeyPress);
+    function handleClick(event: MouseEvent) {
+      if (containerRef.current && !containerRef.current.contains(event.target as Element)) {
+        setIsActive(false);
+      }
     }
-  }, []);
+
+    document.addEventListener("mousedown", handleClick)
+    return () => document.removeEventListener("mousedown", handleClick)
+  }, [isActive, containerRef]);
 
   return (
     <div className="t-container">
@@ -71,20 +57,22 @@ export const MultiSelect: React.FC<
           ) : null;
         })}
       </div>
-      <div className={cx('t-search-container', {'t-shadow': isActive})}>
-        <label
-          className={cx('t-input-container', {'active': isActive})}
-          onClick={() => setIsActive(true)}
-        >
-          <SearchIcon className="t-icon" />
-          <input
-            type="text"
-            value={value}
-            onChange={(e) => {
-              setValue(e.target.value);
-            }}
-          />
-        </label>
+      <div className={cx('t-search-container', {'t-shadow': isActive})} ref={containerRef}>
+        <Input
+          className={cx('outline-0', {'active': isActive})}
+          startIcon={<SearchIcon className="t-icon" />}
+          value={value}
+          onChange={(e) => setValue(e.target.value)}
+          onFocus={() => setIsActive(true)}
+          onKeyPress={(e) => {
+            if (e.key === 'Enter' && value.length > 0) {
+              e.preventDefault();
+              setState([...state, { title: value, checked: true }]);
+              if (getState) getState([...state]);
+              setValue('');
+            }
+          }}
+        />
         {isActive && (
           <div>
             <div className="p-3">
