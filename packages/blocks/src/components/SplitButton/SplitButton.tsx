@@ -38,9 +38,16 @@ export const SplitButton: React.FC<SplitButtonProps> = React.forwardRef(({
     <div className={cx("t-split-button", {[className]: !!className})} ref={ref}>
       <div
       >
-        <Button skin="secondary" startIcon={startIcon} endIcon={endIcon} disabled={disabled} label={text || "Split button"} className="t-split-button-left" onClick={() => {
-          if (!disabled && onButtonClick) onButtonClick();
-        }} />
+        <Button
+          skin="secondary"
+          startIcon={startIcon}
+          endIcon={endIcon}
+          disabled={disabled} label={text || "Split button"}
+          className="t-split-button-left"
+          onClick={() => {
+            if (!disabled && onButtonClick) onButtonClick();
+          }}
+        />
       </div>
       <Dropdown
         alignEnd
