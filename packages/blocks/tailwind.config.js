@@ -17,6 +17,9 @@ module.exports = {
           150: "#EBECEF",
         },
       },
+      fontFamily: {
+        'sans': ['"Inter UI"', '"Segoe UI"', 'Roboto', 'Helvetica', 'Arial', 'sans-serif']
+      }
     },
     colors: {
       transparent: 'transparent',
