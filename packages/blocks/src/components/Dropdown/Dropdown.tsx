@@ -11,7 +11,7 @@ import styled from 'styled-components';
 export const MenuContainerStyled = styled('div')`
   display: ${({ show }: { show: boolean }) => (show ? 'flex' : 'none')};
   position: absolute;
-  z-index: 10;
+  z-index: 9;
   flex-direction: column;
 `;
 
