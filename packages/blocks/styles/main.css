@@ -15,6 +15,7 @@
 @import "./components/t-content.css";
 @import "./components/t-display.css";
 @import "./components/t-empty-state.css";
+@import "./components/t-fonts.css";
 @import "./components/t-help-text.css";
 @import "./components/t-icon.css";
 @import "./components/t-inline-banner.css";
@@ -27,8 +28,8 @@
 @import "./components/t-menu.css";
 @import "./components/t-modal.css";
 @import "./components/t-multi-select.css";
-@import "./components/t-nav.css";
 @import "./components/t-nav-marketing.css";
+@import "./components/t-nav.css";
 @import "./components/t-panel.css";
 @import "./components/t-progress-bar.css";
 @import "./components/t-radio-card.css";
