@@ -5,6 +5,7 @@ type TableProps = {
   dataSource: Array<any>;
   columns: Array<{
     title?: string;
+    headerClassName?: string;
     dataIndex?: any;
     className?: string;
     key?: any;
@@ -20,6 +21,8 @@ type TableProps = {
   scrollY?: string | number;
   noWrapHeaders?: boolean;
   borderless?: boolean;
+  tableHeaderBackground?: string;
+  tableBodyBackground?: string;
 };
 
 export const Table: React.FC<TableProps> = ({
@@ -34,6 +37,8 @@ export const Table: React.FC<TableProps> = ({
   noWrapHeaders = false,
   scrollY,
   tableWrapperClassName,
+  tableHeaderBackground="white",
+  tableBodyBackground="white",
 }) => {
   if (loading) {
     return (
@@ -76,19 +81,23 @@ export const Table: React.FC<TableProps> = ({
         })}
       >
         <thead>
-          <tr>
-            {columns.map(({ title, key }) => (
+          <tr className={cx(`bg-${tableHeaderBackground}`)}>
+            {columns.map(({ title, key, headerClassName }) => (
               <th
                 scope="col"
                 key={key}
-                className={cx({ 'whitespace-nowrap': noWrapHeaders })}
+                className={cx({
+                  'whitespace-nowrap': noWrapHeaders,
+                  'px-6': title && typeof title === 'string',
+                  [headerClassName]: !!headerClassName,
+                })}
               >
                 {title}
               </th>
             ))}
           </tr>
         </thead>
-        <tbody className="bg-white">
+        <tbody className={cx(`bg-${tableBodyBackground}`)}>
           {dataSource.map((data) => {
             const rowKey = data.id || Math.random();
 
@@ -96,7 +105,8 @@ export const Table: React.FC<TableProps> = ({
               <tr key={rowKey}>
                 {columns.map(({ dataIndex, className, render, key }) => (
                   <td
-                    className={cx(``, {
+                    className={cx({
+                      'px-6 py-3': !render,
                       [className]: !!className,
                     })}
                     key={rowKey + key}

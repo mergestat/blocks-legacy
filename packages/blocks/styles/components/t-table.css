@@ -6,7 +6,7 @@
    ========================================================================== */
 
 .t-table-default {
-    @apply w-full;
+  @apply w-full;
 }
 
 /* Table with sticky header */
@@ -15,11 +15,10 @@
   @apply border-separate;
 }
 
-.t-table-sticky-header thead th {
+.t-table-sticky-header thead tr {
   @apply sticky
          z-10
-         top-0
-         bg-white;
+         top-0;
 }
 
 /* When a table heading occurs in the tbody part */
@@ -43,29 +42,17 @@
 /* A regular cell */
 .t-table-cell,
 .t-table-default td {
-  @apply px-6
-         py-3
-         border-b
+  @apply border-b
          border-gray-200
          text-gray-700;
 }
 
 /* A regular heading */
 .t-table-heading,
-.t-table-default th {
-  @apply px-6
-         py-3
-         text-left
-         border-b-2
-         font-medium
-         text-gray-900;
-}
-
 /* custom class rc table */
 .t-table-thead,
 .t-table-default th {
-  @apply px-6
-         py-3
+  @apply py-3
          text-left
          border-b-2
          font-medium
