@@ -9,10 +9,12 @@ import cx from 'classnames';
 import styled from 'styled-components';
 
 export const MenuContainerStyled = styled('div')`
-  display: ${({ show }: { show: boolean }) => (show ? 'flex' : 'none')};
   position: absolute;
-  z-index: 9;
   flex-direction: column;
+  ${({ show, zIndex }: { show: boolean, zIndex: number }) => (`
+    display: ${show} ? 'flex' : 'none';
+    z-index: ${zIndex};
+  `)}
 `;
 
 type DropdownProps = {
@@ -22,23 +24,25 @@ type DropdownProps = {
   role?: string;
   drop?: DropDirection;
   disabled?: boolean;
+  zIndex?: number;
 }
 
 const DropdownContent: React.FC<
   {
     overlay: () => React.ReactNode;
+    zIndex: number;
   } & React.DetailedHTMLProps<
     React.HTMLAttributes<HTMLSpanElement>,
     HTMLSpanElement
   >
-> = ({ overlay }) => {
+> = ({ overlay, zIndex }) => {
   const [props, { show }] = useDropdownMenu({
     flip: true,
     offset: [0, 8],
   });
 
   return (
-    <MenuContainerStyled {...props} show={show}>
+    <MenuContainerStyled {...props} show={show} zIndex={zIndex}>
       {overlay()}
     </MenuContainerStyled>
   );
@@ -75,6 +79,7 @@ export const Dropdown: React.FC<DropdownProps> = ({
   trigger,
   overlay,
   disabled = false,
+  zIndex = 9,
 }) => {
   const [show, setShow] = useState(false);
 
@@ -95,6 +100,7 @@ export const Dropdown: React.FC<DropdownProps> = ({
           <DropdownContent
             role={role}
             overlay={() => overlay(dropdownToggle)}
+            zIndex={zIndex}
           />
         </>
       }
