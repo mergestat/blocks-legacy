@@ -43,8 +43,7 @@
 .t-table-cell,
 .t-table-default td {
   @apply border-b
-         border-gray-200
-         text-gray-700;
+         border-gray-200;
 }
 
 /* A regular heading */
