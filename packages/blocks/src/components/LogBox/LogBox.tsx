@@ -1,25 +1,34 @@
 import React from 'react';
+import cx from 'classnames';
 import { ClipboardIcon } from '@mergestat/icons';
+import { Button } from '../Button';
 
 type LogBoxProps = {
-  data: { massage: string | React.ReactNode }[];
-  onClick?: () => void;
+  logs: Array<string | React.ReactNode>;
+  className?: string;
+  copyBtnClassName?: string;
+  onCopy?: () => void;
 };
 
-export const LogBox: React.FC<LogBoxProps> = ({ data, onClick }) => {
+export const LogBox: React.FC<LogBoxProps> = ({ logs, className, copyBtnClassName, onCopy }) => {
   return (
-    <div className="t-log-box">
-      {data.map((item, index) => (
-        <div key={`key_${index}`}>{item.massage}</div>
+    <div className={cx("t-log-box bg-gray-800 text-white rounded-md font-mono text-xs leading-6", { [className]: !!className })}>
+      {logs.map((log, index) => (
+        <p key={index}>
+          {log}
+        </p>
       ))}
-      <button
-        className="absolute top-10 right-10 flex gap-1.5 items-center bg-gray-700 rounded p-3"
-        onClick={() => {
-          if (onClick) onClick();
-        }}
-      >
-        <ClipboardIcon className="t-icon" /> Copy
-      </button>
+      {onCopy && (
+        <Button
+          className={cx('log-copy-btn bg-gray-700 text-gray-300 border-0', {[copyBtnClassName]: !!copyBtnClassName})}
+          size='small'
+          skin='secondary'
+          startIcon = {<ClipboardIcon className="t-icon" />}
+          onClick={onCopy}
+        >
+          Copy
+        </Button>
+      )}
     </div>
   );
 };
