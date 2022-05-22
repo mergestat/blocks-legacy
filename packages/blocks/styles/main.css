@@ -15,7 +15,6 @@
 @import "./components/t-content.css";
 @import "./components/t-display.css";
 @import "./components/t-empty-state.css";
-@import "./components/t-fonts.css";
 @import "./components/t-help-text.css";
 @import "./components/t-icon.css";
 @import "./components/t-inline-banner.css";
@@ -46,6 +45,7 @@
 @import "./components/t-toggle.css";
 @import "./components/t-toolbar.css";
 
+@import "./custom-fonts.css";
 @import "./custom-utility-styles.css";
 
 /* purgecss start ignore */
