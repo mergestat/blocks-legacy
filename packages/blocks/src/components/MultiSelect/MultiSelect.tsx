@@ -82,7 +82,7 @@ export const MultiSelect: React.FC<
                     key={`key2_${index}`}
                     label={item.title}
                     checked={item.checked}
-                    onChange={(e) => {
+                    onChange={() => {
                       state[index].checked = !state[index].checked;
                       setState([...state]);
 

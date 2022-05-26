@@ -41,3 +41,12 @@ Default.args = {
   dataSource: dataSource,
   scrollY: 200
 }
+
+export const ChekableTable = Template.bind({});
+ChekableTable.args = {
+  columns: columns,
+  dataSource: dataSource,
+  scrollY: 200,
+  checkable: true,
+  onSelectedChange: (rows: any[]) => console.log(rows),
+}

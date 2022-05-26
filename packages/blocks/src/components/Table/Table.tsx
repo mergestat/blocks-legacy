@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import cx from 'classnames';
+import { Checkbox, CHECKBOX_STATES } from '../Form/Checkbox';
 
 type TableProps = {
   dataSource: Array<any>;
@@ -23,6 +24,9 @@ type TableProps = {
   borderless?: boolean;
   tableHeaderBackground?: string;
   tableBodyBackground?: string;
+  checkable?: boolean;
+  hasSelectAll?: boolean;
+  onSelectedChange?: (selectedRows: Array<any>) => void;
 };
 
 export const Table: React.FC<TableProps> = ({
@@ -37,8 +41,11 @@ export const Table: React.FC<TableProps> = ({
   noWrapHeaders = false,
   scrollY,
   tableWrapperClassName,
-  tableHeaderBackground="white",
-  tableBodyBackground="white",
+  tableHeaderBackground = 'white',
+  tableBodyBackground = 'white',
+  checkable = false,
+  hasSelectAll = true,
+  onSelectedChange = () => {},
 }) => {
   if (loading) {
     return (
@@ -53,6 +60,27 @@ export const Table: React.FC<TableProps> = ({
         />
       </div>
     );
+  }
+
+  const [data, setData] = useState(dataSource.map(data => ({
+    ...data,
+    checked: false
+  })));
+
+  const checkedState = () => {
+    const checkedDataLen: number = data.filter(d => d.checked).length
+
+    return checkedDataLen === 0
+      ? CHECKBOX_STATES.Unchecked
+      : checkedDataLen === data.length
+        ? CHECKBOX_STATES.Checked
+        : CHECKBOX_STATES.Indeterminate
+  }
+
+  const onRowChange = (checked: boolean, index: number) => {
+    data[index].checked = checked;
+    setData([ ...data ]);
+    onSelectedChange(data.filter(d => d.checked));
   }
 
   return dataSource.length < 1 ? (
@@ -82,6 +110,27 @@ export const Table: React.FC<TableProps> = ({
       >
         <thead>
           <tr className={cx(`bg-${tableHeaderBackground}`)}>
+            {checkable && (
+              <th className='w-0 pl-6'>
+                {hasSelectAll && (
+                  <Checkbox
+                    value = {checkedState()}
+                    onChange = {(e) => {
+                      const checked = e.currentTarget.checked;
+
+                      setData([
+                        ...data.map(item => ({
+                          ...item,
+                          checked: checked,
+                        }))
+                      ]);
+
+                      onSelectedChange(checked ? data : []);
+                    }}
+                  />
+                )}
+              </th>
+            )}
             {columns.map(({ title, key, headerClassName }) => (
               <th
                 scope="col"
@@ -98,11 +147,19 @@ export const Table: React.FC<TableProps> = ({
           </tr>
         </thead>
         <tbody className={cx(`bg-${tableBodyBackground}`)}>
-          {dataSource.map((data) => {
-            const rowKey = data.id || Math.random();
+          {data.map((d, index) => {
+            const rowKey = d.id || Math.random();
 
             return (
               <tr key={rowKey}>
+                {checkable && (
+                  <td className='w-0 pl-6'>
+                    <Checkbox
+                      checked={d.checked}
+                      onChange={(e) => onRowChange(e.currentTarget.checked, index)}
+                    />
+                  </td>
+                )}
                 {columns.map(({ dataIndex, className, render, key }) => (
                   <td
                     className={cx({
@@ -111,7 +168,7 @@ export const Table: React.FC<TableProps> = ({
                     })}
                     key={rowKey + key}
                   >
-                    {render ? render(data[dataIndex], data) : data[dataIndex]}
+                    {render ? render(d[dataIndex], d) : d[dataIndex]}
                   </td>
                 ))}
               </tr>
