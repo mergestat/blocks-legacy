@@ -32,7 +32,6 @@ const CheckboxInput: React.FC<
       } else if (value === CHECKBOX_STATES.Indeterminate) {
         checkboxRef.current.checked = false;
         checkboxRef.current.indeterminate = true;
-        console.log(checkboxRef.current.indeterminate)
       }
     }
   }, [value, checkboxRef]);
