@@ -27,6 +27,8 @@ type TableProps = {
   checkable?: boolean;
   hasSelectAll?: boolean;
   onSelectedChange?: (selectedRows: Array<any>) => void;
+  sortable?: boolean;
+  collapsible?: boolean;
 };
 
 export const Table: React.FC<TableProps> = ({
@@ -46,6 +48,8 @@ export const Table: React.FC<TableProps> = ({
   checkable = false,
   hasSelectAll = true,
   onSelectedChange = () => {},
+  sortable = false,
+  collapsible = false,
 }) => {
   if (loading) {
     return (
@@ -62,26 +66,71 @@ export const Table: React.FC<TableProps> = ({
     );
   }
 
-  const [data, setData] = useState(dataSource.map(data => ({
-    ...data,
-    checked: false
-  })));
+  // Checkable module
+  const [data, setData] = useState(
+    dataSource.map((data) => ({
+      ...data,
+      checked: false,
+    }))
+  );
 
   const checkedState = () => {
-    const checkedDataLen: number = data.filter(d => d.checked).length
+    const checkedDataLen: number = data.filter((d) => d.checked).length;
 
     return checkedDataLen === 0
       ? CHECKBOX_STATES.Unchecked
       : checkedDataLen === data.length
-        ? CHECKBOX_STATES.Checked
-        : CHECKBOX_STATES.Indeterminate
-  }
+      ? CHECKBOX_STATES.Checked
+      : CHECKBOX_STATES.Indeterminate;
+  };
 
   const onRowChange = (checked: boolean, index: number) => {
     data[index].checked = checked;
-    setData([ ...data ]);
-    onSelectedChange(data.filter(d => d.checked));
-  }
+    setData([...data]);
+    onSelectedChange(data.filter((d) => d.checked));
+  };
+
+  // Sortable module
+  const [sortField, setSortField] = useState('');
+  const [order, setOrder] = useState('asc');
+
+  const handleSortingChange = (accessor: string) => {
+    const sortOrder =
+      accessor === sortField && order === 'asc' ? 'desc' : 'asc';
+    setSortField(accessor);
+    setOrder(sortOrder);
+    handleSorting(accessor, sortOrder);
+  };
+
+  const handleSorting = (sortField: string, sortOrder: string) => {
+    if (sortField) {
+      const sorted = [...data].sort((a, b) => {
+        if (a[sortField] === null) return 1;
+        if (b[sortField] === null) return -1;
+        if (a[sortField] === null && b[sortField] === null) return 0;
+        return (
+          a[sortField].toString().localeCompare(b[sortField].toString(), 'en', {
+            numeric: true,
+          }) * (sortOrder === 'asc' ? 1 : -1)
+        );
+      });
+      setData(sorted);
+    }
+  };
+
+  // Collapsible module
+  const [expandedRows, setExpandedRows] = useState<number[]>([]);
+
+  const handleRowClick = (rowId: number) => {
+    const currentExpandedRows = expandedRows;
+    const isRowCurrentlyExpanded = currentExpandedRows.includes(rowId);
+
+    const newExpandedRows = isRowCurrentlyExpanded
+      ? currentExpandedRows.filter((id) => id !== rowId)
+      : currentExpandedRows.concat(rowId);
+
+    setExpandedRows(newExpandedRows);
+  };
 
   return dataSource.length < 1 ? (
     <div
@@ -111,18 +160,18 @@ export const Table: React.FC<TableProps> = ({
         <thead>
           <tr className={cx(`bg-${tableHeaderBackground}`)}>
             {checkable && (
-              <th className='w-0 pl-6'>
+              <th className="w-0 pl-6">
                 {hasSelectAll && (
                   <Checkbox
-                    value = {checkedState()}
-                    onChange = {(e) => {
+                    value={checkedState()}
+                    onChange={(e) => {
                       const checked = e.currentTarget.checked;
 
                       setData([
-                        ...data.map(item => ({
+                        ...data.map((item) => ({
                           ...item,
                           checked: checked,
-                        }))
+                        })),
                       ]);
 
                       onSelectedChange(checked ? data : []);
@@ -131,47 +180,102 @@ export const Table: React.FC<TableProps> = ({
                 )}
               </th>
             )}
-            {columns.map(({ title, key, headerClassName }) => (
-              <th
-                scope="col"
-                key={key}
-                className={cx({
-                  'whitespace-nowrap': noWrapHeaders,
-                  'px-6': title && typeof title === 'string',
-                  [headerClassName]: !!headerClassName,
-                })}
-              >
-                {title}
-              </th>
-            ))}
+            {collapsible && <th className="w-0 pl-6"></th>}
+            {columns.map(({ title, key, headerClassName }) => {
+              const cl = sortable
+                ? sortField && sortField === key && order === 'asc'
+                  ? 'up'
+                  : sortField && sortField === key && order === 'desc'
+                  ? 'down'
+                  : 'default'
+                : '';
+              return (
+                <th
+                  scope="col"
+                  key={key}
+                  className={cx(
+                    {
+                      'whitespace-nowrap': noWrapHeaders,
+                      'px-6': title && typeof title === 'string',
+                      [headerClassName]: !!headerClassName,
+                    },
+                    `${cl}`
+                  )}
+                  onClick={sortable ? () => handleSortingChange(key) : null}
+                >
+                  {title}{' '}
+                  {sortable ? (
+                    <div className="sortable__th__arrow-wrapper">
+                      <div className="sortable__th__arrow sortable__th__arrowup"></div>
+                      <div className="sortable__th__arrow sortable__th__arrowdown"></div>
+                    </div>
+                  ) : (
+                    ''
+                  )}
+                </th>
+              );
+            })}
           </tr>
         </thead>
         <tbody className={cx(`bg-${tableBodyBackground}`)}>
           {data.map((d, index) => {
             const rowKey = d.id || Math.random();
+            const itemRows = [];
+
+            if (expandedRows.includes(index)) {
+              itemRows.push(
+                <tr key={'row-expanded-' + index}>
+                  <td colSpan={3}>{d.exp_data}</td>
+                </tr>
+              );
+            }
 
             return (
-              <tr key={rowKey}>
-                {checkable && (
-                  <td className='w-0 pl-6'>
-                    <Checkbox
-                      checked={d.checked}
-                      onChange={(e) => onRowChange(e.currentTarget.checked, index)}
-                    />
-                  </td>
+              <>
+                <tr key={rowKey} onClick={() => handleRowClick(index)}>
+                  {checkable && (
+                    <td className="w-0 pl-6">
+                      <Checkbox
+                        checked={d.checked}
+                        onChange={(e) =>
+                          onRowChange(e.currentTarget.checked, index)
+                        }
+                      />
+                    </td>
+                  )}
+                  {collapsible && (
+                    <td className="p-3">
+                      <span
+                        className={`collapse__arrow ${
+                          expandedRows.includes(index)
+                            ? 'collapse__arrow-down'
+                            : 'collapse__arrow-right'
+                        }`}
+                      ></span>
+                    </td>
+                  )}
+                  {columns.map(({ dataIndex, className, render, key }) => (
+                    <td
+                      className={cx({
+                        'px-6 py-3': !render,
+                        [className]: !!className,
+                      })}
+                      key={rowKey + key}
+                    >
+                      {render ? render(d[dataIndex], d) : d[dataIndex]}
+                    </td>
+                  ))}
+                </tr>
+                {expandedRows.includes(index) ? (
+                  <tr key={'row-expanded-' + index}>
+                    <td colSpan={3}>
+                      <div className="log-panel">{d.exp_data}</div>
+                    </td>
+                  </tr>
+                ) : (
+                  ''
                 )}
-                {columns.map(({ dataIndex, className, render, key }) => (
-                  <td
-                    className={cx({
-                      'px-6 py-3': !render,
-                      [className]: !!className,
-                    })}
-                    key={rowKey + key}
-                  >
-                    {render ? render(d[dataIndex], d) : d[dataIndex]}
-                  </td>
-                ))}
-              </tr>
+              </>
             );
           })}
         </tbody>
