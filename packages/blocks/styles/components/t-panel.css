@@ -5,6 +5,7 @@
 .t-panel {
   @apply bg-white
           rounded
+          shadow-sm
           border
           border-gray-200
           grid
