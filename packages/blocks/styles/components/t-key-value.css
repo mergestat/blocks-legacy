@@ -1,11 +1,10 @@
 .t-key-value h3 {
-  color: #4B5563;
-  font-size: 16px;
-  font-weight: 500;
-  margin-bottom: 10px;
+  @apply text-sm
+         font-medium
+         text-gray-500
+         mb-2;
 }
 .t-key-value p {
-  color: #374151;
-  font-size: 16px;
-  font-weight: 400;
+  @apply text-gray-700
+          text-base;
 }
