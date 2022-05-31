@@ -26,7 +26,7 @@ BadgePrimary.args = {
 export const BadgeSecondary = Template.bind({});
 BadgeSecondary.args = {
   label: 'Badge',
-  variant: 'secondary',
+  variant: 'default',
 }
 
 export const BadgeSuccess = Template.bind({});
