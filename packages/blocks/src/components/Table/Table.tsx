@@ -1,6 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import cx from 'classnames';
+import { CaretDownIcon, CaretRightIcon } from '@mergestat/icons';
 import { Checkbox, CHECKBOX_STATES } from '../Form/Checkbox';
+
+type SortType = 'asc' | 'desc' | undefined;
 
 type TableProps = {
   dataSource: Array<any>;
@@ -11,6 +14,7 @@ type TableProps = {
     className?: string;
     key?: any;
     render?: React.ReactNode | any | undefined;
+    onSortChange?: (e: SortType) => void;
   }>;
   className?: string;
   tableWrapperClassName?: string;
@@ -26,8 +30,8 @@ type TableProps = {
   tableBodyBackground?: string;
   checkable?: boolean;
   hasSelectAll?: boolean;
+  selectAll?: boolean;
   onSelectedChange?: (selectedRows: Array<any>) => void;
-  sortable?: boolean;
   collapsible?: boolean;
 };
 
@@ -48,7 +52,7 @@ export const Table: React.FC<TableProps> = ({
   checkable = false,
   hasSelectAll = true,
   onSelectedChange = () => {},
-  sortable = false,
+  selectAll = false,
   collapsible = false,
 }) => {
   if (loading) {
@@ -66,22 +70,32 @@ export const Table: React.FC<TableProps> = ({
     );
   }
 
-  // Checkable module
   const [data, setData] = useState(
     dataSource.map((data) => ({
       ...data,
-      checked: false,
+      ...checkable && { checked: selectAll },
+      ...collapsible && { collapsed: false },
     }))
   );
 
+  useEffect(() => {
+    if (checkable) {
+      setData((prevData) => prevData.map(data => ({
+        ...data,
+        checked: selectAll
+      })))
+    }
+  }, [selectAll])
+
+  // Checkable module
   const checkedState = () => {
     const checkedDataLen: number = data.filter((d) => d.checked).length;
 
     return checkedDataLen === 0
       ? CHECKBOX_STATES.Unchecked
       : checkedDataLen === data.length
-      ? CHECKBOX_STATES.Checked
-      : CHECKBOX_STATES.Indeterminate;
+        ? CHECKBOX_STATES.Checked
+        : CHECKBOX_STATES.Indeterminate;
   };
 
   const onRowChange = (checked: boolean, index: number) => {
@@ -91,45 +105,12 @@ export const Table: React.FC<TableProps> = ({
   };
 
   // Sortable module
-  const [sortField, setSortField] = useState('');
-  const [order, setOrder] = useState('asc');
-
-  const handleSortingChange = (accessor: string) => {
-    const sortOrder =
-      accessor === sortField && order === 'asc' ? 'desc' : 'asc';
-    setSortField(accessor);
-    setOrder(sortOrder);
-    handleSorting(accessor, sortOrder);
-  };
-
-  const handleSorting = (sortField: string, sortOrder: string) => {
-    if (sortField) {
-      const sorted = [...data].sort((a, b) => {
-        if (a[sortField] === null) return 1;
-        if (b[sortField] === null) return -1;
-        if (a[sortField] === null && b[sortField] === null) return 0;
-        return (
-          a[sortField].toString().localeCompare(b[sortField].toString(), 'en', {
-            numeric: true,
-          }) * (sortOrder === 'asc' ? 1 : -1)
-        );
-      });
-      setData(sorted);
-    }
-  };
+  const [sortField, setSortField] = useState<Record<string, SortType>>({});
 
   // Collapsible module
-  const [expandedRows, setExpandedRows] = useState<number[]>([]);
-
-  const handleRowClick = (rowId: number) => {
-    const currentExpandedRows = expandedRows;
-    const isRowCurrentlyExpanded = currentExpandedRows.includes(rowId);
-
-    const newExpandedRows = isRowCurrentlyExpanded
-      ? currentExpandedRows.filter((id) => id !== rowId)
-      : currentExpandedRows.concat(rowId);
-
-    setExpandedRows(newExpandedRows);
+  const onRowClick = (index: number) => {
+    data[index].collapsed = !data[index].collapsed;
+    setData([...data]);
   };
 
   return dataSource.length < 1 ? (
@@ -159,6 +140,7 @@ export const Table: React.FC<TableProps> = ({
       >
         <thead>
           <tr className={cx(`bg-${tableHeaderBackground}`)}>
+            {collapsible && <th className="w-0 pl-6"></th>}
             {checkable && (
               <th className="w-0 pl-6">
                 {hasSelectAll && (
@@ -180,15 +162,9 @@ export const Table: React.FC<TableProps> = ({
                 )}
               </th>
             )}
-            {collapsible && <th className="w-0 pl-6"></th>}
-            {columns.map(({ title, key, headerClassName }) => {
-              const cl = sortable
-                ? sortField && sortField === key && order === 'asc'
-                  ? 'up'
-                  : sortField && sortField === key && order === 'desc'
-                  ? 'down'
-                  : 'default'
-                : '';
+            {columns.map(({ title, key, headerClassName, onSortChange }) => {
+              const order = sortField[key];
+
               return (
                 <th
                   scope="col"
@@ -199,19 +175,30 @@ export const Table: React.FC<TableProps> = ({
                       'px-6': title && typeof title === 'string',
                       [headerClassName]: !!headerClassName,
                     },
-                    `${cl}`
+                    order === 'asc' ? 'up' : order === 'desc' ? 'down' : 'default'
                   )}
-                  onClick={sortable ? () => handleSortingChange(key) : null}
                 >
-                  {title}{' '}
-                  {sortable ? (
-                    <div className="sortable__th__arrow-wrapper">
-                      <div className="sortable__th__arrow sortable__th__arrowup"></div>
-                      <div className="sortable__th__arrow sortable__th__arrowdown"></div>
-                    </div>
-                  ) : (
-                    ''
-                  )}
+                  <span
+                    className='mr-1 cursor-pointer'
+                    onClick={() => {
+                      if (onSortChange) {
+                        if (order === 'asc') sortField[key] = 'desc';
+                        else if (order === 'desc') sortField[key] = undefined;
+                        else sortField[key] = 'asc';
+  
+                        setSortField({...sortField});
+                        onSortChange(sortField[key]);
+                      }
+                    }}
+                  >
+                    {title} {` `}
+                    {onSortChange && (
+                      <div className="sortable__th__arrow-wrapper">
+                        <div className="sortable__th__arrow sortable__th__arrowup"></div>
+                        <div className="sortable__th__arrow sortable__th__arrowdown"></div>
+                      </div>
+                    )}
+                  </span>
                 </th>
               );
             })}
@@ -220,19 +207,20 @@ export const Table: React.FC<TableProps> = ({
         <tbody className={cx(`bg-${tableBodyBackground}`)}>
           {data.map((d, index) => {
             const rowKey = d.id || Math.random();
-            const itemRows = [];
-
-            if (expandedRows.includes(index)) {
-              itemRows.push(
-                <tr key={'row-expanded-' + index}>
-                  <td colSpan={3}>{d.exp_data}</td>
-                </tr>
-              );
-            }
 
             return (
               <>
-                <tr key={rowKey} onClick={() => handleRowClick(index)}>
+                <tr key={rowKey}>
+                  {collapsible && (
+                    <td className="w-0 pl-6">
+                      <span onClick={() => onRowClick(index)} className="cursor-pointer">
+                        {d.collapsed
+                          ? <CaretDownIcon className='text-gray-500 t-icon' />
+                          : <CaretRightIcon className='text-gray-500 t-icon' />
+                        }
+                      </span>
+                    </td>
+                  )}
                   {checkable && (
                     <td className="w-0 pl-6">
                       <Checkbox
@@ -241,17 +229,6 @@ export const Table: React.FC<TableProps> = ({
                           onRowChange(e.currentTarget.checked, index)
                         }
                       />
-                    </td>
-                  )}
-                  {collapsible && (
-                    <td className="p-3">
-                      <span
-                        className={`collapse__arrow ${
-                          expandedRows.includes(index)
-                            ? 'collapse__arrow-down'
-                            : 'collapse__arrow-right'
-                        }`}
-                      ></span>
                     </td>
                   )}
                   {columns.map(({ dataIndex, className, render, key }) => (
@@ -266,14 +243,12 @@ export const Table: React.FC<TableProps> = ({
                     </td>
                   ))}
                 </tr>
-                {expandedRows.includes(index) ? (
+                {d.collapsed && (
                   <tr key={'row-expanded-' + index}>
-                    <td colSpan={3}>
-                      <div className="log-panel">{d.exp_data}</div>
+                    <td colSpan={columns.length + (checkable ? 2 : 1)} className="p-6">
+                      <span>{d.collaspedComponent || ""}</span>
                     </td>
                   </tr>
-                ) : (
-                  ''
                 )}
               </>
             );

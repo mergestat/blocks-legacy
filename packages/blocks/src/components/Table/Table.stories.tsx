@@ -15,6 +15,7 @@ const columns = [
     dataIndex: 'column',
     className: 'col',
     key: 'column',
+    onSortChange: (e: 'asc' | 'desc' | undefined) => {console.log(e)}
   },
   {
     title: 'Type',
@@ -25,12 +26,36 @@ const columns = [
 ];
 
 const dataSource = [
-  { column: 'message', type: 'Text', exp_data: 'This is message expanded data' },
-  { column: 'summary', type: 'Text', exp_data: 'This is summary expanded data' },
-  { column: 'author_name', type: 'Text', exp_data: 'This is auth name expanded data' },
-  { column: 'author_email', type: 'Text', exp_data: 'This is auth email expanded data' },
-  { column: 'author_when', type: 'DATETIME', exp_data: 'This is auth date expanded data' },
-  { column: 'committer_name', type: 'Text', exp_data: 'This is committer name data' },
+  {
+    column: 'message',
+    type: 'Text',
+    collaspedComponent: 'This is message expanded data'
+  },
+  {
+    column: 'summary',
+    type: 'Text',
+    collaspedComponent: 'This is summary expanded data'
+  },
+  {
+    column: 'author_name',
+    type: 'Text',
+    collaspedComponent: 'This is auth name expanded data'
+  },
+  {
+    column: 'author_email',
+    type: 'Text',
+    collaspedComponent: 'This is auth email expanded data'
+  },
+  {
+    column: 'author_when',
+    type: 'DATETIME',
+    collaspedComponent: 'This is auth date expanded data'
+  },
+  {
+    column: 'committer_name',
+    type: 'Text',
+    collaspedComponent: 'This is committer name data'
+  },
 ];
 
 const Template: ComponentStory<typeof Table> = (args) => <Table {...args} />;
@@ -48,17 +73,7 @@ ChekableTable.args = {
   dataSource: dataSource,
   scrollY: 200,
   checkable: true,
-  hasSelectAll: true,
   onSelectedChange: (rows: any[]) => console.log(rows),
-}
-
-export const SortableTable = Template.bind({});
-SortableTable.args = {
-  columns: columns,
-  dataSource: dataSource,
-  scrollY: 200,
-  checkable: true,
-  sortable: true,
 }
 
 export const CollapsibleTable = Template.bind({});
@@ -67,4 +82,14 @@ CollapsibleTable.args = {
   dataSource: dataSource,
   scrollY: 400,
   collapsible: true,
+}
+
+export const CollapsibleCheckableTable = Template.bind({});
+CollapsibleCheckableTable.args = {
+  columns: columns,
+  dataSource: dataSource,
+  scrollY: 400,
+  collapsible: true,
+  checkable: true,
+  hasSelectAll: false,
 }
