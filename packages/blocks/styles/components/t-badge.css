@@ -61,7 +61,3 @@
            border-green-700
            text-white;
 }
-
-.t-badge-rounded-full {
-  @apply rounded-full;
-}
