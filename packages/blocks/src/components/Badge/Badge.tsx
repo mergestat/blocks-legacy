@@ -10,6 +10,7 @@ type BadgeProps = {
   variant?: 'primary' | 'success' | 'warning' | 'danger' | 'default';
   iconOnly?: boolean;
   closable?: boolean;
+  action?: boolean;
   onClose?: () => void;
   onClick?: () => void;
 }
@@ -23,6 +24,7 @@ export const Badge: React.FC<BadgeProps> = ({
   variant = 'default',
   iconOnly,
   closable,
+  action,
   onClose,
   onClick
 }) => {
@@ -30,11 +32,12 @@ export const Badge: React.FC<BadgeProps> = ({
 
   if (!visible) return null;
 
-  return (
+  const MainComp = (
     <span
       className={cx('t-badge', `t-badge-${variant}`, {
         [className]: !!className,
         ['t-badge-icon']: iconOnly,
+        ['t-badge-action']: action,
       })}
     >
       {/* Start Icon */}
@@ -45,20 +48,25 @@ export const Badge: React.FC<BadgeProps> = ({
 
       {/* End Icon */}
       {endIcon && endIcon}
-
-      {closable && (
-        <div
-          className="t-badge-close"
-          onClick={() => {
-            setVisible(false);
-            if (onClose) onClose();
-          }}
-          >
-            <XIcon className="t-icon"/>
-        </div>
-      )}
-
     </span>
+  )
 
+  return ( closable ? (
+    <div className="t-badge-group">
+      {MainComp}
+      <div
+        className={cx('t-badge t-badge-icon t-badge-action', `t-badge-${variant}`)}
+        onClick={() => {
+          setVisible(false);
+          if (onClose) onClose();
+        }}
+      >
+        <XIcon className="t-icon"/>
+      </div>
+
+    </div>
+    ) : (
+      MainComp
+    )
   );
 }

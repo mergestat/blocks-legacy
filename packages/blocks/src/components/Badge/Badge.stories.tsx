@@ -21,7 +21,8 @@ export const BadgeClosable = Template.bind({});
 BadgeClosable.args = {
   label: 'Badge',
   variant: 'default',
-  closable: true
+  closable: true,
+  action: true
 }
 
 export const BadgePrimary = Template.bind({});

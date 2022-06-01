@@ -18,27 +18,6 @@
            h-4;
 }
 
-
-.t-badge-close {
-  @apply relative
-         flex-shrink-0
-         ml-2
-         pl-1
-         -mr-1;
-}
-
-.t-badge-close:before {
-  content: '';
-  left: 0;
-  top: -3px;
-  height: 22px;
-  @apply block
-         absolute
-         bg-gray-200
-         w-px;
-}
-
-
 .t-badge:not(.t-badge-icon) > .t-icon:first-child {
     @apply mr-1;
 }
@@ -81,4 +60,40 @@
     @apply bg-green-600
            border-green-700
            text-white;
+}
+
+.t-badge-group {
+  @apply inline-flex
+         items-center;
+}
+
+
+.t-badge-group .t-badge:first-child {
+  @apply rounded-r-none
+         border-r-0;
+}
+
+.t-badge-group .t-badge:last-child {
+  @apply rounded-l-none;
+}
+
+
+.t-badge-default.t-badge-action {
+  @apply hover_bg-gray-200;
+}
+
+.t-badge-primary.t-badge-action {
+  @apply hover_bg-blue-700;
+}
+
+.t-badge-success.t-badge-action {
+  @apply hover_bg-green-700;
+}
+
+.t-badge-warning.t-badge-action {
+  @apply hover_bg-yellow-600;
+}
+
+.t-badge-danger.t-badge-action {
+  @apply hover_bg-red-700;
 }
