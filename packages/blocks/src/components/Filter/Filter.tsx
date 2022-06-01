@@ -17,7 +17,7 @@ export const Filter: React.FC<FilterProps> = ({
   return (
     <div>
       {closable ? (
-        <Tag skin="blue" closable={true} onClick={onLabel}>
+        <Tag skin="blue" onClick={onLabel} onClose={() => {}}>
           {children || 'Filter label'}
         </Tag>
       ) : (
