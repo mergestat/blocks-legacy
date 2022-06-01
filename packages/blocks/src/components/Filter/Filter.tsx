@@ -17,14 +17,14 @@ export const Filter: React.FC<FilterProps> = ({
   return (
     <div>
       {closable ? (
-        <Tag skin="blue" onClick={onLabel}>
+        <Tag skin="blue" onClick={onLabel} onClose={() => {}}>
           {children || 'Filter label'}
         </Tag>
       ) : (
-        <button className="t-flex-div t-tag-gray" onClick={onLabel}>
+        <Tag skin="gray" onClick={onLabel}>
           <span>{children || 'Filter label'}</span>
           <CaretDownIcon className="t-icon" />
-        </button>
+        </Tag>
       )}
     </div>
   );
