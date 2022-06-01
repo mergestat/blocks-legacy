@@ -33,6 +33,7 @@ type TableProps = {
   selectAll?: boolean;
   onSelectedChange?: (selectedRows: Array<any>) => void;
   collapsible?: boolean;
+  renderCollapse?: (data: any) => void
 };
 
 export const Table: React.FC<TableProps> = ({
@@ -54,6 +55,7 @@ export const Table: React.FC<TableProps> = ({
   onSelectedChange = () => {},
   selectAll = false,
   collapsible = false,
+  renderCollapse = () => {},
 }) => {
   if (loading) {
     return (
@@ -179,7 +181,7 @@ export const Table: React.FC<TableProps> = ({
                   )}
                 >
                   <span
-                    className='mr-1 cursor-pointer'
+                    className={cx('mr-1 select-none', {'cursor-pointer': !!onSortChange})}
                     onClick={() => {
                       if (onSortChange) {
                         if (order === 'asc') sortField[key] = 'desc';
@@ -213,7 +215,10 @@ export const Table: React.FC<TableProps> = ({
                 <tr key={rowKey}>
                   {collapsible && (
                     <td className="w-0 pl-6">
-                      <span onClick={() => onRowClick(index)} className="cursor-pointer">
+                      <span
+                        onClick={() => onRowClick(index)}
+                        className='cursor-pointer'
+                      >
                         {d.collapsed
                           ? <CaretDownIcon className='text-gray-500 t-icon' />
                           : <CaretRightIcon className='text-gray-500 t-icon' />
@@ -246,7 +251,7 @@ export const Table: React.FC<TableProps> = ({
                 {d.collapsed && (
                   <tr key={'row-expanded-' + index}>
                     <td colSpan={columns.length + (checkable ? 2 : 1)} className="p-6">
-                      <span>{d.collaspedComponent || ""}</span>
+                      <>{renderCollapse ? renderCollapse(d) : ""}</>
                     </td>
                   </tr>
                 )}

@@ -29,32 +29,32 @@ const dataSource = [
   {
     column: 'message',
     type: 'Text',
-    collaspedComponent: 'This is message expanded data'
+    description: 'This is message expanded data'
   },
   {
     column: 'summary',
     type: 'Text',
-    collaspedComponent: 'This is summary expanded data'
+    description: 'This is summary expanded data'
   },
   {
     column: 'author_name',
     type: 'Text',
-    collaspedComponent: 'This is auth name expanded data'
+    description: 'This is auth name expanded data'
   },
   {
     column: 'author_email',
     type: 'Text',
-    collaspedComponent: 'This is auth email expanded data'
+    description: 'This is auth email expanded data'
   },
   {
     column: 'author_when',
     type: 'DATETIME',
-    collaspedComponent: 'This is auth date expanded data'
+    description: 'This is auth date expanded data'
   },
   {
     column: 'committer_name',
     type: 'Text',
-    collaspedComponent: 'This is committer name data'
+    description: 'This is committer name data'
   },
 ];
 
@@ -82,6 +82,7 @@ CollapsibleTable.args = {
   dataSource: dataSource,
   scrollY: 400,
   collapsible: true,
+  renderCollapse: (d: any) => d.description
 }
 
 export const CollapsibleCheckableTable = Template.bind({});
