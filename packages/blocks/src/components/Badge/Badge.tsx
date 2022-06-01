@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import cx from 'classnames';
+import { XIcon } from '@mergestat/icons';
 
 type BadgeProps = {
   label?: string;
@@ -8,6 +9,9 @@ type BadgeProps = {
   className?: string;
   variant?: 'primary' | 'success' | 'warning' | 'danger' | 'default';
   iconOnly?: boolean;
+  closable?: boolean;
+  onClose?: () => void;
+  onClick?: () => void;
 }
 
 export const Badge: React.FC<BadgeProps> = ({
@@ -18,7 +22,14 @@ export const Badge: React.FC<BadgeProps> = ({
   endIcon,
   variant = 'default',
   iconOnly,
+  closable,
+  onClose,
+  onClick
 }) => {
+  const [visible, setVisible] = useState<boolean>(true);
+
+  if (!visible) return null;
+
   return (
     <span
       className={cx('t-badge', `t-badge-${variant}`, {
@@ -34,6 +45,20 @@ export const Badge: React.FC<BadgeProps> = ({
 
       {/* End Icon */}
       {endIcon && endIcon}
+
+      {closable && (
+        <div
+          className="t-badge-close"
+          onClick={() => {
+            setVisible(false);
+            if (onClose) onClose();
+          }}
+          >
+            <XIcon className="t-icon"/>
+        </div>
+      )}
+
     </span>
+
   );
 }
