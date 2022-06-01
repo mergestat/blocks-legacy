@@ -7,6 +7,7 @@ type TagProps = {
   onClose?: () => void;
   onClick?: () => void;
   children?: React.ReactNode;
+  closable?: boolean;
 };
 
 export const Tag: React.FC<TagProps> = ({
@@ -14,6 +15,7 @@ export const Tag: React.FC<TagProps> = ({
   onClick,
   children,
   skin,
+  closable
 }) => {
   const [visible, setVisible] = useState<boolean>(true);
 
@@ -32,19 +34,29 @@ export const Tag: React.FC<TagProps> = ({
 
   if (!visible) return null;
 
-  return (
-    <div className={cx('t-flex-div', getButtonSkin(skin ?? 'primary'))}>
-      <div onClick={onClick}>
-        {children || 'Filter label'}
-      </div>
-      <div className="t-divider" />
-      <XIcon
-        className="t-icon"
+  const MainComp = (
+    <div
+      className={cx('t-tag', getButtonSkin(skin ?? 'primary'))}
+      onClick={onClick}
+      >
+      {children || 'Filter label'}
+    </div>
+  )
+  return ( closable ? (
+    <div className="t-tag-group">
+      {MainComp}
+      <div
+        className={cx('t-tag t-tag-icon px-1.5', getButtonSkin(skin ?? 'primary'))}
         onClick={() => {
           setVisible(false);
           if (onClose) onClose();
         }}
-      />
+      >
+        <XIcon className="t-icon"/>
+      </div>
     </div>
+    ) : (
+      MainComp
+    )
   );
 };
