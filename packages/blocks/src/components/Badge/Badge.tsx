@@ -37,7 +37,7 @@ export const Badge: React.FC<BadgeProps> = ({
       className={cx('t-badge', `t-badge-${variant}`, {
         [className]: !!className,
         ['t-badge-icon']: iconOnly,
-        ['t-badge-action']: action,
+        ['t-badge-action cursor-pointer']: action,
       })}
     >
       {/* Start Icon */}
@@ -55,7 +55,7 @@ export const Badge: React.FC<BadgeProps> = ({
     <div className="t-badge-group">
       {MainComp}
       <div
-        className={cx('t-badge t-badge-icon t-badge-action', `t-badge-${variant}`)}
+        className={cx('t-badge t-badge-icon t-badge-action cursor-pointer', `t-badge-${variant}`)}
         onClick={() => {
           setVisible(false);
           if (onClose) onClose();
