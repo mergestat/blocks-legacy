@@ -1,7 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react';
 import cx from 'classnames';
 import { PlusIcon, SearchIcon } from '@mergestat/icons';
-import { Tag } from '../Filter/Tag';
+import { Badge } from '../Badge';
+import { Menu } from '../Menu';
+import { Dropdown } from '../Dropdown';
 import { Checkbox, Input } from '../Form';
 
 type MultiSelectProps = {
@@ -19,29 +21,33 @@ export const MultiSelect: React.FC<
       HTMLElement
     >
 > = ({ setStateToProps, getState }) => {
-  const containerRef = useRef<HTMLDivElement>(null)
+  const containerRef = useRef<HTMLDivElement>(null);
   const [state, setState] = useState(setStateToProps);
   const [value, setValue] = useState('');
   const [isActive, setIsActive] = useState(false);
 
   useEffect(() => {
     function handleClick(event: MouseEvent) {
-      if (containerRef.current && !containerRef.current.contains(event.target as Element)) {
+      if (
+        containerRef.current &&
+        !containerRef.current.contains(event.target as Element)
+      ) {
         setIsActive(false);
       }
     }
 
-    document.addEventListener("mousedown", handleClick)
-    return () => document.removeEventListener("mousedown", handleClick)
+    document.addEventListener('mousedown', handleClick);
+    return () => document.removeEventListener('mousedown', handleClick);
   }, [isActive, containerRef]);
 
   return (
-    <div className="t-container">
-      <div className="t-tags-container">
+    <div>
+      <div className="t-multi-select-tag-list">
         {state.map((item, index) => {
-          return (item.checked) ? (
-            <Tag
-              skin="gray"
+          return item.checked ? (
+            <Badge
+              variant="default"
+              closable={true}
               key={`key_${index}`}
               onClose={() => {
                 item.checked = !item.checked;
@@ -53,13 +59,14 @@ export const MultiSelect: React.FC<
               }}
             >
               {item.title}
-            </Tag>
+            </Badge>
           ) : null;
         })}
       </div>
-      <div className={cx('t-search-container', {'t-shadow': isActive})} ref={containerRef}>
+      <div className="t-multi-select-wrapper" ref={containerRef}>
         <Input
-          className={cx('outline-0', {'active': isActive})}
+          className={cx('outline-0', { active: isActive })}
+          placeholder="Add a tag..."
           startIcon={<SearchIcon className="t-icon" />}
           value={value}
           onChange={(e) => setValue(e.target.value)}
@@ -74,44 +81,54 @@ export const MultiSelect: React.FC<
           }}
         />
         {isActive && (
-          <div>
-            <div className="p-3">
+          <div className="t-menu active w-full">
+            <div className="t-multi-select-value-list">
               {state.map((item, index) => {
                 return item.title.includes(value) ? (
-                  <Checkbox
-                    key={`key2_${index}`}
-                    label={item.title}
-                    checked={item.checked}
-                    onChange={() => {
-                      state[index].checked = !state[index].checked;
-                      setState([...state]);
+                  <div className="t-menu-item">
+                    <div className="t-menu-label">
+                      <Checkbox
+                        className="w-full"
+                        key={`key2_${index}`}
+                        label={item.title}
+                        checked={item.checked}
+                        onChange={() => {
+                          state[index].checked = !state[index].checked;
+                          setState([...state]);
 
-                      if (getState) {
-                        getState([...state]);
-                      }
-                    }}
-                  />
+                          if (getState) {
+                            getState([...state]);
+                          }
+                        }}
+                      />
+                    </div>
+                  </div>
                 ) : null;
               })}
             </div>
-            <div className="t-add-container">
-              <button
-                onClick={() => {
-                  if (value.length > 0) {
-                    setState([...state, { title: value, checked: true }]);
 
-                    if (getState) {
-                      getState([...state, { title: value, checked: true }]);
+            <Menu.Divider />
+            <Menu.Item
+              withIcon
+              color="text-blue-600"
+              text={'Create ' + value}
+              icon={
+                <PlusIcon
+                  className="t-icon"
+                  onClick={() => {
+                    if (value.length > 0) {
+                      setState([...state, { title: value, checked: true }]);
+
+                      if (getState) {
+                        getState([...state, { title: value, checked: true }]);
+                      }
+
+                      setValue('');
                     }
-
-                    setValue('');
-                  }
-                }}
-              >
-                <PlusIcon className="t-icon" />
-                <p className="ml-3">Create {value}</p>
-              </button>
-            </div>
+                  }}
+                />
+              }
+            />
           </div>
         )}
       </div>
