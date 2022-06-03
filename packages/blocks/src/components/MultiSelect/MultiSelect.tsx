@@ -86,22 +86,20 @@ export const MultiSelect: React.FC<
               {state.map((item, index) => {
                 return item.title.includes(value) ? (
                   <div className="t-menu-item">
-                    <div className="t-menu-label">
-                      <Checkbox
-                        className="w-full"
-                        key={`key2_${index}`}
-                        label={item.title}
-                        checked={item.checked}
-                        onChange={() => {
-                          state[index].checked = !state[index].checked;
-                          setState([...state]);
+                    <Checkbox
+                      className="cursor-pointer"
+                      key={`key2_${index}`}
+                      label={item.title}
+                      checked={item.checked}
+                      onChange={() => {
+                        state[index].checked = !state[index].checked;
+                        setState([...state]);
 
-                          if (getState) {
-                            getState([...state]);
-                          }
-                        }}
-                      />
-                    </div>
+                        if (getState) {
+                          getState([...state]);
+                        }
+                      }}
+                    />
                   </div>
                 ) : null;
               })}
