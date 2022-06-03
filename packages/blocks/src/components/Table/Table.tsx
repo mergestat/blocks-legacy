@@ -250,7 +250,7 @@ export const Table: React.FC<TableProps> = ({
                 </tr>
                 {d.collapsed && (
                   <tr key={'row-expanded-' + index}>
-                    <td colSpan={columns.length + (checkable ? 2 : 1)} className="p-6">
+                    <td colSpan={columns.length + (checkable ? 2 : 1)} className="bg-gray-50 p-6">
                       <>{renderCollapse ? renderCollapse(d) : ""}</>
                     </td>
                   </tr>
