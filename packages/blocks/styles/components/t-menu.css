@@ -51,7 +51,8 @@
          pointer-events-none;
 }
 
-.t-menu-label {
+.t-menu-label,
+.t-menu-item .t-checkbox {
     @apply text-gray-700
            flex
            justify-items-start
@@ -72,3 +73,4 @@
            my-1
            block;
 }
+

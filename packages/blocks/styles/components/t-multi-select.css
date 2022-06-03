@@ -1,65 +1,24 @@
-.t-container {
-  width: 100%;
+.t-multi-select-wrapper {
+  @apply relative
+         w-full;
 }
 
-.t-container label {
-  display: flex;
-  gap: 5px;
-  align-items: center;
+.t-multi-select-wrapper .t-menu {
+  @apply absolute
+         left-0
+         right-0
+         mt-2
+         w-full;
 }
 
-.t-tags-container {
-  @apply rounded 
-         p-3
-         mx-auto;
-  gap: 10px;
-  display: flex;
-  flex-wrap: wrap;
-  width: 95%;
-  border: 1px solid rgba(229, 231, 235);
-}
+.t-multi-select-value-list {
+  max-height: 20rem;
+  @apply overflow-y-auto;
 
-.t-search-container {
-  @apply rounded
-         mx-auto
-         mt-3
-         p-3;
-  gap: 10px;
-  width: 95%;
-  border: 1px solid rgba(229, 231, 235);
 }
-
-.t-search-container.t-shadow {
-  box-shadow: 5px 5px 10px 0px rgba(34, 60, 80, 0.1);
-}
-
-.t-search-container.active {
-  border:1px solid rgba(186, 230, 253);
-}
-
-.t-search-container input {
-  width: 100%;
-}
-
-.t-search-container input:focus {
-  outline: none;
-}
-
-.t-add-container {
-  @apply p-3 ;
-  border-top:1px solid rgba(229, 231, 235) ;
-}
-
-.t-add-container button {
-  padding-top: 0.4375rem;
-  padding-bottom: 0.4375rem;
-  @apply flex 
-         items-center
-         px-3
-         leading-5
-         focus_outline-none
-         focus_ring-offset-2
-         focus_ring-blue-500
-         font-medium
-         rounded;
+.t-multi-select-tag-list {
+  @apply flex
+         gap-2
+         mb-5
+         flex-wrap;
 }
