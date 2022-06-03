@@ -72,7 +72,7 @@
 
 /* custom class rc table */
 .t-table-content table {
-  @apply w-full
+  @apply w-full;
 }
 
 /* Code in props tables */
@@ -95,7 +95,7 @@
 }
 
 .t-table-hover tbody tr {
-    @apply relative;
+  @apply relative;
 }
 
 .t-table-hover tbody tr:hover {
@@ -108,4 +108,43 @@
          -translate-y-1/2
          absolute
          right-6;
+}
+
+.sortable__th__arrow-wrapper {
+  display: inline-block;
+  cursor: pointer;
+}
+
+.sortable__th__arrow {
+  margin-left: 5px;
+  border-left: 4px solid rgba(0, 0, 0, 0);
+  border-right: 4px solid rgba(0, 0, 0, 0);
+  width: 0px;
+  height: 0px;
+  font-size: 0px;
+  line-height: 0;
+  content: '';
+  border-top-style: solid;
+  border-bottom-style: solid;
+}
+
+.sortable__th__arrowup {
+  border-bottom-width: 4px;
+  border-bottom-color: #cccccc;
+  border-top: none;
+}
+
+.sortable__th__arrowdown {
+  margin-top: 3px;
+  border-top-width: 4px;
+  border-top-color: #cccccc;
+  border-bottom: none;
+}
+
+table th.up .sortable__th__arrow {
+  border-bottom-color: #00a8ea;
+}
+
+table th.down .sortable__th__arrow {
+  border-top-color: #00a8ea;
 }

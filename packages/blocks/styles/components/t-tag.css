@@ -1,54 +1,59 @@
-.t-flex-div {
-    height: fit-content;
-    width: fit-content;
-    display: flex;
-    font-size: 14px;
-    align-items: center;
-    font-weight: 500;
-    cursor: pointer;
-    border:1px solid rgba(186, 230, 253);
-    @apply  rounded 
-            pl-2
-            pr-1 
-            leading-7
-            focus_outline-none 
-            focus_ring-offset-2 
-            focus_ring-blue-500 
+.t-tag {
+    min-height: 1.75rem;
+    @apply inline-flex
+           items-center
+           text-sm
+           font-medium
+           cursor-pointer
+           rounded
+           px-3
+           gap-1
+           leading-6
+           border
+           focus_outline-none
+           focus_ring-offset-2
+           focus_ring-blue-500
 }
 
-.t-tag-gray .t-divider {
-    height: 28px;
-    border-left: 1px solid rgba(209, 213, 219);
-    @apply ml-3 mr-1;
+.t-tag .t-icon {
+  @apply w-4
+         h-4;
 }
-.text-base .t-divider{
-    height: 32px;
+
+.t-tag:not(.t-tag-icon) > .t-icon:first-child {
+  @apply -ml-1;
 }
-.t-tag-blue .t-divider {
-    height: 28px;
-    border-left:1px solid rgba(125, 211, 252);
-    @apply ml-3 mr-1;
+
+.t-tag:not(.t-tag-icon) > .t-icon:last-child {
+  @apply -mr-1;
 }
 
 .t-tag-gray {
-    @apply  bg-gradient-to-b 
-            border-gray-300 
-            text-gray-700 
-            from-gray-100
-            to-gray-100 
-            hover_from-gray-150
-            hover_to-gray-150              
+    @apply  border-gray-200
+            text-gray-600
+            bg-gray-100
+            hover_bg-gray-150
             active_shadow-inner;
 }
 
 .t-tag-blue {
-    font-weight: 500 !important;
-    @apply  border-blue-300
-            bg-gradient-to-b 
-            from-blue-100  
-            to-blue-100 
-            hover_from-blue-200 
-            hover_to-blue-200 
-            active_shadow-inner 
+    @apply  border-blue-200
+            bg-blue-100
+            hover_bg-blue-200
+            active_shadow-inner
             text-blue-600
+}
+
+.t-tag-group {
+  @apply inline-flex
+         items-center;
+}
+
+.t-tag-group .t-tag:first-child {
+  @apply rounded-r-none
+         border-r-0;
+}
+
+.t-tag-group .t-tag:last-child {
+  @apply rounded-l-none;
 }

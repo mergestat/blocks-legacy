@@ -1,5 +1,7 @@
 import React from 'react';
 import { TrashIcon } from '@mergestat/icons';
+import { ColoredBox } from '../ColoredBox';
+import { Button } from '../Button';
 import cx from 'classnames';
 
 type ListItemProps = {
@@ -27,26 +29,30 @@ export const ListItem: React.FC<ListItemProps> = ({
       onClick={(e) => {
         e.preventDefault()
         const element = e.target as HTMLElement;
-        if (['svg', 'path', 'button'].includes(element.tagName)) { 
+        if (['svg', 'path', 'button'].includes(element.tagName)) {
           return;
         }
         onClick();
       }}
     >
-      <div className="t-left-side">
+      <div className="t-list-item-left">
         {startIcon && (
-          <div className="t-list-button">
-            {startIcon}
-          </div>
+          <ColoredBox size="10">
+            <>{startIcon}</>
+          </ColoredBox>
         )}
         <div>
           <h3>{title}</h3>
           {subline && <p>{subline}</p>}
         </div>
       </div>
-      <button className="t-right-side" onClick={onCloseClick}>
-        <TrashIcon className="t-icon" />
-      </button>
+      <div className="t-list-item-right">
+        <Button
+          isIconOnly
+          skin="borderless-muted"
+          startIcon={ <TrashIcon className="t-icon" />}
+        />
+      </div>
     </div>
   );
 };

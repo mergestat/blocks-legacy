@@ -1,39 +1,21 @@
-.t-list-button{
-    width: 40px;
-    height: 40px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    @apply  bg-gradient-to-b 
-            border-gray-300 
-            text-gray-700 
-            from-gray-100
-            to-gray-100 
-            hover_from-gray-100
-            hover_to-gray-100 
-            active_from-gray-100 
-}
-.t-list-button .t-icon{
-    @apply w-6 h-6;
-}
-
 .t-list-item-container{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
+    @apply flex
+           justify-between
+           items-center
+           w-full;
 }
 
-.t-left-side{
-    display: flex;
-    align-items: center;
-    gap: 10px;
+.t-list-item-left{
+  gap: 16px;
+  @apply flex
+         items-center;
 }
-.t-left-side h3 {
-    font-size: 16px;
-    font-weight: 500;
+.t-list-item-left h3 {
+  @apply font-medium
+         text-base
+         mb-1;
 }
-.t-left-side p {
-    font-size: 14px;
-    color: #727C8D;
+.t-list-item-left p {
+   @apply text-sm
+          text-gray-500;
 }

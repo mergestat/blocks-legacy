@@ -17,6 +17,14 @@ BadgeDefault.args = {
   variant: 'default',
 }
 
+export const BadgeClosable = Template.bind({});
+BadgeClosable.args = {
+  label: 'Badge',
+  variant: 'default',
+  closable: true,
+  action: true
+}
+
 export const BadgePrimary = Template.bind({});
 BadgePrimary.args = {
   label: 'Badge',
@@ -26,7 +34,7 @@ BadgePrimary.args = {
 export const BadgeSecondary = Template.bind({});
 BadgeSecondary.args = {
   label: 'Badge',
-  variant: 'secondary',
+  variant: 'default',
 }
 
 export const BadgeSuccess = Template.bind({});
