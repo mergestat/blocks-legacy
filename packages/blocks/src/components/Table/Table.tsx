@@ -128,7 +128,7 @@ export const Table: React.FC<TableProps> = ({
       className={cx('overflow-hidden bg-white relative', {
         'overflow-x-auto': responsive,
         'overflow-y-auto': !!scrollY,
-        'border border-gray-200 rounded': !borderless,
+        'border border-gray-200 rounded-md': !borderless,
         [tableWrapperClassName]: !!tableWrapperClassName,
       })}
       style={{ maxHeight: scrollY || 'unset' }}
