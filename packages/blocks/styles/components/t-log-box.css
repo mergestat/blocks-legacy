@@ -1,6 +1,12 @@
 .t-log-box {
   @apply relative
-         p-6;
+         p-6
+         bg-gray-800
+         text-gray-300
+         rounded-md
+         font-monaco
+         text-xs
+         leading-6;
 }
 
 .t-log-box .log-copy-btn {
@@ -8,5 +14,9 @@
   @apply absolute
          top-6
          right-6
-         bg-none;
+         text-sm
+         bg-none
+         bg-gray-700
+         text-gray-300
+         border-0;
 }

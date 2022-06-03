@@ -12,7 +12,7 @@ type LogBoxProps = {
 
 export const LogBox: React.FC<LogBoxProps> = ({ logs, className, copyBtnClassName, onCopy }) => {
   return (
-    <div className={cx("t-log-box bg-gray-800 text-white rounded-md font-monaco text-xs leading-6", { [className]: !!className })}>
+    <div className={cx("t-log-box", { [className]: !!className })}>
       {logs.map((log, index) => (
         <p key={index}>
           {log}
@@ -20,7 +20,7 @@ export const LogBox: React.FC<LogBoxProps> = ({ logs, className, copyBtnClassNam
       ))}
       {onCopy && (
         <Button
-          className={cx('log-copy-btn bg-gray-700 text-gray-300 border-0', {[copyBtnClassName]: !!copyBtnClassName})}
+          className={cx('log-copy-btn', {[copyBtnClassName]: !!copyBtnClassName})}
           size='small'
           skin='secondary'
           startIcon = {<ClipboardIcon className="t-icon" />}
