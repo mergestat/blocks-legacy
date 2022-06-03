@@ -86,6 +86,8 @@ export const Table: React.FC<TableProps> = ({
         ...data,
         checked: selectAll
       })))
+
+      onSelectedChange(selectAll ? data : []);
     }
   }, [selectAll])
 
