@@ -4,7 +4,8 @@
 
 .t-panel {
   @apply bg-white
-          rounded
+          rounded-md
+          shadow-sm
           border
           border-gray-200
           grid
@@ -19,8 +20,8 @@
          border-gray-200
          flex
          items-center
-         rounded-tl
-         rounded-tr;
+         rounded-tl-md
+         rounded-tr-md;
 }
 .t-panel-header .t-tabs {
     @apply -m-px;
@@ -48,8 +49,8 @@
 .t-panel .t-panel-body:only-child,
 .t-panel .t-panel-body:last-child,
 .t-panel-footer {
-  @apply rounded-bl
-         rounded-br;
+  @apply rounded-bl-md
+         rounded-br-md;
 }
 
 .t-panel .t-panel-body:not(:last-child) {
