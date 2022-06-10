@@ -1,7 +1,11 @@
 import React from 'react';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 
+import { DotsHorizontalIcon } from '@mergestat/icons';
+
 import { Table } from './Table';
+import { Dropdown } from '../Dropdown';
+import { Menu } from '../Menu';
 
 export default {
   title: 'Molecules/Table',
@@ -23,39 +27,62 @@ const columns = [
     className: 'col',
     key: 'type',
   },
+  {
+    className: 'px-6 w-4',
+    key: 'option',
+    render: () => (
+      <Dropdown
+        alignEnd
+        trigger={<DotsHorizontalIcon className="t-icon cursor-pointer" />}
+        overlay={() => (
+          <Menu className="whitespace-nowrap">
+            <Menu.Item text="Action" />
+            <Menu.Item text="Action" />
+          </Menu>
+        )}
+      />
+    )
+  }
 ];
 
 const dataSource = [
   {
     column: 'message',
     type: 'Text',
-    description: 'This is message expanded data'
+    description: 'This is message expanded data',
+    href: 'https://www.mergestat.com/'
   },
   {
     column: 'summary',
     type: 'Text',
-    description: 'This is summary expanded data'
+    description: 'This is summary expanded data',
+    href: 'https://www.mergestat.com/'
   },
   {
     column: 'author_name',
     type: 'Text',
-    description: 'This is auth name expanded data'
+    description: 'This is auth name expanded data',
+    href: 'https://www.mergestat.com/'
   },
   {
     column: 'author_email',
     type: 'Text',
-    description: 'This is auth email expanded data'
+    description: 'This is auth email expanded data',
+    href: 'https://www.mergestat.com/'
   },
   {
     column: 'author_when',
     type: 'DATETIME',
-    description: 'This is auth date expanded data'
+    description: 'This is auth date expanded data',
+    href: 'https://www.mergestat.com/'
   },
   {
     column: 'committer_name',
     type: 'Text',
-    description: 'This is committer name data'
+    description: 'This is committer name data',
+    href: 'https://www.mergestat.com/'
   },
+
 ];
 
 const Template: ComponentStory<typeof Table> = (args) => <Table {...args} />;
@@ -94,4 +121,15 @@ CollapsibleCheckableTable.args = {
   checkable: true,
   hasSelectAll: false,
   renderCollapse: (d: any) => d.description
+}
+
+
+export const ClickableTable = Template.bind({});
+ClickableTable.args = {
+  columns: columns,
+  dataSource: dataSource,
+  collapsible: true,
+  checkable: true,
+  renderCollapse: (d: any) => d.description,
+  clickable: true
 }
