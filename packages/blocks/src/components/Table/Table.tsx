@@ -33,6 +33,7 @@ type TableProps = {
   selectAll?: boolean;
   onSelectedChange?: (selectedRows: Array<any>) => void;
   collapsible?: boolean;
+  clickable?: boolean;
   renderCollapse?: (data: any) => void
 };
 
@@ -55,6 +56,7 @@ export const Table: React.FC<TableProps> = ({
   onSelectedChange = () => {},
   selectAll = false,
   collapsible = false,
+  clickable = false,
   renderCollapse = () => {},
 }) => {
   if (loading) {
@@ -77,6 +79,7 @@ export const Table: React.FC<TableProps> = ({
       ...data,
       ...checkable && { checked: selectAll },
       ...collapsible && { collapsed: false },
+      ...clickable && { clickable: false }
     }))
   );
 
@@ -117,6 +120,41 @@ export const Table: React.FC<TableProps> = ({
     setData([...data]);
   };
 
+
+  /* Modifier key tracking
+    17 Ctrl Key (For Windows)
+    224 Apple command key
+    91 Left Apple Command key in Chrome/Firefox
+    93 Right Apple Command key in Chrome/Firefox
+    ========================================================================== */
+
+  let isMultipleTabsModifierKeyPressed = false;
+
+  window.addEventListener("keydown", (e) => {
+    if ([17, 73, 91, 93, 224].includes(e.which)) {
+      isMultipleTabsModifierKeyPressed = true;
+    }
+  });
+
+  window.addEventListener("keyup", (e) => {
+    if ([17, 73, 91, 93, 224].includes(e.which)) {
+      isMultipleTabsModifierKeyPressed = false;
+    }
+  });
+
+  // Handle events
+  const handleRowClick = (e) => {
+    const href = e.target.closest('[data-href]').getAttribute('data-href');
+    const excludedEl = e.target.closest('button, a, input, [aria-haspopup="true"]');
+    if (!excludedEl) {
+      if (isMultipleTabsModifierKeyPressed) {
+        window.open(href, "_blank");
+      } else {
+        window.location = href;
+      }
+    }
+  };
+
   return dataSource.length < 1 ? (
     <div
       className={cx('flex justify-center items-center bg-white py-5', {
@@ -130,7 +168,7 @@ export const Table: React.FC<TableProps> = ({
       className={cx('overflow-hidden bg-white', {
         'overflow-x-auto': responsive,
         'overflow-y-auto': !!scrollY,
-        'border border-gray-200 rounded': !borderless,
+        'border border-gray-200 rounded-md': !borderless,
         [tableWrapperClassName]: !!tableWrapperClassName,
       })}
       style={{ maxHeight: scrollY || 'unset' }}
@@ -139,6 +177,7 @@ export const Table: React.FC<TableProps> = ({
         className={cx(`t-table-default`, {
           [`t-table-hover`]: hovered,
           [`t-table-sticky-header`]: !!scrollY,
+          [`t-table-clickable`]: clickable,
           [className]: !!className,
         })}
       >
@@ -189,7 +228,7 @@ export const Table: React.FC<TableProps> = ({
                         if (order === 'asc') sortField[key] = 'desc';
                         else if (order === 'desc') sortField[key] = undefined;
                         else sortField[key] = 'asc';
-  
+
                         setSortField({...sortField});
                         onSortChange(sortField[key]);
                       }
@@ -204,8 +243,12 @@ export const Table: React.FC<TableProps> = ({
                     )}
                   </span>
                 </th>
-              );
-            })}
+
+          );
+          })}
+          {clickable && (
+            <th className="t-sr-accessible-table-col"></th>
+          )}
           </tr>
         </thead>
         <tbody className={cx(`bg-${tableBodyBackground}`)}>
@@ -214,18 +257,17 @@ export const Table: React.FC<TableProps> = ({
 
             return (
               <Fragment key={rowKey}>
-                <tr>
+                <tr data-href={(clickable && d.href)? d.href : ''} onClick={(clickable && d.href)? (e) => handleRowClick(e) : undefined}>
                   {collapsible && (
                     <td className="w-0 pl-6">
-                      <span
-                        onClick={() => onRowClick(index)}
-                        className='cursor-pointer'
-                      >
+                      <button className="t-button t-button-borderless-muted t-button-icon"
+                        onClick={() => onRowClick(index)}>
+
                         {d.collapsed
                           ? <CaretDownIcon className='text-gray-500 t-icon' />
                           : <CaretRightIcon className='text-gray-500 t-icon' />
                         }
-                      </span>
+                      </button>
                     </td>
                   )}
                   {checkable && (
@@ -240,19 +282,24 @@ export const Table: React.FC<TableProps> = ({
                   )}
                   {columns.map(({ dataIndex, className, render, key }) => (
                     <td
-                      className={cx({
-                        'px-6 py-3': !render,
-                        [className]: !!className,
-                      })}
-                      key={rowKey + key}
+                    className={cx({
+                      'px-6 py-3': !render,
+                      [className]: !!className,
+                    })}
+                    key={rowKey + key}
                     >
                       {render ? render(d[dataIndex], d) : d[dataIndex]}
                     </td>
                   ))}
+                  {(clickable && d.href) && (
+                    <td className="t-sr-accessible-table-col">
+                      <a href={d.href}>Go to link</a>
+                    </td>
+                  )}
                 </tr>
                 {d.collapsed && (
                   <tr>
-                    <td colSpan={columns.length + (checkable ? 2 : 1)} className="p-6">
+                    <td colSpan={columns.length + (checkable ? 2 : 1)} className="p-6 bg-gray-50">
                       <>{renderCollapse ? renderCollapse(d) : ""}</>
                     </td>
                   </tr>

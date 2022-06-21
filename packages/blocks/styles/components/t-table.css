@@ -110,6 +110,20 @@
          right-6;
 }
 
+/* Table with clickable rows  */
+.t-table-clickable tr[data-href]:hover {
+  @apply bg-gray-50
+           cursor-pointer;
+}
+
+.t-sr-accessible-table-col {
+  position: absolute !important;
+  height: 1px; width: 1px;
+  overflow: hidden;
+  clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
+  clip: rect(1px, 1px, 1px, 1px);
+}
+
 .sortable__th__arrow-wrapper {
   display: inline-block;
   cursor: pointer;
@@ -148,3 +162,4 @@ table th.up .sortable__th__arrow {
 table th.down .sortable__th__arrow {
   border-top-color: #00a8ea;
 }
+
