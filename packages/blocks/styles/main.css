@@ -44,6 +44,7 @@
 @import "./components/t-textarea.css";
 @import "./components/t-toggle.css";
 @import "./components/t-toolbar.css";
+@import "./components/t-vertical-nav.css";
 
 @import "./custom-fonts.css";
 @import "./custom-utility-styles.css";
