@@ -58,6 +58,7 @@ export const SplitButton: React.FC<SplitButtonProps> = React.forwardRef(({
             isIconOnly
             startIcon={<CaretDownIcon className="t-icon" />}
             className="t-split-button-right"
+            disabled={disabled}
           />
         }
         overlay={(close: any) => (
