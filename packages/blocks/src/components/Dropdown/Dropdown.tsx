@@ -59,7 +59,7 @@ const DropdownToggle: React.FC<any> = ({
     <div
       {...props}
       id={id}
-      className={cx('h-full', { 'opacity-50 cursor-not-allowed': disabled })}
+      className={cx('h-full')}
       {...(!disabled && {
         onClick: (event) => {
           onClick(event);
