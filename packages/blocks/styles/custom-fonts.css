@@ -30,11 +30,3 @@
   src: url("./fonts/inter-ui-bold.woff2") format("woff2"),
        url("./fonts/inter-ui-bold.woff") format("woff");
 }
-
-/* Monaco */
-@font-face {
-  font-family: "Monaco";
-  font-style: normal;
-  src: url("./fonts/monaco.woff2") format("woff2"),
-       url("./fonts/monaco.woff") format("woff");
-}

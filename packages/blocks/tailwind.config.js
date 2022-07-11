@@ -19,7 +19,8 @@ module.exports = {
       },
       fontFamily: {
         'sans': ['"Inter UI"', '"Segoe UI"', 'Roboto', 'Helvetica', 'Arial', 'sans-serif'],
-        'monaco': ['Monaco'],
+        'mono': ['ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', '"Liberation Mono"', '"Courier New"', 'monospace']
+
       }
     },
     colors: {
