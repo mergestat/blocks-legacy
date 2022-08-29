@@ -1,8 +1,8 @@
-import React from 'react';
 import { TrashIcon } from '@mergestat/icons';
-import { ColoredBox } from '../ColoredBox';
-import { Button } from '../Button';
 import cx from 'classnames';
+import React from 'react';
+import { Button } from '../Button';
+import { ColoredBox } from '../ColoredBox';
 
 type ListItemProps = {
   title: string;
@@ -10,7 +10,7 @@ type ListItemProps = {
   startIcon?: React.ReactNode;
   className?: string;
   onClick?: () => void;
-  onCloseClick?: () => void;
+  onTrashClick?: () => void;
 };
 
 export const ListItem: React.FC<ListItemProps> = ({
@@ -19,7 +19,7 @@ export const ListItem: React.FC<ListItemProps> = ({
   startIcon,
   className,
   onClick,
-  onCloseClick,
+  onTrashClick,
 }) => {
   return (
     <div
@@ -50,7 +50,8 @@ export const ListItem: React.FC<ListItemProps> = ({
         <Button
           isIconOnly
           skin="borderless-muted"
-          startIcon={ <TrashIcon className="t-icon" />}
+          startIcon={<TrashIcon className="t-icon" />}
+          onClick={(e) => { onTrashClick() }}
         />
       </div>
     </div>
