@@ -18,4 +18,4 @@ import '@mergestat/blocks/styles/main.css'
 
 ## How to use the Blocks
 
-If you want to use components from the Blocks, check the [Storybook documentation](https://624b441a141307004a094f09-frqlvkbezr.chromatic.com/)
+If you want to use components from the Blocks, check the [Storybook documentation](https://624b441a141307004a094f09-iskoqummxn.chromatic.com/)
