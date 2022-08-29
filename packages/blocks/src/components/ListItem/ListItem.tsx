@@ -51,7 +51,10 @@ export const ListItem: React.FC<ListItemProps> = ({
           isIconOnly
           skin="borderless-muted"
           startIcon={<TrashIcon className="t-icon" />}
-          onClick={(e) => { onTrashClick() }}
+          onClick={(e) => {
+            e.preventDefault()
+            onTrashClick()
+          }}
         />
       </div>
     </div>
