@@ -1,10 +1,9 @@
-import React, { useEffect, useRef, useState } from 'react';
-import cx from 'classnames';
 import { PlusIcon, SearchIcon } from '@mergestat/icons';
+import cx from 'classnames';
+import React, { useEffect, useRef, useState } from 'react';
 import { Badge } from '../Badge';
-import { Menu } from '../Menu';
-import { Dropdown } from '../Dropdown';
 import { Checkbox, Input } from '../Form';
+import { Menu } from '../Menu';
 
 type MultiSelectProps = {
   setStateToProps: {
@@ -16,10 +15,10 @@ type MultiSelectProps = {
 
 export const MultiSelect: React.FC<
   MultiSelectProps &
-    React.DetailedHTMLProps<
-      React.DetailsHTMLAttributes<HTMLElement>,
-      HTMLElement
-    >
+  React.DetailedHTMLProps<
+    React.DetailsHTMLAttributes<HTMLElement>,
+    HTMLElement
+  >
 > = ({ setStateToProps, getState }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [state, setState] = useState(setStateToProps);
@@ -40,6 +39,16 @@ export const MultiSelect: React.FC<
     return () => document.removeEventListener('mousedown', handleClick);
   }, [isActive, containerRef]);
 
+  const add = (e) => {
+    e.preventDefault();
+    const item = state.find(item => item.title === value)
+    if (!item) {
+      setState([...state, { title: value, checked: true }]);
+      if (getState) getState([...state, { title: value, checked: true }]);
+    }
+    setValue('');
+  }
+
   return (
     <div>
       <div className="t-multi-select-tag-list">
@@ -52,10 +61,7 @@ export const MultiSelect: React.FC<
               onClose={() => {
                 item.checked = !item.checked;
                 setState([...state]);
-
-                if (getState) {
-                  getState([...state]);
-                }
+                if (getState) getState([...state]);
               }}
             >
               {item.title}
@@ -71,14 +77,7 @@ export const MultiSelect: React.FC<
           value={value}
           onChange={(e) => setValue(e.target.value)}
           onFocus={() => setIsActive(true)}
-          onKeyPress={(e) => {
-            if (e.key === 'Enter' && value.length > 0) {
-              e.preventDefault();
-              setState([...state, { title: value, checked: true }]);
-              if (getState) getState([...state]);
-              setValue('');
-            }
-          }}
+          onKeyPress={(e) => (e.key === 'Enter' && value.length > 0 && add(e))}
         />
         {isActive && (
           <div className="t-menu active w-full">
@@ -94,10 +93,7 @@ export const MultiSelect: React.FC<
                       onChange={() => {
                         state[index].checked = !state[index].checked;
                         setState([...state]);
-
-                        if (getState) {
-                          getState([...state]);
-                        }
+                        if (getState) getState([...state]);
                       }}
                     />
                   </div>
@@ -106,27 +102,14 @@ export const MultiSelect: React.FC<
             </div>
 
             <Menu.Divider />
-            <Menu.Item
-              withIcon
-              color="text-blue-600"
-              text={'Create ' + value}
-              icon={
-                <PlusIcon
-                  className="t-icon"
-                  onClick={() => {
-                    if (value.length > 0) {
-                      setState([...state, { title: value, checked: true }]);
-
-                      if (getState) {
-                        getState([...state, { title: value, checked: true }]);
-                      }
-
-                      setValue('');
-                    }
-                  }}
-                />
-              }
-            />
+            <div id="menu-item-container" onClick={(e) => (value.length > 0 && add(e))}>
+              <Menu.Item
+                withIcon
+                color="text-blue-600"
+                text={'Create ' + value}
+                icon={<PlusIcon className="t-icon" />}
+              />
+            </div>
           </div>
         )}
       </div>
