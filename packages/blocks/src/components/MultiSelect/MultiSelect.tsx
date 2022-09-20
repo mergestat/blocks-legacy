@@ -24,6 +24,7 @@ export const MultiSelect: React.FC<
   const [state, setState] = useState(setStateToProps);
   const [value, setValue] = useState('');
   const [isActive, setIsActive] = useState(false);
+  const [showList, setShowList] = useState(false);
 
   useEffect(() => {
     function handleClick(event: MouseEvent) {
@@ -38,6 +39,10 @@ export const MultiSelect: React.FC<
     document.addEventListener('mousedown', handleClick);
     return () => document.removeEventListener('mousedown', handleClick);
   }, [isActive, containerRef]);
+
+  useEffect(() => {
+    setShowList(state.filter(s => s.title.includes(value)).length > 0)
+  }, [value])
 
   const add = (e) => {
     e.preventDefault();
@@ -81,27 +86,29 @@ export const MultiSelect: React.FC<
         />
         {isActive && (
           <div className="t-menu active w-full">
-            <div className="t-multi-select-value-list">
-              {state.map((item, index) => {
-                return item.title.includes(value) ? (
-                  <div className="t-menu-item">
-                    <Checkbox
-                      className="cursor-pointer"
-                      key={`key2_${index}`}
-                      label={item.title}
-                      checked={item.checked}
-                      onChange={() => {
-                        state[index].checked = !state[index].checked;
-                        setState([...state]);
-                        if (getState) getState([...state]);
-                      }}
-                    />
-                  </div>
-                ) : null;
-              })}
-            </div>
+            {showList && <>
+              <div className="t-multi-select-value-list">
+                {state.map((item, index) => {
+                  return item.title.includes(value) ? (
+                    <div className="t-menu-item">
+                      <Checkbox
+                        className="cursor-pointer"
+                        key={`key2_${index}`}
+                        label={item.title}
+                        checked={item.checked}
+                        onChange={() => {
+                          state[index].checked = !state[index].checked;
+                          setState([...state]);
+                          if (getState) getState([...state]);
+                        }}
+                      />
+                    </div>
+                  ) : null;
+                })}
+              </div>
+              <Menu.Divider />
+            </>}
 
-            <Menu.Divider />
             <div id="menu-item-container" onClick={(e) => (value.length > 0 && add(e))}>
               <Menu.Item
                 withIcon
