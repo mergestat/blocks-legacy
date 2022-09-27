@@ -20,7 +20,6 @@
 }
 
 .t-radio-card.t-tag-blue {
-  cursor:default;
   @apply bg-blue-100
          text-blue-600
          ring-1
