@@ -13,6 +13,7 @@ type AlertProps = {
   isInline?: boolean;
   title?: string | React.ReactNode;
   noIcon?: boolean;
+  icon?: React.ReactNode;
   children?: React.ReactNode;
 }
 
@@ -25,6 +26,7 @@ export const Alert: React.FC<AlertProps> = ({
   className,
   isInline = false,
   noIcon = false,
+  icon = null,
   children
 }) => {
   const [visible, setVisible] = useState<boolean>(true);
@@ -46,7 +48,8 @@ export const Alert: React.FC<AlertProps> = ({
         }
       )}
     >
-      {!noIcon && <AlertIcon type={type} />}
+      {!noIcon && !icon && <AlertIcon type={type} />}
+      {icon && icon}
       {isInline ? (
         children && (
           <p className={cx("t-inline-alert-message", {'ml-2': !noIcon})}>

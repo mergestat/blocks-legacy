@@ -2,6 +2,7 @@ import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
 import { Alert } from './Alert';
+import { Spinner } from '../Loader/Spinner/Spinner';
 
 export default {
   title: 'Molecules/Alert',
@@ -131,4 +132,19 @@ InlineAlertError.args = {
   type: 'error',
   isInline: true,
   children: 'This is an inline alert message',
+}
+
+export const InfoAlertSpinner = Template.bind({});
+InfoAlertSpinner.args = {
+  type: 'info',
+  icon: <Spinner size='sm' className="t-icon self-center" />,
+  title: 'This is an alert with a spinner'
+}
+
+export const InfoAlertSpinnerContent = Template.bind({});
+InfoAlertSpinnerContent.args = {
+  type: 'info',
+  icon: <Spinner size='sm' className="t-icon" />,
+  title: 'This is an alert with a spinner',
+  children: 'This is the alert content'
 }
