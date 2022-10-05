@@ -1,6 +1,6 @@
 {
   "name": "@mergestat/blocks",
-  "version": "1.4.1",
+  "version": "1.4.2",
   "description": "Set of UI components for MergeStat project",
   "repository": {
     "type": "git",
@@ -36,7 +36,7 @@
   },
   "dependencies": {
     "@headlessui/react": "^1.4.1",
-    "@mergestat/icons": "^1.2.1",
+    "@mergestat/icons": "^1.2.2",
     "@tippyjs/react": "^4.2.6",
     "classnames": "^2.3.1",
     "rc-notification": "^4.5.7",
