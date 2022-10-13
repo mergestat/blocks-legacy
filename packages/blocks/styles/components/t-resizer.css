@@ -3,27 +3,29 @@
    ========================================================================== */
 
 .t-resizer {
-    cursor: row-resize;
-    @apply py-2
-           w-full;
-
+  @apply bg-gray-50
+           mix-blend-multiply
+           py-1;
 }
 
 .t-resizer:before {
-    content: '';
-    @apply border-b
-           block
-           border-gray-200;
+  content: '';
+  @apply w-10
+             mx-auto
+             h-1
+             rounded-full
+             block
+             border-0
+             bg-gray-400;
 }
 
 .t-resizer:active,
 .t-resizer:hover {
-    @apply bg-blue-100;
+  @apply bg-gray-100;
 }
-
 
 .t-resizer:active:before,
 .t-resizer:hover:before {
-    @apply bg-blue-100
-            border-blue-500;
+  @apply bg-gray-450
+              border-gray-450;
 }
