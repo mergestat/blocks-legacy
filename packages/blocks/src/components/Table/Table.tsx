@@ -34,6 +34,8 @@ type TableProps = {
   onSelectedChange?: (selectedRows: Array<any>) => void;
   collapsible?: boolean;
   clickable?: boolean;
+  dense?:boolean,
+  bordered?:boolean,
   renderCollapse?: (data: any) => void
 };
 
@@ -57,6 +59,8 @@ export const Table: React.FC<TableProps> = ({
   selectAll = false,
   collapsible = false,
   clickable = false,
+  dense = false,
+  bordered = false,
   renderCollapse = () => {},
 }) => {
   if (loading) {
@@ -178,6 +182,8 @@ export const Table: React.FC<TableProps> = ({
           [`t-table-hover`]: hovered,
           [`t-table-sticky-header`]: !!scrollY,
           [`t-table-clickable`]: clickable,
+          [`t-table-dense`]: dense,
+          [`t-table-bordered`]: bordered,
           [className]: !!className,
         })}
       >
