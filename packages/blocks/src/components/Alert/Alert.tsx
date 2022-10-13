@@ -5,12 +5,13 @@ import { AlertIcon } from './AlertIcon';
 import { Button } from '../Button';
 
 type AlertProps = {
-  type?: 'warning' | 'info' | 'success' | 'error';
+  type?: 'warning' | 'info' | 'success' | 'error' | 'default';
   closable?: boolean;
   onClose?: () => void;
   theme?: 'dark' | 'light';
   className?: string;
   isInline?: boolean;
+  isFullWidth?: boolean;
   title?: string | React.ReactNode;
   noIcon?: boolean;
   icon?: React.ReactNode;
@@ -25,6 +26,7 @@ export const Alert: React.FC<AlertProps> = ({
   title,
   className,
   isInline = false,
+  isFullWidth = false,
   noIcon = false,
   icon = null,
   children
@@ -43,6 +45,7 @@ export const Alert: React.FC<AlertProps> = ({
       className={cx(
         isInline ? 't-inline-alert' : `t-alert t-alert-${type} align-center`,
         {
+          [`t-alert-full-width`]: isFullWidth,
           [`t-alert-${theme}`]: !!theme,
           [className]: !!className,
         }
@@ -57,7 +60,7 @@ export const Alert: React.FC<AlertProps> = ({
           </p>
         )
       ) : (
-        <div className={cx("t-alert-body", {'ml-4': !noIcon})}>
+        <div className={cx("t-alert-body", {'ml-3': !noIcon})}>
           {title && (
             <h3 className="t-alert-title">{title}</h3>
           )}
@@ -68,7 +71,7 @@ export const Alert: React.FC<AlertProps> = ({
           )}
         </div>
       )}
-      
+
       {closable && (
         <Button skin="borderless-muted" onClick={handleOnClose}>
           <XIcon className="t-icon t-icon-heroicons-x" />

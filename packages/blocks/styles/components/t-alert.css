@@ -3,7 +3,7 @@
    ========================================================================== */
 
 .t-alert {
-    @apply rounded-md
+  @apply rounded-md
            flex
            items-start
            p-4
@@ -11,12 +11,11 @@
 }
 
 .t-alert .t-icon {
-    @apply my-0.5;
+  @apply my-0.5;
 }
 
-
 .t-alert-title {
-    @apply font-medium;
+  @apply font-medium;
 }
 
 .t-alert-title + .t-alert-message {
@@ -24,7 +23,7 @@
 }
 
 .t-alert-body {
-    @apply flex-1;
+  @apply flex-1;
 }
 
 .t-alert .t-icon svg * {
@@ -32,68 +31,85 @@
 }
 
 /* Skins */
+.t-alert-default {
+  @apply bg-gray-50
+          text-gray-600;
+}
+
+.t-alert-default .t-alert-title {
+  @apply text-gray-900;
+}
+
+.t-alert-default .t-icon:first-child {
+  @apply text-blue-500;
+}
+
 .t-alert-info {
-    @apply bg-blue-50
-           border-blue-300
-           text-blue-700;
+  color: #457287;
+  @apply bg-blue-50
+           border-blue-400
+           border-opacity-50;
 }
 
 .t-alert-info .t-alert-title {
-    @apply text-blue-800;
+  @apply text-blue-900;
 }
 
 .t-alert-info .t-icon:first-child {
-    @apply text-blue-500;
+  @apply text-blue-500;
 }
 
 .t-alert-warning {
-    @apply bg-yellow-50
-           border-yellow-300
-           text-yellow-700;
+  color: #7E6944;
+  @apply bg-yellow-50
+           border-yellow-400
+           border-opacity-50;
 }
 
 .t-alert-warning .t-alert-title {
-    @apply text-yellow-800;
+  @apply text-yellow-900;
 }
 .t-alert-warning .t-icon:first-child {
-    @apply text-yellow-500;
+  @apply text-yellow-500;
 }
 
 .t-alert-error {
-    @apply bg-red-50
-           border-red-300
-           text-red-700;
+  color: #7A5252;
+  @apply bg-red-50
+          border-red-400
+          border-opacity-50;
 }
 
 .t-alert-error .t-alert-title {
-    @apply text-red-800;
+  @apply text-red-900;
 }
 
 .t-alert-error .t-icon:first-child {
-    @apply text-red-500;
+  @apply text-red-500;
 }
 
 .t-alert-success {
-    @apply bg-green-50
-           border-green-300
-           text-green-700;
+  color: #56766C;
+  @apply bg-green-50
+           border-green-400
+           border-opacity-50;
 }
 
 .t-alert-success .t-alert-title {
-    @apply text-green-800;
+  @apply text-green-900;
 }
 .t-alert-success .t-icon:first-child {
-    @apply text-green-500;
+  @apply text-green-500;
 }
 
 .t-alert-dark {
-    @apply bg-gray-800
+  @apply bg-gray-800
            border-gray-800
            text-gray-400;
 }
 
 .t-alert-dark .t-alert-title {
-    @apply text-white;
+  @apply text-white;
 }
 
 .t-inline-alert {
@@ -104,4 +120,14 @@
 .t-inline-alert-message {
   @apply text-sm
          text-gray-500;
+}
+
+.t-alert-full-width {
+  @apply border-0
+         border-b
+         text-sm
+         items-center
+         py-2.5
+         px-8
+         rounded-none;
 }

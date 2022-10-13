@@ -43,6 +43,24 @@ WarningLightTitleOnly.args = {
   title: 'Alert Title'
 }
 
+export const WarningFullWidth = Template.bind({});
+WarningFullWidth.args = {
+  type: 'warning',
+  closeable: false,
+  isFullWidth: true,
+  theme: 'light',
+  children: 'Alert Content',
+}
+
+export const DefaultLight = Template.bind({});
+DefaultLight.args = {
+  type: 'default',
+  closeable: false,
+  theme: 'light',
+  title: 'Alert Title',
+  children: 'Alert Content',
+}
+
 export const InfoLight = Template.bind({});
 InfoLight.args = {
   type: 'info',
