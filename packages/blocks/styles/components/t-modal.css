@@ -37,19 +37,20 @@
 }
 
 .t-modal {
-    @apply inline-flex
-           flex-col
-           bg-white
-           rounded-md
-           text-left
-           overflow-hidden
-           shadow-xl
-           transform
-           transition-all
-           sm_align-middle
-           sm_max-w-2xl
-           max-h-full
-           w-full;
+  max-height: calc(100vh - 4.8rem);
+  @apply inline-flex
+          flex-col
+          bg-white
+          rounded-md
+          text-left
+          overflow-hidden
+          shadow-xl
+          transform
+          transition-all
+          sm_align-middle
+          sm_max-w-2xl
+          max-h-full
+          w-full;
 }
 
 .t-modal-sm {
@@ -74,3 +75,4 @@
     @apply text-xl
            font-semibold;
 }
+
