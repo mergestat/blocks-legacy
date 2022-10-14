@@ -1,11 +1,12 @@
 import React from 'react';
 import {
-  CaretUpIcon,
   CircleErrorFilledIcon,
-  ExternalLinkIcon
+  ExternalLinkIcon,
+  RepositoryIcon
 } from '@mergestat/icons';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { BreadcrumbNav } from './BreadcrumbNav';
+import { ColoredBox } from '../ColoredBox';
 
 export default {
   title: 'Atoms/BreadcrumbNav',
@@ -20,12 +21,12 @@ Default.args = {
   data: [
     { text: "Repos" },
     {
-      startIcon: <div className="t-black-white"><CaretUpIcon className="t-icon" /></div>,
+      startIcon: <ColoredBox onClick={() => {}} size="8" skin="default"><RepositoryIcon className="t-icon t-icon-small" /></ColoredBox>,
       text: "vercel/next.js",
-      endIcon: <ExternalLinkIcon className="t-icon t-gray" />
+      endIcon: <ExternalLinkIcon className="t-icon t-icon-small t-icon-muted" />
     },
     {
-      startIcon: <CircleErrorFilledIcon className="t-icon t-red" />,
+      startIcon: <CircleErrorFilledIcon className="t-icon t-icon-danger" />,
       text: "Pull requests",
       onClick: ()=>console.log("hi")
     }

@@ -1,5 +1,6 @@
 import React from 'react';
 import { ChevronRightIcon } from '@mergestat/icons';
+import cx from 'classnames';
 
 type BreadcrumbNavProps = {
   data: {
@@ -12,21 +13,21 @@ type BreadcrumbNavProps = {
 
 export const BreadcrumbNav: React.FC<BreadcrumbNavProps> = ({ data }) => {
   return (
-    <div className="flex items-center gap-1.5">
+    <div className="t-breadcrumb-nav">
       {data.map((item, index) => {
         return (
           <div
             key={`key_${index}`}
-            className="flex gap-1.5 items-center t-step-title"
+            className="t-breadcrumb-nav-item"
           >
-            {index !== 0 && <ChevronRightIcon className="t-icon t-step-title-icon" />}
+            {index !== 0 && <ChevronRightIcon className="t-icon t-icon-muted cursor-default" />}
             {item.startIcon && item.startIcon}
-            <p
-              className={`${index === data.length - 1 && `t-last-step`}`}
+            <div
+              className={cx('t-breadcrumb-nav-title', index === data.length - 1 && 't-breadcrumb-nav-title-active')}
               onClick={() => item.onClick && item.onClick()}
             >
               {item.text}
-            </p>
+            </div>
             {item.endIcon && item.endIcon}
           </div>
         );
