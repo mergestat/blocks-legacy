@@ -133,3 +133,17 @@ ClickableTable.args = {
   renderCollapse: (d: any) => d.description,
   clickable: true
 }
+
+export const BorderedTable = Template.bind({});
+BorderedTable.args = {
+  columns: columns,
+  dataSource: dataSource,
+  bordered: true,
+}
+
+export const DenseTable = Template.bind({});
+DenseTable.args = {
+  columns: columns,
+  dataSource: dataSource,
+  dense: true,
+}
