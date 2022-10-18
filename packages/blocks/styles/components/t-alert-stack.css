@@ -3,9 +3,11 @@
    ========================================================================== */
 
 .t-alert-stack {
-    min-width: 26rem;
+    max-width: 26rem;
+    width: 100%;
     @apply fixed
-           right-4;
+           right-4
+           pl-8;
 }
 
 .t-alert-stack li + li {
@@ -17,20 +19,24 @@
   @apply fixed z-50;
 }
 
+.t-notification .t-alert-message {
+  @apply line-clamp-5;
+}
+
 .t-notification-notice {
   @apply mb-2 relative;
 }
 
 .t-notification-notice-close {
+  top: 1.125rem;
   @apply absolute
-         top-3
-         right-8
+         right-4
          text-white
          outline-none;
 }
 
-.t-notification-notice-closable {
-  @apply pr-5;
+.t-notification-notice-closable .t-alert-body {
+  @apply pr-6;
 }
 
 .t-notification-fade-appear,
