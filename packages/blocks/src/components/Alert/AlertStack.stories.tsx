@@ -11,8 +11,8 @@ export default {
 export const AlertStackUtil = () => {
   const showAlertStack = (type: string) =>
     alertStack[type]({
-      message: 'Alert Message',
-      title: 'Alert Title',
+      message: 'This is an example of an alert message.',
+      title: 'Alert title',
       onClose: () => {
         console.log('Close');
       },

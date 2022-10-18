@@ -80,7 +80,7 @@ const getNotificationInstance = (
           closeIcon: getCloseIcon,
           maxCount: 5,
           style: {
-            right: '10px',
+            right: '16px',
             top: '65px',
           },
         },
