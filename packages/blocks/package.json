@@ -44,7 +44,7 @@
     "tippy.js": "^6.3.2"
   },
   "devDependencies": {
-    "@babel/core": "7.16.5",
+    "@babel/core": "7.19.6",
     "@storybook/addon-actions": "6.5.12",
     "@storybook/addon-essentials": "6.5.12",
     "@storybook/addon-links": "6.5.12",
@@ -54,7 +54,7 @@
     "@testing-library/jest-dom": "5.16.5",
     "@testing-library/react": "11.2.7",
     "@types/react-dom": "17.0.17",
-    "babel-loader": "8.2.3",
+    "babel-loader": "8.2.5",
     "chromatic": "6.5.3",
     "jest-styled-components": "7.0.8",
     "postcss-import": "14.0.2",
