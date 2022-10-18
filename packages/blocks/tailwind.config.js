@@ -46,6 +46,6 @@ module.exports = {
       gradientColorStops: ['active'],
     },
   },
-  plugins: [require("@tailwindcss/typography")],
-  separator: "_",
+  plugins: [require('@tailwindcss/typography'), require('@tailwindcss/line-clamp'),],
+  separator: '_',
 };

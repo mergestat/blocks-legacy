@@ -19,6 +19,10 @@
   @apply fixed z-50;
 }
 
+.t-notification .t-alert-message {
+  @apply line-clamp-5;
+}
+
 .t-notification-notice {
   @apply mb-2 relative;
 }
