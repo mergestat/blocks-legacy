@@ -62,8 +62,9 @@
   @apply py-3
          text-left
          border-b-2
-         font-medium
-         text-gray-900;
+         font-semibold
+         bg-gray-50
+         text-gray-700;
 }
 
 /* Alignment for button toolbars */
@@ -235,14 +236,9 @@ table th.down .sortable__th__arrow {
 }
 
 /* Dense tables */
+.t-table-dense th,
 .t-table-dense td {
   @apply py-2.5
-         text-sm;
-}
-
-.t-table-dense th {
-  @apply pt-3.5
-         pb-2
          text-sm;
 }
 
