@@ -7,6 +7,7 @@
 @import "./components/t-alert.css";
 @import "./components/t-avatar.css";
 @import "./components/t-badge.css";
+@import "./components/t-border.css";
 @import "./components/t-breadcrumb-nav.css";
 @import "./components/t-button-toolbar.css";
 @import "./components/t-button.css";
@@ -42,6 +43,7 @@
 @import "./components/t-table.css";
 @import "./components/t-tabs.css";
 @import "./components/t-tag.css";
+@import "./components/t-text.css";
 @import "./components/t-textarea.css";
 @import "./components/t-toggle.css";
 @import "./components/t-toolbar.css";
