@@ -10,6 +10,7 @@ import { Alert } from './Alert';
 const defaultDuration = 4.5;
 const defaultType = 'info';
 const defaultTheme = 'dark';
+const defaultPosition = 'bottom'
 
 export interface ArgsProps {
   title?: React.ReactNode | string;
@@ -18,6 +19,7 @@ export interface ArgsProps {
   onClose?: () => void;
   duration?: number | null;
   type?: 'warning' | 'info' | 'success' | 'error';
+  position?: 'top' | 'bottom';
   theme?: 'dark' | 'light';
   style?: React.CSSProperties;
   className?: string;
@@ -34,7 +36,9 @@ const getNotificationInstance = (
   args: ArgsProps,
   callback: (info: { instance: RCNotificationInstance }) => void
 ) => {
-  const { getContainer, closeIcon, className } = args;
+  const { getContainer, closeIcon, className, position } = args;
+
+  const getPosition = position === undefined ? defaultPosition : position;
 
   const prefixCls = 't-notification';
   const cacheKey = `${prefixCls}-top-left`;
@@ -80,8 +84,9 @@ const getNotificationInstance = (
           closeIcon: getCloseIcon,
           maxCount: 5,
           style: {
-            right: '16px',
-            top: '65px',
+            right: '24px',
+            top: getPosition == 'top'? '24px' : '',
+            bottom: getPosition == 'bottom' ? '24px' : ''
           },
         },
         (notification) => {
@@ -107,6 +112,7 @@ const getRCNoticeProps = (args: ArgsProps) => {
     key,
     style,
     className,
+    position
   } = args;
 
   const getTheme = theme === undefined ? defaultTheme : theme;

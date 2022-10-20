@@ -6,7 +6,7 @@
     max-width: 26rem;
     width: 100%;
     @apply fixed
-           right-4
+           right-6
            pl-8;
 }
 
