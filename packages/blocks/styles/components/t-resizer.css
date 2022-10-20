@@ -3,7 +3,9 @@
    ========================================================================== */
 
 .t-resizer {
+  cursor: row-resize;
   @apply bg-gray-50
+           w-full
            mix-blend-multiply
            py-1;
 }
