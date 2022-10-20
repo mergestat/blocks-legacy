@@ -20,8 +20,12 @@
            border-gray-500;
 }
 
-.t-nav-item > a {
+.t-nav-item > a,
+.t-nav-item > button {
     @apply px-5
+           border-0
+           bg-transparent
+           gap-3
            font-medium
            inline-flex
            items-center
