@@ -105,6 +105,7 @@
 .t-button-borderless-muted {
   @apply border-transparent
         bg-transparent
+        border-0
         px-0;
 }
 
