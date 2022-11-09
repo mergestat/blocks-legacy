@@ -3,6 +3,7 @@ import cx from 'classnames';
 
 type InlineBannerProps = {
   className?: string;
+  children: React.ReactNode;
 };
 
 export const InlineBanner: React.FC<InlineBannerProps> = ({ className, children }) => {

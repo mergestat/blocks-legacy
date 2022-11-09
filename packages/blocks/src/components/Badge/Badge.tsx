@@ -4,6 +4,7 @@ import { XIcon } from '@mergestat/icons';
 
 type BadgeProps = {
   label?: string;
+  children: React.ReactNode;
   startIcon?: React.ReactNode;
   endIcon?: React.ReactNode;
   className?: string;
