@@ -1,6 +1,6 @@
 {
   "name": "@mergestat/icons",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "description": "Set of Icon for MergeStat project",
   "repository": {
     "type": "git",
@@ -35,12 +35,12 @@
     ]
   },
   "dependencies": {
-    "classnames": "^2.3.1"
+    "classnames": "^2.3.2"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "5.16.5",
-    "@testing-library/react": "11.2.7",
-    "@types/react-dom": "18.0.6",
+    "@testing-library/react": "13.4.0",
+    "@types/react-dom": "18.0.8",
     "react": "18.2.0",
     "react-dom": "18.2.0"
   },
