@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  CircleErrorFilledIcon,
+  CircleCheckFilledIcon,
   ExternalLinkIcon,
   RepositoryIcon
 } from '@mergestat/icons';
@@ -22,12 +22,30 @@ Default.args = {
     { text: "Repos" },
     {
       startIcon: <ColoredBox onClick={() => {}} size="8" skin="default"><RepositoryIcon className="t-icon t-icon-small" /></ColoredBox>,
-      text: "vercel/next.js",
+      text: "mergestat/mergestat",
       endIcon: <ExternalLinkIcon className="t-icon t-icon-small t-icon-muted" />
     },
     {
-      startIcon: <CircleErrorFilledIcon className="t-icon t-icon-danger" />,
-      text: "Pull requests",
+      startIcon: <CircleCheckFilledIcon className="t-icon t-icon-success" />,
+      text: "Pull Requests",
+      onClick: ()=>console.log("hi")
+    }
+  ]
+}
+
+export const SmallBreadcrumbs = Template.bind({});
+SmallBreadcrumbs.args = {
+  size: "sm",
+  data: [
+    { text: "Repos" },
+    {
+      startIcon: <ColoredBox onClick={() => {}} size="6" skin="default"><RepositoryIcon className="t-icon t-icon-small" /></ColoredBox>,
+      text: "mergestat/mergestat",
+      endIcon: <ExternalLinkIcon className="t-icon t-icon-small t-icon-muted" />
+    },
+    {
+      startIcon: <CircleCheckFilledIcon className="t-icon t-icon-success" />,
+      text: "Pull Requests",
       onClick: ()=>console.log("hi")
     }
   ]
