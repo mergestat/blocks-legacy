@@ -7,7 +7,8 @@ type BadgeProps = {
   startIcon?: React.ReactNode;
   endIcon?: React.ReactNode;
   className?: string;
-  variant?: 'primary' | 'success' | 'warning' | 'danger' | 'default';
+  variant?: 'primary' | 'success' | 'warning' | 'danger' | 'dark' | 'default';
+  rounded?: boolean;
   iconOnly?: boolean;
   closable?: boolean;
   action?: boolean;
@@ -22,6 +23,7 @@ export const Badge: React.FC<BadgeProps> = ({
   startIcon,
   endIcon,
   variant = 'default',
+  rounded = false,
   iconOnly,
   closable,
   action,
@@ -38,6 +40,7 @@ export const Badge: React.FC<BadgeProps> = ({
         [className]: !!className,
         ['t-badge-icon']: iconOnly,
         ['t-badge-action cursor-pointer']: action,
+        ['t-badge-rounded']: rounded
       })}
     >
       {/* Start Icon */}
