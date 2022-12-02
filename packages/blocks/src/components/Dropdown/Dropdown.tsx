@@ -37,8 +37,7 @@ const DropdownContent: React.FC<
   >
 > = ({ overlay, zIndex }) => {
   const [props, { show }] = useDropdownMenu({
-    flip: true,
-    offset: [0, 8],
+    flip: true
   });
 
   return (
