@@ -130,7 +130,7 @@
 }
 
 .t-sidebar-dark .t-sidebar-divider {
-  @apply border-gray-600;
+  @apply border-gray-700;
 }
 
 .t-sidebar-dark {
