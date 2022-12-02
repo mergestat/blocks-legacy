@@ -9,7 +9,6 @@
          gap-2;
 }
 
-
 .t-breadcrumb-nav-item {
   @apply  flex
           items-center
@@ -26,4 +25,17 @@
 
 .t-breadcrumb-nav-title-active {
   @apply text-gray-900;
+}
+
+.t-breadcrumb-nav-sm .t-breadcrumb-nav-title {
+  @apply text-sm
+         font-medium;
+}
+.t-breadcrumb-nav-sm .t-breadcrumb-nav-item {
+  @apply gap-1.5;
+}
+
+.t-breadcrumb-nav-sm .t-icon {
+  @apply w-4
+         h-4;
 }
