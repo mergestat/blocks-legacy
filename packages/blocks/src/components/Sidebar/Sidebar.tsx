@@ -124,9 +124,9 @@ const SidebarItem: React.FC<
             {showSubNav? <ChevronUpIcon className='t-icon t-icon-small' /> : <ChevronDownIcon className='t-icon t-icon-small' />}</div>}
         </a>
         {children &&
-        <div className={cx('t-sidebar-nav-sub', {['active'] : showSubNav})}>
+        <ul className={cx('t-sidebar-nav-sub', {['active'] : showSubNav})}>
           {children}
-        </div>
+        </ul>
         }
       </li>
     );
