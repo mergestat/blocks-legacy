@@ -10,9 +10,7 @@
            w-8
            rounded-full
            font-medium
-           overflow-hidden
-           bg-gray-200
-           text-gray-500;
+           overflow-hidden;
 }
 
 .t-avatar-img {
@@ -54,8 +52,8 @@
 }
 
 .t-avatar-xl .t-icon {
-    @apply w-8
-           h-8;
+    @apply w-6
+           h-6;
 }
 
 .t-avatar-2xl {
@@ -68,6 +66,12 @@
 }
 
 /* Skins */
+.t-avatar-default {
+  @apply bg-gray-100
+         text-gray-450
+         mix-blend-multiply;
+}
+
 .t-avatar-primary {
     @apply bg-blue-600
            text-white;
@@ -102,3 +106,4 @@
     @apply bg-lime-200
            text-lime-600;
 }
+

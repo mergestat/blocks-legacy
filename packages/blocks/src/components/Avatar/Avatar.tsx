@@ -2,7 +2,7 @@ import React from 'react';
 import cx from 'classnames';
 
 export type SizeT = 'sm' | 'md' | 'lg' | 'xl' | '2xl';
-export type VariantT = 'primary' | 'success' | 'warning' | 'danger';
+export type VariantT = 'primary' | 'success' | 'warning' | 'danger' | 'dark' | 'default';
 
 type AvatarProps = {
   size?: SizeT;
@@ -17,7 +17,7 @@ export const Avatar: React.FC<
       React.HTMLAttributes<HTMLDivElement>,
       HTMLDivElement
     >
-> = ({ size, children, imageUrl, icon, variant, className, ...props }) => {
+> = ({ size, children, imageUrl, icon, variant = 'default', className, ...props }) => {
   return (
     <div
       {...props}
