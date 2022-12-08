@@ -19,8 +19,8 @@
          text-gray-600;
 }
 
-.t-radio-card.t-tag-blue {
-  @apply bg-blue-100
+.t-radio-card.t-radio-card-selected {
+  @apply bg-blue-50
          text-blue-600
          ring-1
          ring-inset
