@@ -61,9 +61,14 @@ export const AvatarSkins = () => {
           variant: 'danger',
           icon: <CircleWarningIcon className="t-icon" />,
         },
+        {
+          variant: 'dark',
+          icon: <CircleWarningIcon className="t-icon" />,
+        },
       ].map((item) => (
         <Avatar icon={item.icon} variant={item.variant as VariantT} />
       ))}
     </div>
   );
 }
+
