@@ -49,23 +49,21 @@ export const ExamplePanel: React.FC = () => {
 
 export const ExampleDarkSideBar: React.FC = () => {
   return (
-    <Sidebar dark={true} compact={false}>
-      <Sidebar.Header>
-          <div className="t-sidebar-logo">
-            <img src={logo} alt="MergeStat" />
-          </div>
-      </Sidebar.Header>
+    <Sidebar dark={true} compact={false} collapsible={true}>
+      <Sidebar.Header />
       <Sidebar.Main>
         <Sidebar.Item
           compact={false}
           label="Queries"
-          active
           icon={<TerminalIcon className="t-icon" />}
-        >
-          <Sidebar.Item compact={false} label="Saved Queries" subLevel={true} />
-          <Sidebar.Item compact={false} label="Example Queries" subLevel={true} />
-          <Sidebar.Item compact={false} label="History" subLevel={true} />
-        </Sidebar.Item>
+          subNav={
+            <>
+              <Sidebar.Item compact={false} label="Saved Queries"  level="sub" active />
+              <Sidebar.Item compact={false} label="Example Queries"  level="sub" />
+              <Sidebar.Item compact={false} label="History"  level="sub" />
+            </>
+          }
+          />
         <Sidebar.Item
           compact={false}
           label="Views"
@@ -81,13 +79,16 @@ export const ExampleDarkSideBar: React.FC = () => {
           compact={false}
           label="Settings"
           icon={<CogIcon className="t-icon" />}
-        >
-          <Sidebar.Item compact={false} label="User Management" subLevel={true} />
-          <Sidebar.Item compact={false} label="User Settings" subLevel={true} />
-        </Sidebar.Item>
+          subNav={
+            <>
+              <Sidebar.Item compact={false} label="User Management" level="sub" />
+              <Sidebar.Item compact={false} label="User Settings" level="sub" />
+            </>
+          }
+        />
       </Sidebar.Main>
       <Sidebar.Footer>
-        <Badge label="v.1.1.0" variant="dark" rounded={true} />
+        <Sidebar.Version label="v.1.1.0" />
       </Sidebar.Footer>
     </Sidebar>
   );
