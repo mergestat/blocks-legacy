@@ -33,10 +33,9 @@ export const ExamplePanel: React.FC = () => {
           icon={<DocumentTextIcon className='t-icon' />}
         />
         <Sidebar.Item
-          label='Postgres'
+          label='Connect'
           icon={<DatabaseIcon className='t-icon' />}
         />
-
         <Sidebar.Divider />
         <Sidebar.Item label='Settings' icon={<CogIcon className='t-icon' />} />
       </Sidebar.Main>
